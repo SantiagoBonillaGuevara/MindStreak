@@ -106,7 +106,7 @@ fun AppNavigation(appViewModel: AppViewModel) {
                         )
                     }
 
-                    /*composable(Screen.Auth.route) {
+                    composable(Screen.Auth.route) {
                         AuthScreen(
                             onLogin = {
                                 navController.navigate(Screen.Home.route) {
@@ -147,16 +147,23 @@ fun AppNavigation(appViewModel: AppViewModel) {
                     }
 
                     composable(Screen.Streak.route) {
-                        StreakScreen(appViewModel = appViewModel)
+                        StreakScreen(
+                            appViewModel = appViewModel,
+                            navController = navController,
+                        )
                     }
 
                     composable(Screen.Statistics.route) {
-                        StatisticsScreen(appViewModel = appViewModel)
+                        StatisticsScreen(
+                            appViewModel = appViewModel,
+                            navController = navController,
+                        )
                     }
 
                     composable(Screen.Notifications.route) {
                         NotificationsScreen(
-                            onBack = { navController.popBackStack() }
+                            onBack = { navController.popBackStack() },
+                            appViewModel = appViewModel,
                         )
                     }
 
@@ -165,15 +172,16 @@ fun AppNavigation(appViewModel: AppViewModel) {
                     }
 
                     composable(Screen.Social.route) {
-                        SocialScreen(appViewModel = appViewModel)
+                        SocialScreen(/*appViewModel = appViewModel*/)
                     }
 
                     composable(Screen.Profile.route) {
                         ProfileScreen(
-                            appViewModel = appViewModel,
-                            navController = navController,
+                            onNavigate = { route ->
+                                navController.navigate(route)
+                            }
                         )
-                    }*/
+                    }
                 }
             }
 

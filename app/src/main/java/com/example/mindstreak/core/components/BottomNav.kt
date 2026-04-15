@@ -31,7 +31,7 @@ sealed class NavItem(
     val activeEmoji: String? = null,
 ) {
     object Home         : NavItem("home",         "Home",    Icons.Default.Home)
-    object Stats        : NavItem("stats",         "Stats",   Icons.Default.BarChart)
+    object Stats        : NavItem("statistics",         "statistics",   Icons.Default.BarChart)
     object Streak       : NavItem("streak",        "Streak",  icon = null, emoji = "🔥", activeEmoji = "🔥")
     object Achievements : NavItem("achievements",  "Awards",  Icons.Default.EmojiEvents)
     object Profile      : NavItem("profile",       "Profile", Icons.Default.Person)

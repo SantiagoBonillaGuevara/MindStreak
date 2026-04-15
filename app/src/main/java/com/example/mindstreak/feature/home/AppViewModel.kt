@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mindstreak.data.mock.MockData
+import com.example.mindstreak.data.model.Achievement
 import com.example.mindstreak.data.model.Habit
 import com.example.mindstreak.data.repository.HabitRepository
 import kotlinx.coroutines.flow.*
@@ -14,6 +15,7 @@ import java.time.format.DateTimeFormatter
 // Equivalente al AppContextType de React
 data class AppUiState(
     val habits: List<Habit> = emptyList(),
+    val achievements: List<Achievement> = emptyList(),
     val currentStreak: Int = 0,
     val completedToday: Int = 0,
     val totalHabits: Int = 0,
@@ -26,15 +28,16 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     // StateFlow privado mutable — equivalente al useState interno
     private val _habits = MutableStateFlow<List<Habit>>(emptyList())
+    private val _achievements = MutableStateFlow<List<Achievement>>(MockData.ACHIEVEMENTS)
 
     // UiState público derivado — equivalente al value del Context
-    val uiState: StateFlow<AppUiState> = _habits
-        .map { habits -> deriveUiState(habits) }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = AppUiState(),
-        )
+    val uiState: StateFlow<AppUiState> = combine(_habits, _achievements) { habits, achievements ->
+        deriveUiState(habits, achievements)
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5_000),
+        initialValue = AppUiState(),
+    )
 
     init {
         viewModelScope.launch {
@@ -151,11 +154,12 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     // Derivar el UiState a partir de la lista de hábitos
     // Equivalente a las variables computadas al final del AppProvider
-    private fun deriveUiState(habits: List<Habit>): AppUiState {
+    private fun deriveUiState(habits: List<Habit>, achievements: List<Achievement>): AppUiState {
         val completedToday = habits.count { it.completedToday }
         val total = habits.size
         return AppUiState(
             habits = habits,
+            achievements = achievements,
             currentStreak = habits.maxOfOrNull { it.streak } ?: 0,
             completedToday = completedToday,
             totalHabits = total,
