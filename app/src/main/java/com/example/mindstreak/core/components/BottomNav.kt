@@ -21,20 +21,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.mindstreak.core.theme.HabitPurple
 
-// Equivalente a NAV_ITEMS — usamos una sealed class en vez de array de objetos
+// sealed class para las rutas de navegación
 sealed class NavItem(
     val route: String,
     val label: String,
-    val icon: ImageVector?,       // null = usa emoji
-    val emoji: String? = null,    // para el caso especial de Streak
+    val icon: ImageVector?,
+    val emoji: String? = null,
     val activeEmoji: String? = null,
 ) {
     object Home         : NavItem("home",         "Home",    Icons.Default.Home)
-    object Stats        : NavItem("statistics",         "statistics",   Icons.Default.BarChart)
-    object Streak       : NavItem("streak",        "Streak",  icon = null, emoji = "🔥", activeEmoji = "🔥")
+    object Stats        : NavItem("statistics",   "Stats",   Icons.Default.BarChart)
+    object Streak       : NavItem("streak",       "Streak",  icon = null, emoji = "🔥", activeEmoji = "🔥")
     object Achievements : NavItem("achievements",  "Awards",  Icons.Default.EmojiEvents)
-    object Profile      : NavItem("profile",       "Profile", Icons.Default.Person)
+    object Profile      : NavItem("profile",      "Profile", Icons.Default.Person)
 }
 
 private val NAV_ITEMS = listOf(
@@ -45,27 +46,21 @@ private val NAV_ITEMS = listOf(
     NavItem.Profile,
 )
 
-// Colores equivalentes a los del componente React
-private val NavBackground   = Color(0xFF0F0F1E)
-private val NavBorder       = Color(0xFF2A2A45)
-private val ActiveColor     = Color(0xFF7C6EFF)
-private val InactiveColor   = Color(0xFF5A5A7A)
-private val ActiveBg        = Color(0xFF7C6EFF).copy(alpha = 0.10f)
-
 @Composable
 fun BottomNav(navController: NavController) {
-    // Observa la ruta actual — equivalente a useLocation()
     val backStack by navController.currentBackStackEntryAsState()
     val currentRoute = backStack?.destination?.route
 
+    val navBackground = MaterialTheme.colorScheme.surface
+    val navBorder = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+
     Column {
-        // Borde superior — equivalente a borderTop: '1px solid #2A2A45'
-        HorizontalDivider(color = NavBorder, thickness = 1.dp)
+        HorizontalDivider(color = navBorder, thickness = 1.dp)
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(NavBackground)
+                .background(navBackground)
                 .padding(top = 8.dp, bottom = 4.dp),
             horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically,
@@ -75,7 +70,6 @@ fun BottomNav(navController: NavController) {
                     item = item,
                     active = currentRoute == item.route,
                     onClick = {
-                        // Equivalente a navigate(path) — evita duplicados en el back stack
                         if (currentRoute != item.route) {
                             navController.navigate(item.route) {
                                 popUpTo(navController.graph.startDestinationId) {
@@ -98,9 +92,12 @@ private fun NavItemButton(
     active: Boolean,
     onClick: () -> Unit,
 ) {
-    // Equivalente a transition-all duration-200 en color
+    val activeColor = HabitPurple
+    val inactiveColor = MaterialTheme.colorScheme.onSurfaceVariant
+    val activeBg = activeColor.copy(alpha = 0.12f)
+
     val contentColor by animateColorAsState(
-        targetValue = if (active) ActiveColor else InactiveColor,
+        targetValue = if (active) activeColor else inactiveColor,
         animationSpec = tween(200),
         label = "navColor_${item.route}",
     )
@@ -108,13 +105,12 @@ private fun NavItemButton(
     Column(
         modifier = Modifier
             .clip(RoundedCornerShape(12.dp))
-            .background(if (active) ActiveBg else Color.Transparent)
+            .background(if (active) activeBg else Color.Transparent)
             .clickable(onClick = onClick)
             .padding(horizontal = 12.dp, vertical = 4.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(2.dp),
     ) {
-        // Ícono — caso especial para Streak con emoji
         if (item.emoji != null) {
             Text(
                 text = item.emoji,
@@ -130,7 +126,6 @@ private fun NavItemButton(
             )
         }
 
-        // Label
         Text(
             text = item.label,
             color = contentColor,
