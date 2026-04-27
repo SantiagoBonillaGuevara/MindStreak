@@ -27,9 +27,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.mindstreak.core.components.EmptyState
 import com.example.mindstreak.core.components.HabitCard
 import com.example.mindstreak.core.components.HabitCardData
 import com.example.mindstreak.core.components.ProgressRing
+import com.example.mindstreak.core.components.QuoteCard
 import com.example.mindstreak.core.navigation.Screen
 import com.example.mindstreak.core.theme.*
 import com.example.mindstreak.data.mock.MockData
@@ -176,8 +178,12 @@ fun HomeScreen(
 
             // ── Habits list ───────────────────────────────────
             if (state.habits.isEmpty()) {
-                EmptyHabitsState(
-                    onAddClick = { navController.navigate(Screen.CreateHabit.route) }
+                EmptyState(
+                    emoji = "🌱",
+                    title = "No habits yet",
+                    description = "Start building your streak by adding your first habit.",
+                    buttonText = "Add First Habit",
+                    onButtonClick = { navController.navigate(Screen.CreateHabit.route) },
                 )
             } else {
                 Column(
@@ -612,68 +618,3 @@ private fun TodayProgressCard(
     }
 }
 
-@Composable
-private fun QuoteCard(quote: String) {
-    Card(
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.05f),
-        ),
-        border = BorderStroke(
-            1.dp,
-            MaterialTheme.colorScheme.primary.copy(alpha = 0.2f),
-        ),
-        elevation = CardDefaults.cardElevation(0.dp),
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            Text("💬", fontSize = 20.sp)
-            Text(
-                text = "\"$quote\"",
-                fontSize = 13.sp,
-                fontWeight = FontWeight.Medium,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.weight(1f),
-            )
-        }
-    }
-}
-
-@Composable
-private fun EmptyHabitsState(onAddClick: () -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 40.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        Text("🌱", fontSize = 48.sp)
-        Text(
-            text = "No habits yet",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onBackground,
-        )
-        Text(
-            text = "Start building your streak by adding your first habit.",
-            fontSize = 13.sp,
-            fontWeight = FontWeight.Medium,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
-            textAlign = TextAlign.Center,
-            modifier = Modifier.widthIn(max = 200.dp),
-        )
-        Button(
-            onClick = onAddClick,
-            modifier = Modifier.padding(top = 8.dp),
-            shape = RoundedCornerShape(16.dp),
-        ) {
-            Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(14.dp))
-            Spacer(Modifier.width(6.dp))
-            Text("Add First Habit", fontWeight = FontWeight.Bold, fontSize = 14.sp)
-        }
-    }
-}

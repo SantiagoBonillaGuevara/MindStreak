@@ -26,6 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.mindstreak.core.components.StatMini
 import com.example.mindstreak.feature.home.AppViewModel
 import com.example.mindstreak.core.theme.*
 
@@ -344,10 +345,3 @@ private fun HabitStreakRow(habit: com.example.mindstreak.data.model.Habit) {
     }
 }
 
-@Composable
-fun StatMini(value: String, label: String) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(value, fontSize = 18.sp, fontWeight = FontWeight.ExtraBold)
-        Text(label, fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
-    }
-}

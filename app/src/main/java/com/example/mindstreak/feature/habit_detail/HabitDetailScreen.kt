@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mindstreak.core.components.ProgressRing
+import com.example.mindstreak.core.components.StatItem
 import com.example.mindstreak.feature.home.AppViewModel
 import kotlin.math.roundToInt
 import com.example.mindstreak.core.theme.*
@@ -335,16 +336,3 @@ fun HabitDetailScreen(
     }
 }
 
-@Composable
-fun StatItem(modifier: Modifier, value: String, label: String, color: Color) {
-    Column(
-        modifier = modifier
-            .clip(RoundedCornerShape(16.dp))
-            .background(Color.Black.copy(alpha = 0.2f))
-            .padding(vertical = 12.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(value, fontSize = 20.sp, fontWeight = FontWeight.Black, color = color)
-        Text(label, fontSize = 10.sp, fontWeight = FontWeight.Medium, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
-    }
-}
