@@ -1,97 +1,97 @@
-# UI Components Architecture
+# Arquitectura de Componentes UI
 
-## Purpose of `core/components`
+## Propósito de `core/components`
 
-`core/components` is the single source of truth for reusable, stateless UI building blocks used across two or more feature screens (or generic enough to be reused). Components here have no knowledge of business logic, navigation, or ViewModels.
-
----
-
-## What goes here
-
-| Criteria | Yes |
-|---|---|
-| Pure UI rendering (inputs, cards, toggles, labels) | ✅ |
-| Accepts only primitive / UI-state parameters | ✅ |
-| No ViewModel, no NavController, no Repository | ✅ |
-| No `LaunchedEffect` that triggers side effects | ✅ |
-| Could reasonably appear in two or more features | ✅ |
-
-## What does NOT go here
-
-| Criteria | No |
-|---|---|
-| Feature-specific layouts (e.g. `ProfileHeroCard`, `StreakHeroCard`) | ❌ |
-| Composables that take domain model objects (e.g. `User`, `Habit`) | ❌ |
-| Navigation logic or route constants | ❌ |
-| ViewModel state collection (`collectAsState`) | ❌ |
-| Screen-level scaffolds or top-level screens | ❌ |
+`core/components` es la fuente de verdad única para los bloques de construcción de UI reutilizables y sin estado, compartidos entre dos o más pantallas de funcionalidades (o lo suficientemente genéricos para ser reutilizados). Los componentes aquí definidos no tienen ningún conocimiento de lógica de negocio, navegación ni ViewModels.
 
 ---
 
-## Components catalogue
+## Qué va aquí
+
+| Criterio | Sí |
+|---|---|
+| Renderizado de UI puro (inputs, tarjetas, toggles, etiquetas) | ✅ |
+| Solo acepta parámetros primitivos o de estado de UI | ✅ |
+| Sin ViewModel, sin NavController, sin Repository | ✅ |
+| Sin `LaunchedEffect` que dispare efectos secundarios | ✅ |
+| Puede aparecer razonablemente en dos o más funcionalidades | ✅ |
+
+## Qué NO va aquí
+
+| Criterio | No |
+|---|---|
+| Layouts específicos de una funcionalidad (ej. `ProfileHeroCard`, `StreakHeroCard`) | ❌ |
+| Composables que reciben objetos del modelo de dominio (ej. `User`, `Habit`) | ❌ |
+| Lógica de navegación o constantes de rutas | ❌ |
+| Colección de estado del ViewModel (`collectAsState`) | ❌ |
+| Scaffolds a nivel de pantalla o pantallas de nivel superior | ❌ |
+
+---
+
+## Catálogo de componentes
 
 ### `AuthTextField.kt`
-- **`AuthTextField`** — `OutlinedTextField` styled for auth forms; accepts icon, placeholder, and keyboard type.
-- **`authTextFieldColors()`** — shared `OutlinedTextFieldDefaults.colors` used by auth fields.
+- **`AuthTextField`** — `OutlinedTextField` estilizado para formularios de autenticación; acepta ícono, placeholder y tipo de teclado.
+- **`authTextFieldColors()`** — configuración compartida de `OutlinedTextFieldDefaults.colors` utilizada por los campos de autenticación.
 
 ### `CheckButton.kt`
-- **`CheckButton`** — animated check/uncheck button used on habit cards.
+- **`CheckButton`** — botón animado de marcar/desmarcar usado en las tarjetas de hábitos.
 
 ### `CustomToggle.kt`
-- **`CustomToggle`** — animated toggle switch with spring physics and configurable active color.
+- **`CustomToggle`** — interruptor toggle animado con física de resorte y color activo configurable.
 
 ### `EmptyState.kt`
-- **`EmptyState`** — full-width empty-state placeholder with emoji, title, description, and optional CTA button.
+- **`EmptyState`** — placeholder de ancho completo para estados vacíos, con emoji, título, descripción y botón CTA opcional.
 
 ### `HabitCard.kt`
-- **`HabitCard`** — card displaying a habit with emoji, name, streak, completion rate, and optional check button.
+- **`HabitCard`** — tarjeta que muestra un hábito con emoji, nombre, racha, tasa de completado y botón de verificación opcional.
 
 ### `ModifierExtensions.kt`
-- **`Modifier.clickableWithoutRipple`** — `@Composable` Modifier extension that suppresses ripple on click.
+- **`Modifier.clickableWithoutRipple`** — extensión de Modifier `@Composable` que suprime el efecto ripple al hacer clic.
 
 ### `ProgressRing.kt`
-- **`ProgressRing`** — animated circular progress indicator with optional center content slot.
+- **`ProgressRing`** — indicador de progreso circular animado con slot opcional para contenido central.
 
 ### `QuickNavButton.kt`
-- **`QuickNavButton`** — emoji + label vertical button used in navigation shortcut rows.
+- **`QuickNavButton`** — botón vertical de emoji + etiqueta usado en filas de accesos rápidos de navegación.
 
 ### `QuoteCard.kt`
-- **`QuoteCard`** — card that displays a motivational quote with a chat-bubble emoji prefix.
+- **`QuoteCard`** — tarjeta que muestra una frase motivacional con un emoji de burbuja de chat como prefijo.
 
 ### `SectionLabel.kt`
-- **`SectionLabel`** — uppercase, letter-spaced section heading label; optional bottom padding.
+- **`SectionLabel`** — etiqueta de encabezado de sección en mayúsculas con espaciado entre letras; padding inferior opcional.
 
 ### `SettingsItems.kt`
-- **`SettingsSection`** — grouped settings container with header and a `ColumnScope` content slot.
-- **`SettingsToggleItem`** — settings row with colored icon, title, subtitle, and Material `Switch`.
-- **`SettingsClickItem`** — settings row with colored icon, label, optional badge, and chevron.
-- **`NotificationTypeRow`** — settings row with `CustomToggle` gated by a `masterEnabled` flag.
+- **`SettingsSection`** — contenedor agrupado de ajustes con encabezado y slot de contenido `ColumnScope`.
+- **`SettingsToggleItem`** — fila de ajuste con ícono de color, título, subtítulo y `Switch` de Material.
+- **`SettingsClickItem`** — fila de ajuste con ícono de color, etiqueta, badge opcional y chevron.
+- **`NotificationTypeRow`** — fila de ajuste con `CustomToggle` controlado por un flag `masterEnabled`.
 
 ### `StatCard.kt`
-- **`StatItem`** — compact stat cell (value + label) on dark background; used in detail hero rows.
-- **`StatSmallCard`** — stat card with emoji, large value, and uppercase label; used in stat grids.
-- **`StatMini`** — minimal value + label column; used in streak hero stats.
+- **`StatItem`** — celda de estadística compacta (valor + etiqueta) sobre fondo oscuro; usada en filas hero de detalle.
+- **`StatSmallCard`** — tarjeta de estadística con emoji, valor grande y etiqueta en mayúsculas; usada en grids de estadísticas.
+- **`StatMini`** — columna mínima de valor + etiqueta; usada en las estadísticas hero de racha.
 
 ### `navigation/NavBottom.kt` + `navigation/NavItemButton.kt`
-- Bottom navigation bar and individual nav item with animated active state.
+- Barra de navegación inferior e ítem de navegación individual con estado activo animado.
 
 ---
 
-## Naming conventions
+## Convenciones de nomenclatura
 
-| Pattern | When to use |
+| Patrón | Cuándo usarlo |
 |---|---|
-| `{Name}Card` | Self-contained card with surface background |
-| `{Name}Item` | A row or cell inside a list |
-| `{Name}Button` | Interactive element with a primary action |
-| `{Name}Section` | Layout container grouping related items |
-| `{Name}Row` | Horizontal layout row (settings, list entries) |
-| `{Name}State` | Full-screen placeholder (empty, error, loading) |
-| `Modifier.{name}` | Modifier extension functions |
+| `{Name}Card` | Tarjeta autónoma con fondo de superficie |
+| `{Name}Item` | Fila o celda dentro de una lista |
+| `{Name}Button` | Elemento interactivo con una acción principal |
+| `{Name}Section` | Contenedor de layout que agrupa elementos relacionados |
+| `{Name}Row` | Fila de layout horizontal (ajustes, entradas de lista) |
+| `{Name}State` | Placeholder de pantalla completa (vacío, error, cargando) |
+| `Modifier.{name}` | Funciones de extensión de Modifier |
 
 ---
 
-## Example usage
+## Ejemplo de uso
 
 ```kotlin
 // EmptyState
@@ -137,11 +137,11 @@ Box(
 
 ---
 
-## Rules for adding new components
+## Reglas para agregar nuevos componentes
 
-1. **UI-only contract** — parameters must be primitives, lambdas, or `Modifier`. No domain models.
-2. **Single file per logical group** — related small composables (e.g. three stat variants) share one file.
-3. **No internal state that drives business outcomes** — local `var` for animation or UI micro-state is fine; collecting a ViewModel flow is not.
-4. **Name it by what it looks like, not where it's used** — `EmptyState` not `HomeEmptyHabits`.
-5. **Document the intent in one line** — use a KDoc comment above the composable if the purpose isn't obvious from the name.
-6. **Screens stay as composition layers** — a screen composable should only wire state → component params, never contain raw layout logic that belongs in a component.
+1. **Contrato solo de UI** — los parámetros deben ser primitivos, lambdas o `Modifier`. Sin modelos de dominio.
+2. **Un archivo por grupo lógico** — los composables pequeños relacionados (ej. tres variantes de stat) comparten un mismo archivo.
+3. **Sin estado interno que impulse resultados de negocio** — un `var` local para animación o micro-estado de UI está permitido; recolectar un flow de ViewModel no lo está.
+4. **Nómbralo por su aspecto, no por dónde se usa** — `EmptyState` y no `HomeEmptyHabits`.
+5. **Documenta la intención en una línea** — usa un comentario KDoc encima del composable si el propósito no es evidente por el nombre.
+6. **Las pantallas permanecen como capas de composición** — un composable de pantalla solo debe conectar estado → parámetros de componente, nunca contener lógica de layout que pertenece a un componente.
