@@ -19,18 +19,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.mindstreak.data.mock.MockData // Donde tengas tus amigos
-
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.mindstreak.core.theme.*
+import com.example.mindstreak.data.mock.MockData
 
 // Colores del podio
-val RANK_COLORS = listOf(Color(0xFFFFD166), Color(0xFFC0C0D0), Color(0xFFCD7F32))
+@Composable
+fun getRankColors() = listOf(HabitYellow, RankSilver, RankBronze)
 val RANK_LABELS = listOf("🥇", "🥈", "🥉")
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,7 +43,7 @@ fun SocialScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF0A0A14))
+            .background(MaterialTheme.colorScheme.background)
     ) {
         // --- Header ---
         Row(
@@ -52,10 +53,14 @@ fun SocialScreen() {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("Social", color = Color(0xFFF0F0FF), fontSize = 22.sp, fontWeight = FontWeight.ExtraBold)
+            Text(
+                "Social",
+                color = MaterialTheme.colorScheme.onBackground,
+                style = MaterialTheme.typography.titleLarge
+            )
 
             Surface(
-                color = Color(0xFF7C6EFF).copy(alpha = 0.15f),
+                color = HabitPurple.copy(alpha = 0.15f),
                 shape = RoundedCornerShape(12.dp),
                 onClick = { /* Invite logic */ }
             ) {
@@ -64,8 +69,12 @@ fun SocialScreen() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
-                    Icon(Icons.Default.PersonAdd, null, tint = Color(0xFF7C6EFF), modifier = Modifier.size(14.dp))
-                    Text("Invite", color = Color(0xFF7C6EFF), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                    Icon(Icons.Default.PersonAdd, null, tint = HabitPurple, modifier = Modifier.size(14.dp))
+                    Text(
+                        "Invite",
+                        color = HabitPurple,
+                        style = MaterialTheme.typography.labelLarge
+                    )
                 }
             }
         }
@@ -74,28 +83,28 @@ fun SocialScreen() {
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
-            placeholder = { Text("Search friends...", color = Color(0xFF5A5A7A), fontSize = 14.sp) },
+            placeholder = { Text("Search friends...", color = MaterialTheme.colorScheme.onSurfaceVariant, style = MaterialTheme.typography.bodyMedium) },
             modifier = Modifier
                 .padding(horizontal = 20.dp)
                 .fillMaxWidth()
                 .height(54.dp),
-            leadingIcon = { Icon(Icons.Default.Search, null, tint = Color(0xFF5A5A7A), modifier = Modifier.size(16.dp)) },
+            leadingIcon = { Icon(Icons.Default.Search, null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(16.dp)) },
             shape = RoundedCornerShape(16.dp),
             colors = TextFieldDefaults.colors(
                 // Color de fondo
-                focusedContainerColor = Color(0xFF1C1C2E),
-                unfocusedContainerColor = Color(0xFF1C1C2E),
+                focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
 
                 // Color del texto
-                focusedTextColor = Color.White,
-                unfocusedTextColor = Color.White,
+                focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
 
                 // Colores del borde (Indicator)
-                focusedIndicatorColor = Color(0xFF7C6EFF),
-                unfocusedIndicatorColor = Color(0xFF2A2A45),
+                focusedIndicatorColor = HabitPurple,
+                unfocusedIndicatorColor = MaterialTheme.colorScheme.outlineVariant,
 
                 // Cursor
-                cursorColor = Color(0xFF7C6EFF),
+                cursorColor = HabitPurple,
 
                 // Opcional: Quitar la línea base si no la quieres
                 disabledIndicatorColor = Color.Transparent,
@@ -107,7 +116,7 @@ fun SocialScreen() {
             modifier = Modifier
                 .padding(20.dp)
                 .fillMaxWidth()
-                .background(Color(0xFF1C1C2E), RoundedCornerShape(16.dp))
+                .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(16.dp))
                 .padding(4.dp)
         ) {
             listOf("Leaderboard", "Activity", "Groups").forEach { t ->
@@ -116,16 +125,15 @@ fun SocialScreen() {
                     modifier = Modifier
                         .weight(1f)
                         .clip(RoundedCornerShape(12.dp))
-                        .background(if (isSelected) Color(0xFF7C6EFF) else Color.Transparent)
+                        .background(if (isSelected) HabitPurple else Color.Transparent)
                         .clickable { selectedTab = t }
                         .padding(vertical = 10.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         t,
-                        color = if (isSelected) Color.White else Color(0xFF5A5A7A),
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold
+                        color = if (isSelected) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
+                        style = MaterialTheme.typography.labelLarge
                     )
                 }
             }
@@ -181,6 +189,7 @@ fun PodiumRow(friends: List<com.example.mindstreak.data.model.Friend>) {
     val podiumOrder = listOf(friends[1], friends[0], friends[2])
     val heights = listOf(70.dp, 100.dp, 60.dp)
     val actualRanks = listOf(1, 0, 2) // Indices de RANK_COLORS
+    val rankColors = getRankColors()
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -199,11 +208,11 @@ fun PodiumRow(friends: List<com.example.mindstreak.data.model.Friend>) {
                 Text(friend.avatarEmoji, fontSize = if (isFirst) 36.sp else 28.sp)
                 Text(
                     friend.name.split(" ")[0],
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.onSurface,
                     fontSize = if (isFirst) 12.sp else 11.sp,
                     fontWeight = FontWeight.Bold
                 )
-                Text("🔥${friend.streak}", color = Color(0xFFFF6B35), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                Text("🔥${friend.streak}", color = HabitOrange, fontSize = 11.sp, fontWeight = FontWeight.Bold)
 
                 Spacer(Modifier.height(8.dp))
 
@@ -215,13 +224,13 @@ fun PodiumRow(friends: List<com.example.mindstreak.data.model.Friend>) {
                         .clip(RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp))
                         .background(
                             Brush.verticalGradient(
-                                listOf(RANK_COLORS[rankIndex].copy(0.3f), RANK_COLORS[rankIndex].copy(0.1f))
+                                listOf(rankColors[rankIndex].copy(0.3f), rankColors[rankIndex].copy(0.1f))
                             )
                         )
-                        .border(1.dp, RANK_COLORS[rankIndex].copy(0.4f), RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)),
+                        .border(1.dp, rankColors[rankIndex].copy(0.4f), RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp)),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text((rankIndex + 1).toString(), color = RANK_COLORS[rankIndex], fontWeight = FontWeight.Black, fontSize = 20.sp)
+                    Text((rankIndex + 1).toString(), color = rankColors[rankIndex], fontWeight = FontWeight.Black, fontSize = 20.sp)
                 }
             }
         }
@@ -232,11 +241,12 @@ fun PodiumRow(friends: List<com.example.mindstreak.data.model.Friend>) {
 fun FriendRankItem(index: Int, friend: com.example.mindstreak.data.model.Friend) {
     val isTop3 = index < 3
     val isYou = friend.isYou
+    val rankColors = getRankColors()
 
     Surface(
-        color = if (isYou) Color(0xFF7C6EFF).copy(0.1f) else Color(0xFF13131F),
+        color = if (isYou) HabitPurple.copy(0.1f) else MaterialTheme.colorScheme.surface,
         shape = RoundedCornerShape(20.dp),
-        border = BorderStroke(1.dp, if (isYou) Color(0xFF7C6EFF).copy(0.4f) else Color(0xFF2A2A45))
+        border = BorderStroke(1.dp, if (isYou) HabitPurple.copy(0.4f) else MaterialTheme.colorScheme.outlineVariant)
     ) {
         Row(
             modifier = Modifier.padding(12.dp),
@@ -247,14 +257,14 @@ fun FriendRankItem(index: Int, friend: com.example.mindstreak.data.model.Friend)
                 modifier = Modifier
                     .size(28.dp)
                     .background(
-                        if (isTop3) RANK_COLORS[index].copy(0.2f) else Color(0xFF2A2A45),
+                        if (isTop3) rankColors[index].copy(0.2f) else MaterialTheme.colorScheme.outlineVariant,
                         RoundedCornerShape(8.dp)
                     ),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
                     if (isTop3) RANK_LABELS[index] else (index + 1).toString(),
-                    color = if (isTop3) RANK_COLORS[index] else Color(0xFF5A5A7A),
+                    color = if (isTop3) rankColors[index] else MaterialTheme.colorScheme.onSurfaceVariant,
                     fontSize = 13.sp,
                     fontWeight = FontWeight.ExtraBold
                 )
@@ -264,21 +274,21 @@ fun FriendRankItem(index: Int, friend: com.example.mindstreak.data.model.Friend)
 
             Column(Modifier.weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(friend.name, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    Text(friend.name, color = MaterialTheme.colorScheme.onSurface, fontSize = 14.sp, fontWeight = FontWeight.Bold)
                     if (isYou) {
                         Text(
                             "YOU",
-                            modifier = Modifier.padding(start = 6.dp).background(Color(0xFF7C6EFF).copy(0.2f), CircleShape).padding(horizontal = 6.dp, vertical = 2.dp),
-                            color = Color(0xFF7C6EFF), fontSize = 9.sp, fontWeight = FontWeight.Black
+                            modifier = Modifier.padding(start = 6.dp).background(HabitPurple.copy(0.2f), CircleShape).padding(horizontal = 6.dp, vertical = 2.dp),
+                            color = HabitPurple, fontSize = 9.sp, fontWeight = FontWeight.Black
                         )
                     }
                 }
-                Text("Lvl ${friend.level} · ${friend.weeklyHabits} habits/wk", color = Color(0xFF5A5A7A), fontSize = 11.sp)
+                Text("Lvl ${friend.level} · ${friend.weeklyHabits} habits/wk", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 11.sp)
             }
 
             Column(horizontalAlignment = Alignment.End) {
-                Text("🔥 ${friend.streak}", color = Color(0xFFFF6B35), fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                Text("${friend.points} pts", color = Color(0xFF4A4A6A), fontSize = 10.sp)
+                Text("🔥 ${friend.streak}", color = HabitOrange, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                Text("${friend.points} pts", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 10.sp)
             }
         }
     }
@@ -289,12 +299,12 @@ fun WeeklyChallengeBanner() {
     Surface(
         color = Color.Transparent,
         shape = RoundedCornerShape(20.dp),
-        border = BorderStroke(1.dp, Color(0xFF7C6EFF).copy(0.25f))
+        border = BorderStroke(1.dp, HabitPurple.copy(0.25f))
     ) {
         Row(
             modifier = Modifier
                 .background(
-                    Brush.linearGradient(listOf(Color(0xFF7C6EFF).copy(0.15f), Color(0xFF4ECDC4).copy(0.15f)))
+                    Brush.linearGradient(listOf(HabitPurple.copy(0.15f), HabitTeal.copy(0.15f)))
                 )
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -302,10 +312,10 @@ fun WeeklyChallengeBanner() {
             Text("⚔️", fontSize = 24.sp)
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f)) {
-                Text("Weekly Challenge", color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                Text("Most habits logged wins!", color = Color(0xFF8888A8), fontSize = 11.sp)
+                Text("Weekly Challenge", color = MaterialTheme.colorScheme.onSurface, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                Text("Most habits logged wins!", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 11.sp)
             }
-            Text("3 days left", color = Color(0xFF7C6EFF), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+            Text("3 days left", color = HabitPurple, fontSize = 11.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -329,9 +339,9 @@ fun ActivityContent() {
     ) {
         items(activityItems) { item ->
             Surface(
-                color = Color(0xFF13131F),
+                color = MaterialTheme.colorScheme.surface,
                 shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(1.dp, Color(0xFF2A2A45))
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
             ) {
                 Row(
                     modifier = Modifier.padding(16.dp),
@@ -342,13 +352,18 @@ fun ActivityContent() {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
                             text = buildAnnotatedString {
-                                withStyle(SpanStyle(color = Color.White, fontWeight = FontWeight.Bold)) {
+                                withStyle(
+                                    SpanStyle(
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                ) {
                                     append(item.userName)
                                 }
-                                withStyle(SpanStyle(color = Color(0xFF8888A8))) {
+                                withStyle(SpanStyle(color = MaterialTheme.colorScheme.onSurfaceVariant)) {
                                     append(" ${item.action} ")
                                 }
-                                withStyle(SpanStyle(color = Color(0xFF7C6EFF), fontWeight = FontWeight.Bold)) {
+                                withStyle(SpanStyle(color = HabitPurple, fontWeight = FontWeight.Bold)) {
                                     append(item.target)
                                 }
                                 append(" ${item.targetEmoji}")
@@ -358,7 +373,7 @@ fun ActivityContent() {
                         )
                         Text(
                             text = item.time,
-                            color = Color(0xFF4A4A6A),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             fontSize = 11.sp,
                             modifier = Modifier.padding(top = 4.dp)
                         )
@@ -373,9 +388,9 @@ fun ActivityContent() {
 @Composable
 fun GroupsContent() {
     val groups = listOf(
-        GroupItem("MIT Wellness Club", 24, 14, "🎓", Color(0xFF7C6EFF)),
-        GroupItem("Morning Hustlers", 12, 7, "☀️", Color(0xFFFF6B35)),
-        GroupItem("Sleep Scientists", 8, 21, "💤", Color(0xFF6ECFF6))
+        GroupItem("MIT Wellness Club", 24, 14, "🎓", HabitPurple),
+        GroupItem("Morning Hustlers", 12, 7, "☀️", HabitOrange),
+        GroupItem("Sleep Scientists", 8, 21, "💤", HabitBlue)
     )
 
     LazyColumn(
@@ -385,9 +400,9 @@ fun GroupsContent() {
     ) {
         items(groups) { group ->
             Surface(
-                color = Color(0xFF13131F),
+                color = MaterialTheme.colorScheme.surface,
                 shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(1.dp, Color(0xFF2A2A45))
+                border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
             ) {
                 Row(
                     modifier = Modifier.padding(14.dp),
@@ -407,10 +422,10 @@ fun GroupsContent() {
                     Spacer(Modifier.width(12.dp))
 
                     Column(modifier = Modifier.weight(1f)) {
-                        Text(group.name, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                        Text(group.name, color = MaterialTheme.colorScheme.onSurface, fontSize = 14.sp, fontWeight = FontWeight.Bold)
                         Text(
                             text = "${group.members} members · 🔥 ${group.streak} day group streak",
-                            color = Color(0xFF6B6B8A),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             fontSize = 11.sp
                         )
                     }
@@ -418,7 +433,7 @@ fun GroupsContent() {
                     Icon(
                         Icons.Default.ChevronRight,
                         contentDescription = null,
-                        tint = Color(0xFF4A4A6A),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(16.dp)
                     )
                 }
@@ -434,8 +449,8 @@ fun GroupsContent() {
                     .padding(vertical = 8.dp)
                     .height(56.dp),
                 shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(2.dp, Color(0xFF2A2A45)), // Borde dashed no es nativo fácil, usamos sólido
-                colors = ButtonDefaults.outlinedButtonColors(contentColor = Color(0xFF4A4A6A))
+                border = BorderStroke(2.dp, MaterialTheme.colorScheme.outlineVariant), // Borde dashed no es nativo fácil, usamos sólido
+                colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onSurfaceVariant)
             ) {
                 Text("+ Create a Group", fontSize = 14.sp)
             }

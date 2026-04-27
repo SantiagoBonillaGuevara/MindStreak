@@ -25,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mindstreak.core.theme.*
 
 private enum class AuthTab { LOGIN, REGISTER }
 
@@ -100,7 +101,7 @@ fun AuthScreen(
                             Brush.linearGradient(
                                 colors = listOf(
                                     MaterialTheme.colorScheme.primary,
-                                    Color(0xFF14B8A6), // teal-400
+                                    HabitTeal, // teal-400
                                 )
                             )
                         ),
@@ -111,15 +112,12 @@ fun AuthScreen(
                 Column {
                     Text(
                         text = "MindStreak",
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        letterSpacing = (-0.5).sp,
+                        style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onBackground,
                     )
                     Text(
                         text = "For university students",
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Medium,
+                        style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                     )
                 }
@@ -128,10 +126,7 @@ fun AuthScreen(
             // Título dinámico según tab
             Text(
                 text = if (tab == AuthTab.LOGIN) "Welcome\nback 👋" else "Let's get\nyou started 🚀",
-                fontSize = 26.sp,
-                fontWeight = FontWeight.ExtraBold,
-                lineHeight = 31.sp,
-                letterSpacing = (-0.5).sp,
+                style = MaterialTheme.typography.headlineLarge.copy(fontSize = 26.sp),
                 color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.padding(bottom = 24.dp),
             )
@@ -165,13 +160,10 @@ fun AuthScreen(
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
-                        text = if (t == AuthTab.LOGIN) "Log In" else "Sign Up",
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color = if (isSelected)
-                            MaterialTheme.colorScheme.onSurface
-                        else
-                            MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                        text = if (t == AuthTab.LOGIN) "Login" else "Sign Up",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = if (isSelected) MaterialTheme.colorScheme.onSurface
+                        else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                     )
                 }
             }
@@ -362,8 +354,7 @@ fun AuthScreen(
                 ) {
                     Text(
                         text = if (tab == AuthTab.LOGIN) "Log In" else "Create Account",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.titleMedium,
                         color = MaterialTheme.colorScheme.onPrimary,
                     )
                 }
@@ -378,7 +369,7 @@ fun AuthScreen(
             ) {
                 Text(
                     text = "Continue as Guest",
-                    fontWeight = FontWeight.Medium,
+                    style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                 )
             }

@@ -12,6 +12,10 @@ val HabitPink      = Color(0xFFFF8FAB)
 val HabitGreen     = Color(0xFFA8E063)
 val HabitDarkGreen = Color(0xFF56AB2F)
 
+// ─── Ranking Colors ─────────────────────────────────────
+val RankSilver     = Color(0xFFC0C0D0)
+val RankBronze     = Color(0xFFCD7F32)
+
 // ─── App background (de index.css body) ─────────────────
 val AppBackground  = Color(0xFF060610)
 

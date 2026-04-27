@@ -31,7 +31,7 @@ import com.example.mindstreak.data.mock.MockData
 import com.example.mindstreak.data.model.Habit
 import com.example.mindstreak.feature.home.AppViewModel
 import kotlinx.coroutines.launch
-
+import com.example.mindstreak.core.theme.*
 private val EMOJIS = listOf(
     "🏃", "🧘", "💧", "📚", "😴", "📖", "🥗", "🏋️",
     "🚴", "🎯", "💊", "🧠", "☀️", "🌙", "🎵",
@@ -148,7 +148,7 @@ fun CreateHabitScreen(
                                 .background(
                                     when {
                                         isCurrent -> MaterialTheme.colorScheme.primary
-                                        isPast    -> Color(0xFF14B8A6) // teal-400
+                                        isPast    -> HabitTeal // teal-400
                                         else      -> MaterialTheme.colorScheme.secondary
                                     }
                                 ),

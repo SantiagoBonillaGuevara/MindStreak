@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mindstreak.core.theme.*
 
 // ─── Datos de cada slide ────────────────────────────────────────────────────
 // Equivalente al array SLIDES de React
@@ -32,38 +33,42 @@ private data class SlideData(
     val blobColor: Color,
 )
 
-private val SLIDES = listOf(
-    SlideData(
-        emoji = "🔥",
-        title = "Build Habits\nThat Stick",
-        subtitle = "Track your daily habits with one tap. Stay consistent and watch your life transform.",
-        accentColor = Color(0xFF030213),
-        blobColor   = Color(0xFF030213).copy(alpha = 0.15f),
-    ),
-    SlideData(
-        emoji = "📈",
-        title = "Streaks Keep\nYou Going",
-        subtitle = "Never break the chain. Watch your streak grow and unlock achievements as you level up.",
-        accentColor = Color(0xFFF97316),   // orange-500
-        blobColor   = Color(0xFFF97316).copy(alpha = 0.15f),
-    ),
-    SlideData(
-        emoji = "👥",
-        title = "Better Together\nWith Friends",
-        subtitle = "Compete on leaderboards, share milestones, and motivate each other every single day.",
-        accentColor = Color(0xFF14B8A6),   // teal-500
-        blobColor   = Color(0xFF14B8A6).copy(alpha = 0.15f),
-    ),
-)
+@Composable
+private fun getSlides(): List<SlideData> {
+    return listOf(
+        SlideData(
+            emoji = "🔥",
+            title = "Build Habits\nThat Stick",
+            subtitle = "Track your daily habits with one tap. Stay consistent and watch your life transform.",
+            accentColor = MaterialTheme.colorScheme.primary,
+            blobColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
+        ),
+        SlideData(
+            emoji = "📈",
+            title = "Streaks Keep\nYou Going",
+            subtitle = "Never break the chain. Watch your streak grow and unlock achievements as you level up.",
+            accentColor = HabitOrange,   // orange-500 (approx)
+            blobColor = HabitOrange.copy(alpha = 0.15f),
+        ),
+        SlideData(
+            emoji = "👥",
+            title = "Better Together\nWith Friends",
+            subtitle = "Compete on leaderboards, share milestones, and motivate each other every single day.",
+            accentColor = HabitTeal,   // teal-500 (approx)
+            blobColor = HabitTeal.copy(alpha = 0.15f),
+        ),
+    )
+}
 
 // ─── Screen ─────────────────────────────────────────────────────────────────
 @Composable
 fun OnboardingScreen(onFinish: () -> Unit) {
     var step by remember { mutableIntStateOf(0) }
-    val slide = SLIDES[step]
+    val slides = getSlides()
+    val slide = slides[step]
 
     val next = {
-        if (step < SLIDES.size - 1) step++ else onFinish()
+        if (step < slides.size - 1) step++ else onFinish()
     }
 
     Column(
@@ -102,7 +107,7 @@ fun OnboardingScreen(onFinish: () -> Unit) {
                 .fillMaxWidth(),
             label = "heroContent",
         ) { currentStep ->
-            val currentSlide = SLIDES[currentStep]
+            val currentSlide = slides[currentStep]
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -139,7 +144,7 @@ fun OnboardingScreen(onFinish: () -> Unit) {
             modifier = Modifier.padding(horizontal = 32.dp),
             label = "slideText",
         ) { currentStep ->
-            val currentSlide = SLIDES[currentStep]
+            val currentSlide = slides[currentStep]
             Column {
                 Text(
                     text = currentSlide.title,
@@ -166,7 +171,7 @@ fun OnboardingScreen(onFinish: () -> Unit) {
         ) {
             // Dots — equivalente al animate width: 24 vs 8
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                SLIDES.forEachIndexed { index, s ->
+                slides.forEachIndexed { index, s ->
                     val width by animateDpAsState(
                         targetValue = if (index == step) 24.dp else 8.dp,
                         animationSpec = tween(300),
@@ -194,17 +199,17 @@ fun OnboardingScreen(onFinish: () -> Unit) {
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = slide.accentColor,
-                    contentColor = Color.White,
+                    contentColor = if (step == 0) MaterialTheme.colorScheme.onPrimary else Color.White,
                 ),
             ) {
                 Text(
-                    text = if (step < SLIDES.size - 1) "Continue" else "Get Started",
+                    text = if (step < slides.size - 1) "Continue" else "Get Started",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                 )
                 Spacer(Modifier.width(6.dp))
                 Icon(
-                    imageVector = if (step < SLIDES.size - 1)
+                    imageVector = if (step < slides.size - 1)
                         Icons.Default.ChevronRight
                     else
                         Icons.AutoMirrored.Filled.ArrowForward,

@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.mindstreak.feature.home.AppViewModel
+import com.example.mindstreak.core.theme.*
 
 // ── Modelos para la pantalla ─────────────────────────────────
 data class Milestone(
@@ -52,7 +53,7 @@ fun StreakScreen(
     navController: NavController
 ) {
     val uiState by appViewModel.uiState.collectAsState()
-    val orangeMain = Color(0xFFF97316)
+    val orangeMain = HabitOrange
 
     LazyColumn(
         modifier = Modifier
@@ -263,7 +264,7 @@ private fun MilestoneItem(m: Milestone, currentStreak: Int, color: Color) {
         }
         if (m.achieved) {
             Box(
-                modifier = Modifier.size(24.dp).background(if (m.current) color else Color(0xFF2DD4BF), CircleShape),
+                modifier = Modifier.size(24.dp).background(if (m.current) color else HabitTeal, CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Text("✓", color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.Black)

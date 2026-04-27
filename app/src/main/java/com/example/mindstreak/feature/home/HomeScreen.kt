@@ -31,6 +31,7 @@ import com.example.mindstreak.core.components.HabitCard
 import com.example.mindstreak.core.components.HabitCardData
 import com.example.mindstreak.core.components.ProgressRing
 import com.example.mindstreak.core.navigation.Screen
+import com.example.mindstreak.core.theme.*
 import com.example.mindstreak.data.mock.MockData
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -150,8 +151,7 @@ fun HomeScreen(
             ) {
                 Text(
                     text = "Today's Habits",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onBackground,
                 )
                 TextButton(
@@ -263,15 +263,12 @@ private fun HomeHeader(
         Column {
             Text(
                 text = "Wednesday, April 8",
-                fontSize = 13.sp,
-                fontWeight = FontWeight.Medium,
+                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
             )
             Text(
                 text = "Good morning, Alex 👋",
-                fontSize = 22.sp,
-                fontWeight = FontWeight.ExtraBold,
-                letterSpacing = (-0.5).sp,
+                style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.padding(top = 2.dp),
             )
@@ -302,7 +299,7 @@ private fun HomeHeader(
                         .align(Alignment.TopEnd)
                         .offset(x = (-6).dp, y = 6.dp)
                         .clip(CircleShape)
-                        .background(Color(0xFFF97316))  // orange-500
+                        .background(HabitOrange)  // orange-500
                         .border(2.dp, MaterialTheme.colorScheme.background, CircleShape),
                 )
             }
@@ -316,7 +313,7 @@ private fun HomeHeader(
                         Brush.linearGradient(
                             listOf(
                                 MaterialTheme.colorScheme.primary,
-                                Color(0xFF14B8A6),
+                                HabitTeal,
                             )
                         )
                     )
@@ -351,7 +348,7 @@ private fun StreakCard(currentStreak: Int) {
                     .align(Alignment.TopEnd)
                     .offset(x = 20.dp, y = (-32).dp)
                     .clip(CircleShape)
-                    .background(Color(0xFFF97316).copy(alpha = 0.15f))
+                    .background(HabitOrange.copy(alpha = 0.15f))
                     .blur(24.dp),
             )
 
@@ -388,10 +385,8 @@ private fun StreakCard(currentStreak: Int) {
                             )
                             Text(
                                 text = "$currentStreak",
-                                fontSize = 48.sp,
-                                fontWeight = FontWeight.Black,
-                                color = Color(0xFFF97316),
-                                lineHeight = 48.sp,
+                                style = MaterialTheme.typography.headlineLarge.copy(fontSize = 48.sp),
+                                color = HabitOrange,
                                 modifier = Modifier.graphicsLayer {
                                     scaleX = scale; scaleY = scale
                                 },
@@ -399,15 +394,14 @@ private fun StreakCard(currentStreak: Int) {
                             Spacer(Modifier.width(8.dp))
                             Text(
                                 text = "days 🔥",
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color(0xFFF97316),
+                                style = MaterialTheme.typography.titleMedium,
+                                color = HabitOrange,
                                 modifier = Modifier.padding(bottom = 6.dp),
                             )
                         }
                         Text(
                             text = "Next milestone: 30 days",
-                            fontSize = 12.sp,
+                            style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                         )
                     }
@@ -419,24 +413,23 @@ private fun StreakCard(currentStreak: Int) {
                         Box(
                             modifier = Modifier
                                 .clip(CircleShape)
-                                .background(Color(0xFFF97316).copy(alpha = 0.1f))
+                                .background(HabitOrange.copy(alpha = 0.1f))
                                 .border(
                                     1.dp,
-                                    Color(0xFFF97316).copy(alpha = 0.2f),
+                                    HabitOrange.copy(alpha = 0.2f),
                                     CircleShape,
                                 )
                                 .padding(horizontal = 12.dp, vertical = 4.dp),
                         ) {
                             Text(
                                 text = "🏆 Best: 34",
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.SemiBold,
-                                color = Color(0xFFF97316),
+                                style = MaterialTheme.typography.labelMedium,
+                                color = HabitOrange,
                             )
                         }
                         Text(
                             text = "↑ 62% to goal",
-                            fontSize = 11.sp,
+                            style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                         )
                     }
@@ -465,7 +458,7 @@ private fun StreakCard(currentStreak: Int) {
                                 .clip(CircleShape)
                                 .background(
                                     Brush.horizontalGradient(
-                                        listOf(Color(0xFFF97316), Color(0xFFFACC15))
+                                        listOf(HabitOrange, HabitYellow)
                                     )
                                 ),
                         )
@@ -477,7 +470,7 @@ private fun StreakCard(currentStreak: Int) {
                         horizontalArrangement = Arrangement.SpaceBetween,
                     ) {
                         Text("Day 0", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f))
-                        Text("Day $currentStreak", fontSize = 10.sp, fontWeight = FontWeight.SemiBold, color = Color(0xFFF97316))
+                        Text("Day $currentStreak", fontSize = 10.sp, fontWeight = FontWeight.SemiBold, color = HabitOrange)
                         Text("Day 30", fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f))
                     }
                 }
@@ -507,10 +500,10 @@ private fun StreakCard(currentStreak: Int) {
                                     .clip(CircleShape)
                                     .background(
                                         when {
-                                            i < todayIndex -> Color(0xFFF97316)
+                                            i < todayIndex -> HabitOrange
                                             i == todayIndex -> Brush.horizontalGradient(
-                                                listOf(Color(0xFFF97316), Color(0xFFFACC15))
-                                            ).let { Color(0xFFF97316) } // simplificado
+                                                listOf(HabitOrange, HabitYellow)
+                                            ).let { HabitOrange } // simplificado
                                             else -> MaterialTheme.colorScheme.secondary
                                         }
                                     ),
@@ -592,7 +585,7 @@ private fun TodayProgressCard(
                                 Brush.horizontalGradient(
                                     listOf(
                                         MaterialTheme.colorScheme.primary,
-                                        Color(0xFF14B8A6),
+                                        HabitTeal,
                                     )
                                 )
                             ),

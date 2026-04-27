@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.example.mindstreak.core.components.ProgressRing
 import com.example.mindstreak.feature.home.AppViewModel
 import kotlin.math.roundToInt
+import com.example.mindstreak.core.theme.*
 
 // Mantenemos el Grid visual del mes como un mock por ahora
 private data class DayCell(val day: Int, val level: Int)
@@ -170,8 +171,8 @@ fun HabitDetailScreen(
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         StatItem(Modifier.weight(1f), habit.streak.toString(), "Current", habitColor)
-                        StatItem(Modifier.weight(1f), "34", "Best", Color(0xFFFB923C))
-                        StatItem(Modifier.weight(1f), "${(habit.completionRate * 100).roundToInt()}%", "Rate", Color(0xFF2DD4BF))
+                        StatItem(Modifier.weight(1f), "34", "Best", HabitOrange)
+                        StatItem(Modifier.weight(1f), "${(habit.completionRate * 100).roundToInt()}%", "Rate", HabitTeal)
                     }
                 }
             }
@@ -292,8 +293,8 @@ fun HabitDetailScreen(
                     Text("Completion Rate", fontSize = 15.sp, fontWeight = FontWeight.Bold)
                     Text("Last 30 days", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        Icon(Icons.Default.TrendingUp, contentDescription = null, modifier = Modifier.size(12.dp), tint = Color(0xFF2DD4BF))
-                        Text("+8% vs last month", color = Color(0xFF2DD4BF), fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                        Icon(Icons.Default.TrendingUp, contentDescription = null, modifier = Modifier.size(12.dp), tint = HabitTeal)
+                        Text("+8% vs last month", color = HabitTeal, fontSize = 11.sp, fontWeight = FontWeight.Bold)
                     }
                 }
             }

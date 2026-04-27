@@ -25,7 +25,7 @@ private val LightColors = lightColorScheme(
 )
 
 private val DarkColors = darkColorScheme(
-    background       = AppBackground,   // #060610 del body de index.css
+    background       = AppBackground,
     onBackground     = DarkForeground,
     surface          = DarkCard,
     onSurface        = DarkForeground,

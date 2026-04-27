@@ -32,7 +32,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 
 // ViewModel y Navegación
+import com.example.mindstreak.core.theme.*
+import androidx.compose.material3.MaterialTheme
 import com.example.mindstreak.feature.home.AppViewModel
+
 @Composable
 fun NotificationsScreen(
     onBack: () -> Unit,
@@ -61,7 +64,7 @@ fun NotificationsScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF0A0A14)),
+            .background(MaterialTheme.colorScheme.background),
         contentPadding = PaddingValues(bottom = 32.dp)
     ) {
         // --- Header ---
@@ -73,18 +76,18 @@ fun NotificationsScreen(
             ) {
                 IconButton(
                     onClick = onBack,
-                    modifier = Modifier.size(36.dp).background(Color(0xFF1C1C2E), CircleShape)
+                    modifier = Modifier.size(36.dp).background(MaterialTheme.colorScheme.surfaceVariant, CircleShape)
                 ) {
-                    Icon(Icons.Default.ArrowBack, contentDescription = null, tint = Color(0xFF8888A8), modifier = Modifier.size(16.dp))
+                    Icon(Icons.Default.ArrowBack, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(16.dp))
                 }
-                Text("Notifications", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.ExtraBold)
+                Text("Notifications", color = MaterialTheme.colorScheme.onBackground, style = MaterialTheme.typography.titleLarge.copy(fontSize = 18.sp))
             }
         }
 
         // --- Master Toggle ---
         item {
-            val masterBg = if (isMasterOn) Color(0xFF7C6EFF).copy(alpha = 0.1f) else Color(0xFF13131F)
-            val masterBorder = if (isMasterOn) Color(0xFF7C6EFF).copy(alpha = 0.3f) else Color(0xFF2A2A45)
+            val masterBg = if (isMasterOn) HabitPurple.copy(alpha = 0.1f) else MaterialTheme.colorScheme.surface
+            val masterBorder = if (isMasterOn) HabitPurple.copy(alpha = 0.3f) else MaterialTheme.colorScheme.outlineVariant
 
             Row(
                 modifier = Modifier
@@ -98,19 +101,19 @@ fun NotificationsScreen(
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Box(
-                    modifier = Modifier.size(40.dp).background(if(isMasterOn) Color(0xFF7C6EFF).copy(alpha = 0.2f) else Color(0xFF2A2A45), RoundedCornerShape(12.dp)),
+                    modifier = Modifier.size(40.dp).background(if(isMasterOn) HabitPurple.copy(alpha = 0.2f) else MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(12.dp)),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
                         if(isMasterOn) Icons.Default.Notifications else Icons.Default.NotificationsOff,
                         contentDescription = null,
-                        tint = if(isMasterOn) Color(0xFF7C6EFF) else Color(0xFF5A5A7A),
+                        tint = if(isMasterOn) HabitPurple else MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(20.dp)
                     )
                 }
                 Column(Modifier.weight(1f)) {
-                    Text("All Notifications", color = Color.White, fontSize = 15.sp, fontWeight = FontWeight.Bold)
-                    Text(if(isMasterOn) "Reminders are active" else "All muted", color = Color(0xFF6B6B8A), fontSize = 12.sp)
+                    Text("All Notifications", color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp, fontWeight = FontWeight.Bold)
+                    Text(if(isMasterOn) "Reminders are active" else "All muted", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 12.sp)
                 }
                 CustomToggle(checked = isMasterOn, onCheckedChange = { isMasterOn = it })
             }
@@ -123,25 +126,25 @@ fun NotificationsScreen(
                 modifier = Modifier
                     .padding(horizontal = 20.dp)
                     .fillMaxWidth()
-                    .border(1.dp, Color(0xFF2A2A45), RoundedCornerShape(24.dp))
+                    .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(24.dp))
                     .clip(RoundedCornerShape(24.dp))
                     .alpha(if (isMasterOn) 1f else 0.4f) // Efecto de master disable
             ) {
-                Box(Modifier.fillMaxWidth().background(Color(0xFF0F0F1A)).padding(horizontal = 16.dp, vertical = 12.dp)) {
-                    Text("ALERT TYPES", color = Color(0xFF8888A8), fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
+                Box(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surfaceVariant).padding(horizontal = 16.dp, vertical = 12.dp)) {
+                    Text("ALERT TYPES", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
                 }
 
-                NotificationTypeRow(Icons.Default.Whatshot, "Streak Alerts", "When streak is at risk", Color(0xFFFF6B35), streakAlert, { streakAlert = it }, isMasterOn)
-                NotificationTypeRow(Icons.Default.Notifications, "Daily Summary", "End of day report", Color(0xFF7C6EFF), dailySummary, { dailySummary = it }, isMasterOn)
-                NotificationTypeRow(Icons.Default.EmojiEvents, "Achievements", "Unlock notifications", Color(0xFFFFD166), achievements, { achievements = it }, isMasterOn)
-                NotificationTypeRow(Icons.Default.People, "Social Activity", "Friends & leaderboard", Color(0xFF4ECDC4), social, { social = it }, isMasterOn)
+                NotificationTypeRow(Icons.Default.Whatshot, "Streak Alerts", "When streak is at risk", HabitOrange, streakAlert, { streakAlert = it }, isMasterOn)
+                NotificationTypeRow(Icons.Default.Notifications, "Daily Summary", "End of day report", HabitPurple, dailySummary, { dailySummary = it }, isMasterOn)
+                NotificationTypeRow(Icons.Default.EmojiEvents, "Achievements", "Unlock notifications", HabitYellow, achievements, { achievements = it }, isMasterOn)
+                NotificationTypeRow(Icons.Default.People, "Social Activity", "Friends & leaderboard", HabitTeal, social, { social = it }, isMasterOn)
             }
             Spacer(Modifier.height(24.dp))
         }
 
         // --- Habit Reminders ---
         item {
-            Text("Habit Reminders", modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp), color = Color.White, fontSize = 15.sp, fontWeight = FontWeight.Bold)
+            Text("Habit Reminders", modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp), color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp, fontWeight = FontWeight.Bold)
         }
 
         items(uiState.habits) { habit ->
@@ -150,8 +153,8 @@ fun NotificationsScreen(
                 modifier = Modifier
                     .padding(horizontal = 20.dp, vertical = 4.dp)
                     .fillMaxWidth()
-                    .background(Color(0xFF13131F), RoundedCornerShape(16.dp))
-                    .border(1.dp, Color(0xFF2A2A45), RoundedCornerShape(16.dp))
+                    .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(16.dp))
+                    .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(16.dp))
                     .alpha(if (isMasterOn) 1f else 0.4f)
                     .padding(12.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -159,10 +162,10 @@ fun NotificationsScreen(
             ) {
                 Text(habit.emoji, fontSize = 20.sp)
                 Column(Modifier.weight(1f)) {
-                    Text(habit.name, color = Color.White, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                    Text(habit.name, color = MaterialTheme.colorScheme.onSurface, fontSize = 13.sp, fontWeight = FontWeight.Bold)
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        Icon(Icons.Default.AccessTime, null, tint = Color(0xFF6B6B8A), modifier = Modifier.size(10.dp))
-                        Text("09:00 · Daily", color = Color(0xFF6B6B8A), fontSize = 11.sp)
+                        Icon(Icons.Default.AccessTime, null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(10.dp))
+                        Text("09:00 · Daily", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 11.sp)
                     }
                 }
                 CustomToggle(
@@ -188,7 +191,7 @@ fun NotificationTypeRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color(0xFF13131F))
+            .background(MaterialTheme.colorScheme.surface)
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -200,8 +203,8 @@ fun NotificationTypeRow(
             Icon(icon, null, tint = color, modifier = Modifier.size(16.dp))
         }
         Column(Modifier.weight(1f)) {
-            Text(label, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
-            Text(sub, color = Color(0xFF6B6B8A), fontSize = 11.sp)
+            Text(label, color = MaterialTheme.colorScheme.onSurface, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+            Text(sub, color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 11.sp)
         }
         CustomToggle(checked = value, onCheckedChange = { if(masterEnabled) onValueChange(it) }, activeColor = color)
     }
@@ -211,7 +214,7 @@ fun NotificationTypeRow(
 fun CustomToggle(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    activeColor: Color = Color(0xFF7C6EFF)
+    activeColor: Color = HabitPurple
 ) {
     val thumbOffset by animateDpAsState(
         targetValue = if (checked) 20.dp else 0.dp,
@@ -223,7 +226,7 @@ fun CustomToggle(
         modifier = Modifier
             .size(48.dp, 28.dp)
             .clip(CircleShape)
-            .background(if (checked) activeColor else Color(0xFF2A2A45))
+            .background(if (checked) activeColor else MaterialTheme.colorScheme.outlineVariant)
             .clickable { onCheckedChange(!checked) }
             .padding(3.dp)
     ) {

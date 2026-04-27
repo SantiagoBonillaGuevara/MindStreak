@@ -22,20 +22,24 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mindstreak.core.components.ProgressRing
+import com.example.mindstreak.core.theme.*
 import com.example.mindstreak.data.model.Achievement
 import com.example.mindstreak.data.model.Rarity
 import com.example.mindstreak.feature.home.AppViewModel
-import com.example.mindstreak.core.components.ProgressRing
 
 // Configuración de UI basada en tu Enum Rarity
 data class RarityUi(val color: Color, val label: String, val bg: Color)
 
-val RarityConfig = mapOf(
-    Rarity.COMMON to RarityUi(Color(0xFF8888A8), "Common", Color(0xFF8888A8).copy(alpha = 0.12f)),
-    Rarity.RARE to RarityUi(Color(0xFF4ECDC4), "Rare", Color(0xFF4ECDC4).copy(alpha = 0.12f)),
-    Rarity.EPIC to RarityUi(Color(0xFF7C6EFF), "Epic", Color(0xFF7C6EFF).copy(alpha = 0.12f)),
-    Rarity.LEGENDARY to RarityUi(Color(0xFFFFD166), "Legendary", Color(0xFFFFD166).copy(alpha = 0.12f))
-)
+@Composable
+fun getRarityConfig(): Map<Rarity, RarityUi> {
+    return mapOf(
+        Rarity.COMMON to RarityUi(MaterialTheme.colorScheme.onSurfaceVariant, "Common", MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.12f)),
+        Rarity.RARE to RarityUi(HabitTeal, "Rare", HabitTeal.copy(alpha = 0.12f)),
+        Rarity.EPIC to RarityUi(HabitPurple, "Epic", HabitPurple.copy(alpha = 0.12f)),
+        Rarity.LEGENDARY to RarityUi(HabitYellow, "Legendary", HabitYellow.copy(alpha = 0.12f))
+    )
+}
 
 @Composable
 fun AchievementsScreen(appViewModel: AppViewModel) {
@@ -51,7 +55,7 @@ fun AchievementsScreen(appViewModel: AppViewModel) {
         else -> uiState.achievements
     }
 
-    Box(modifier = Modifier.fillMaxSize().background(Color(0xFF0A0A14))) {
+    Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(bottom = 120.dp)
@@ -59,8 +63,17 @@ fun AchievementsScreen(appViewModel: AppViewModel) {
             // --- Header ---
             item {
                 Column(Modifier.padding(20.dp)) {
-                    Text("Achievements", color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.ExtraBold)
-                    Text("Level up your habits", color = Color(0xFF6B6B8A), fontSize = 13.sp)
+                    Text(
+                        "Achievements",
+                        color = MaterialTheme.colorScheme.onBackground,
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.ExtraBold
+                    )
+                    Text(
+                        "Level up your habits",
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        fontSize = 13.sp
+                    )
                 }
             }
 
@@ -72,7 +85,13 @@ fun AchievementsScreen(appViewModel: AppViewModel) {
             // --- Recently Earned ---
             if (earned.isNotEmpty()) {
                 item {
-                    Text("Recently Earned", modifier = Modifier.padding(20.dp, 10.dp), color = Color.White, fontSize = 15.sp, fontWeight = FontWeight.Bold)
+                    Text(
+                        "Recently Earned",
+                        modifier = Modifier.padding(20.dp, 10.dp),
+                        color = MaterialTheme.colorScheme.onBackground,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold
+                    )
                     LazyRow(
                         contentPadding = PaddingValues(horizontal = 20.dp),
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
@@ -88,7 +107,11 @@ fun AchievementsScreen(appViewModel: AppViewModel) {
             // --- Tab Picker ---
             item {
                 Row(
-                    modifier = Modifier.padding(horizontal = 20.dp).fillMaxWidth().background(Color(0xFF1C1C2E), RoundedCornerShape(16.dp)).padding(4.dp)
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp)
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(16.dp))
+                        .padding(4.dp)
                 ) {
                     listOf("All", "Earned", "Locked").forEach { t ->
                         val isSelected = selectedTab == t
@@ -97,12 +120,17 @@ fun AchievementsScreen(appViewModel: AppViewModel) {
                             modifier = Modifier
                                 .weight(1f)
                                 .clip(RoundedCornerShape(12.dp))
-                                .background(if (isSelected) Color(0xFF7C6EFF) else Color.Transparent)
+                                .background(if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent)
                                 .clickable { selectedTab = t }
                                 .padding(vertical = 10.dp),
                             contentAlignment = Alignment.Center
                         ) {
-                            Text("$t$count", color = if (isSelected) Color.White else Color(0xFF5A5A7A), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                            Text(
+                                "$t$count",
+                                color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Bold
+                            )
                         }
                     }
                 }
@@ -133,6 +161,7 @@ fun AchievementsScreen(appViewModel: AppViewModel) {
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun AchievementGrid(achievements: List<Achievement>, highlightedId: String?, onSelect: (String) -> Unit) {
+    val rarityConfig = getRarityConfig()
     FlowRow(
         modifier = Modifier.padding(horizontal = 20.dp),
         maxItemsInEachRow = 3,
@@ -140,7 +169,7 @@ fun AchievementGrid(achievements: List<Achievement>, highlightedId: String?, onS
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         achievements.forEach { ach ->
-            val config = RarityConfig[ach.rarity]!!
+            val config = rarityConfig[ach.rarity]!!
             val isHighlighted = highlightedId == ach.id
 
             Column(
@@ -148,10 +177,10 @@ fun AchievementGrid(achievements: List<Achievement>, highlightedId: String?, onS
                     .weight(1f)
                     .aspectRatio(0.85f)
                     .clip(RoundedCornerShape(20.dp))
-                    .background(if (ach.earned) config.bg else Color(0xFF0D0D1A))
+                    .background(if (ach.earned) config.bg else MaterialTheme.colorScheme.surface)
                     .border(
                         if (isHighlighted) 2.dp else 1.dp,
-                        if (isHighlighted) config.color else if (ach.earned) config.color.copy(0.4f) else Color(0xFF1E1E2A),
+                        if (isHighlighted) config.color else if (ach.earned) config.color.copy(0.4f) else MaterialTheme.colorScheme.outlineVariant,
                         RoundedCornerShape(20.dp)
                     )
                     .clickable { onSelect(ach.id) }
@@ -162,20 +191,41 @@ fun AchievementGrid(achievements: List<Achievement>, highlightedId: String?, onS
                 Box(contentAlignment = Alignment.Center) {
                     Text(ach.emoji, fontSize = 30.sp)
                     if (!ach.earned) {
-                        Box(Modifier.matchParentSize().background(Color(0xAA0A0A14), CircleShape), contentAlignment = Alignment.Center) {
-                            Icon(Icons.Default.Lock, null, tint = Color(0xFF4A4A6A), modifier = Modifier.size(12.dp))
+                        Box(
+                            Modifier
+                                .matchParentSize()
+                                .background(MaterialTheme.colorScheme.background.copy(alpha = 0.6f), CircleShape),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                Icons.Default.Lock,
+                                null,
+                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.size(12.dp)
+                            )
                         }
                     }
                 }
-                Text(ach.name, color = if (ach.earned) Color.White else Color(0xFF4A4A6A), fontSize = 10.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, lineHeight = 12.sp, modifier = Modifier.padding(top = 4.dp))
+                Text(
+                    ach.name,
+                    color = if (ach.earned) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    lineHeight = 12.sp,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
 
                 if (!ach.earned && ach.progress != null && ach.total != null) {
                     Spacer(Modifier.height(6.dp))
                     LinearProgressIndicator(
                         progress = { ach.progress.toFloat() / ach.total.toFloat() },
-                        modifier = Modifier.fillMaxWidth(0.8f).height(3.dp).clip(CircleShape),
+                        modifier = Modifier
+                            .fillMaxWidth(0.8f)
+                            .height(3.dp)
+                            .clip(CircleShape),
                         color = config.color,
-                        trackColor = Color(0xFF2A2A45)
+                        trackColor = MaterialTheme.colorScheme.outlineVariant
                     )
                 }
             }
@@ -185,22 +235,39 @@ fun AchievementGrid(achievements: List<Achievement>, highlightedId: String?, onS
 
 @Composable
 fun AchievementTooltip(ach: Achievement, onClose: () -> Unit) {
-    val config = RarityConfig[ach.rarity]!!
+    val config = getRarityConfig()[ach.rarity]!!
     Card(
-        modifier = Modifier.padding(horizontal = 20.dp).fillMaxWidth().clickable { onClose() },
+        modifier = Modifier
+            .padding(horizontal = 20.dp)
+            .fillMaxWidth()
+            .clickable { onClose() },
         shape = RoundedCornerShape(28.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF1C1C2E)),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
         border = BorderStroke(1.5.dp, config.color.copy(0.5f))
     ) {
         Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             Text(ach.emoji, fontSize = 40.sp)
             Column {
-                Text(ach.name, color = Color.White, fontSize = 15.sp, fontWeight = FontWeight.ExtraBold)
-                Text(ach.description, color = Color(0xFF8888A8), fontSize = 12.sp)
+                Text(
+                    ach.name,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.ExtraBold
+                )
+                Text(
+                    ach.description,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
+                    fontSize = 12.sp
+                )
                 Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(top = 4.dp)) {
                     Text(config.label, color = config.color, fontSize = 11.sp, fontWeight = FontWeight.Bold)
                     if (ach.earned) {
-                        Text(" • Earned ${ach.earnedDate}", color = Color(0xFF4A4A6A), fontSize = 11.sp, modifier = Modifier.padding(start = 8.dp))
+                        Text(
+                            " • Earned ${ach.earnedDate}",
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            fontSize = 11.sp,
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
                     }
                 }
             }
@@ -210,45 +277,55 @@ fun AchievementTooltip(ach: Achievement, onClose: () -> Unit) {
 
 @Composable
 fun RecentlyEarnedItem(ach: Achievement) {
-    val config = RarityConfig[ach.rarity]!!
+    val config = getRarityConfig()[ach.rarity]!!
     Column(
-        modifier = Modifier.width(100.dp).background(config.bg, RoundedCornerShape(20.dp)).border(1.5.dp, config.color.copy(0.4f), RoundedCornerShape(20.dp)).padding(12.dp),
+        modifier = Modifier
+            .width(100.dp)
+            .background(config.bg, RoundedCornerShape(20.dp))
+            .border(1.5.dp, config.color.copy(0.4f), RoundedCornerShape(20.dp))
+            .padding(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(ach.emoji, fontSize = 32.sp)
-        Text(ach.name, color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.Bold, textAlign = TextAlign.Center, maxLines = 1)
-        Box(Modifier.padding(top = 4.dp).background(config.color.copy(0.2f), CircleShape).padding(horizontal = 8.dp, vertical = 2.dp)) {
+        Text(
+            ach.name,
+            color = MaterialTheme.colorScheme.onSurface,
+            fontSize = 11.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            maxLines = 1
+        )
+        Box(
+            Modifier
+                .padding(top = 4.dp)
+                .background(config.color.copy(0.2f), CircleShape)
+                .padding(horizontal = 8.dp, vertical = 2.dp)
+        ) {
             Text(config.label, color = config.color, fontSize = 9.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
 
-// Colores específicos de tu diseño
-private val CardBg = Color(0xFF13131F)
-private val BorderColor = Color(0xFF2A2A45)
-private val XpYellow = Color(0xFFFFD166)
-private val XpOrange = Color(0xFFFF6B35)
-private val StatCardBg = Color(0xFF0D0D1A)
 @Composable
 fun LevelStatCard(emoji: String, value: String, label: String, modifier: Modifier) {
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(16.dp))
-            .background(StatCardBg)
+            .background(MaterialTheme.colorScheme.surface)
             .padding(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(emoji, fontSize = 18.sp)
         Text(
             text = value,
-            color = Color.White,
+            color = MaterialTheme.colorScheme.onSurface,
             fontSize = 18.sp,
             fontWeight = FontWeight.Black,
             modifier = Modifier.padding(top = 4.dp)
         )
         Text(
             text = label,
-            color = Color(0xFF4A4A6A),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontSize = 10.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(top = 2.dp),
@@ -256,6 +333,7 @@ fun LevelStatCard(emoji: String, value: String, label: String, modifier: Modifie
         )
     }
 }
+
 @Composable
 fun LevelCard() {
     // Datos simulados basados en tu captura (XP: 2,840 de 3,000)
@@ -274,8 +352,8 @@ fun LevelCard() {
             .padding(horizontal = 20.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(28.dp)) // Esquinas pronunciadas
-            .background(CardBg)
-            .border(1.5.dp, BorderColor, RoundedCornerShape(28.dp))
+            .background(MaterialTheme.colorScheme.surface)
+            .border(1.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(28.dp))
             .padding(16.dp)
     ) {
         // --- SECCIÓN SUPERIOR: Nivel y Barra de XP ---
@@ -289,19 +367,19 @@ fun LevelCard() {
                     progress = 65f, // Valor simulado para que se vea igual que en la captura
                     size = 76.dp,
                     strokeWidth = 7.dp,
-                    color = XpYellow,
-                    trackColor = Color(0xFF2A2A45)
+                    color = HabitYellow,
+                    trackColor = MaterialTheme.colorScheme.outlineVariant
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(
                             text = userLevel.toString(),
-                            color = XpYellow,
+                            color = HabitYellow,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Black
                         )
                         Text(
                             text = "LVL",
-                            color = Color(0xFF6B6B8A),
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             fontSize = 8.sp,
                             fontWeight = FontWeight.Bold
                         )
@@ -319,7 +397,7 @@ fun LevelCard() {
                     Spacer(Modifier.width(8.dp))
                     Text(
                         text = "Level $userLevel",
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onSurface,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.ExtraBold
                     )
@@ -327,7 +405,7 @@ fun LevelCard() {
 
                 Text(
                     text = "Habit Architect",
-                    color = Color(0xFF6B6B8A),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontSize = 13.sp,
                     modifier = Modifier.padding(top = 2.dp)
                 )
@@ -342,12 +420,12 @@ fun LevelCard() {
                 ) {
                     Text(
                         text = "%,d XP".format(currentXp),
-                        color = Color(0xFF6B6B8A),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontSize = 11.sp
                     )
                     Text(
                         text = "%,d XP".format(nextLevelXp),
-                        color = XpYellow,
+                        color = HabitYellow,
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -360,14 +438,14 @@ fun LevelCard() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(6.dp)
-                        .background(Color(0xFF2A2A45), CircleShape)
+                        .background(MaterialTheme.colorScheme.outlineVariant, CircleShape)
                 ) {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(xpPercent) // El % de XP actual
                             .fillMaxHeight()
                             .background(
-                                brush = Brush.horizontalGradient(listOf(XpYellow, XpOrange)),
+                                brush = Brush.horizontalGradient(listOf(HabitYellow, HabitOrange)),
                                 shape = CircleShape
                             )
                     )
