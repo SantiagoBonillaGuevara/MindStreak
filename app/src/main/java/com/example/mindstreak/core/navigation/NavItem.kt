@@ -12,11 +12,10 @@ sealed class NavItem(
     val label: String,
     val icon: ImageVector?,
     val emoji: String? = null,
-    val activeEmoji: String? = null,
 ) {
     object Home : NavItem("home", "Home", Icons.Default.Home)
     object Stats : NavItem("statistics", "Stats", Icons.Default.BarChart)
-    object Streak : NavItem("streak", "Streak", icon = null, emoji = "🔥", activeEmoji = "🔥")
+    object Streak : NavItem("streak", "Streak", icon = null, emoji = "🔥")
     object Achievements : NavItem("achievements", "Awards", Icons.Default.EmojiEvents)
     object Profile : NavItem("profile", "Profile", Icons.Default.Person)
 }

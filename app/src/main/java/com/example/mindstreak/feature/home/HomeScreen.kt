@@ -26,7 +26,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.graphics.toColorInt
 import androidx.navigation.NavController
 import com.example.mindstreak.core.components.HabitCard
 import com.example.mindstreak.core.components.HabitCardData
@@ -50,15 +49,15 @@ fun HomeScreen(
     val scope = rememberCoroutineScope()
 
     // lastTapped — equivalente al useState<string | null>(null)
-    var lastTapped by remember { mutableStateOf<String?>(null) }
+    //var lastTapped by remember { mutableStateOf<String?>(null) }
 
     val handleToggle = { id: String ->
         val habit = state.habits.find { it.id == id }
         appViewModel.toggleHabit(id)
-        lastTapped = id
+        //lastTapped = id
         scope.launch {
             delay(600)
-            lastTapped = null
+            //lastTapped = null
         }
         // Toast solo cuando se completan TODOS los hábitos del día
         if (habit != null && !habit.completedToday) {

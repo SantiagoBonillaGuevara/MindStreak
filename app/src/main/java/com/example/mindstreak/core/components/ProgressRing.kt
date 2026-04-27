@@ -43,7 +43,7 @@ fun ProgressRing(
         Canvas(modifier = Modifier.size(size)) {
             val strokePx = strokeWidth.toPx()
             val diameter = size.toPx() - strokePx
-            val radius = diameter / 2
+            //val radius = diameter / 2
             val topLeft = androidx.compose.ui.geometry.Offset(strokePx / 2, strokePx / 2)
             val arcSize = androidx.compose.ui.geometry.Size(diameter, diameter)
 
