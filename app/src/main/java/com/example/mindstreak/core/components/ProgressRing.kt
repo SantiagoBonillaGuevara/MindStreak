@@ -41,37 +41,35 @@ fun ProgressRing(
         contentAlignment = Alignment.Center,
     ) {
         Canvas(modifier = Modifier.size(size)) {
-            val strokePx  = strokeWidth.toPx()
-            val diameter  = size.toPx() - strokePx
-            val radius    = diameter / 2
-            val topLeft   = androidx.compose.ui.geometry.Offset(strokePx / 2, strokePx / 2)
-            val arcSize   = androidx.compose.ui.geometry.Size(diameter, diameter)
+            val strokePx = strokeWidth.toPx()
+            val diameter = size.toPx() - strokePx
+            val radius = diameter / 2
+            val topLeft = androidx.compose.ui.geometry.Offset(strokePx / 2, strokePx / 2)
+            val arcSize = androidx.compose.ui.geometry.Size(diameter, diameter)
 
             // Track — círculo completo de fondo
             drawArc(
-                color     = trackColor,
+                color = trackColor,
                 startAngle = 0f,
                 sweepAngle = 360f,
                 useCenter = false,
-                topLeft   = topLeft,
-                size      = arcSize,
-                style     = Stroke(width = strokePx, cap = StrokeCap.Round),
+                topLeft = topLeft,
+                size = arcSize,
+                style = Stroke(width = strokePx, cap = StrokeCap.Round),
             )
-
             // Progress — equivalente al motion.circle con strokeDashoffset
             // Canvas empieza en las 3h del reloj; -90f lo lleva a las 12h
             // igual que el transform: rotate(-90deg) del SVG en React
             drawArc(
-                color      = color,
+                color = color,
                 startAngle = -90f,
                 sweepAngle = 360f * animatedProgress,
-                useCenter  = false,
-                topLeft    = topLeft,
-                size       = arcSize,
-                style      = Stroke(width = strokePx, cap = StrokeCap.Round),
+                useCenter = false,
+                topLeft = topLeft,
+                size = arcSize,
+                style = Stroke(width = strokePx, cap = StrokeCap.Round),
             )
         }
-
         // Equivalente al children en el centro del ring
         content?.invoke()
     }

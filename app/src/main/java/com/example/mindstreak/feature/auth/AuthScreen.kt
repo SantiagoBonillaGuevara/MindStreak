@@ -48,28 +48,6 @@ fun AuthScreen(
             .background(MaterialTheme.colorScheme.background),
     ) {
 
-        // ── Back button ───────────────────────────────────────
-        Row(
-            modifier = Modifier.padding(horizontal = 20.dp, vertical = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            FilledTonalIconButton(
-                onClick = onBack,
-                modifier = Modifier.size(36.dp),
-                shape = CircleShape,
-                colors = IconButtonDefaults.filledTonalIconButtonColors(
-                    containerColor = MaterialTheme.colorScheme.secondary,
-                ),
-            ) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back",
-                    modifier = Modifier.size(16.dp),
-                    tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
-                )
-            }
-        }
-
         // ── Hero ─────────────────────────────────────────────
         Column(modifier = Modifier.padding(horizontal = 24.dp)) {
 

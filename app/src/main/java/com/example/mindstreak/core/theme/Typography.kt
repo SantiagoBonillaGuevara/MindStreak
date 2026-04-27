@@ -17,7 +17,6 @@ val InterFamily = FontFamily(
     Font(R.font.inter_extrabold, FontWeight.ExtraBold),
 )
 
-// Equivalente al sistema h1-h4 + body de theme.css
 val AppTypography = Typography(
     headlineLarge = TextStyle(
         fontFamily = InterFamily,
