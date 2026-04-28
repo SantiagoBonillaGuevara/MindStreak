@@ -23,6 +23,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mindstreak.core.components.AuthTextField
+import com.example.mindstreak.core.components.authTextFieldColors
 import com.example.mindstreak.core.theme.*
 
 private enum class AuthTab { LOGIN, REGISTER }
@@ -353,52 +355,3 @@ fun AuthScreen(
     }
 }
 
-// ─── Helpers ────────────────────────────────────────────────────────────────
-
-@Composable
-private fun AuthTextField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    placeholder: String,
-    leadingIcon: ImageVector,
-    keyboardType: KeyboardType = KeyboardType.Text,
-) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = onValueChange,
-        modifier = Modifier.fillMaxWidth(),
-        placeholder = {
-            Text(
-                placeholder,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
-                fontSize = 15.sp,
-            )
-        },
-        leadingIcon = {
-            Icon(
-                leadingIcon,
-                contentDescription = null,
-                modifier = Modifier.size(18.dp),
-                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
-            )
-        },
-        keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
-        shape = RoundedCornerShape(12.dp),
-        colors = authTextFieldColors(),
-        singleLine = true,
-        textStyle = LocalTextStyle.current.copy(
-            fontSize = 15.sp,
-            fontWeight = FontWeight.Medium,
-        ),
-    )
-}
-
-// Equivalente a las clases de Input.tsx — bg-secondary/20 border-border
-@Composable
-private fun authTextFieldColors() = OutlinedTextFieldDefaults.colors(
-    unfocusedContainerColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f),
-    focusedContainerColor   = MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f),
-    unfocusedBorderColor    = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f),
-    focusedBorderColor      = MaterialTheme.colorScheme.primary,
-    cursorColor             = MaterialTheme.colorScheme.primary,
-)

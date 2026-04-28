@@ -212,9 +212,9 @@ MindStreak combina múltiples mecanismos psicológicos para mantener al usuario 
 
 | Entregable | Estado | Responsable |
 |---|---|---|
-| User Flow | ✅ OK | Santiago |
-| Wireframes / Prototipo | ✅ OK | Mariana |
-| UI Kit / Guía de Estilos | ✅ OK | Mariana |
+| User Flow | ⏳ Pendiente en documento | Santiago |
+| Wireframes / Prototipo | ⏳ Pendiente en documento | Mariana |
+| UI Kit / Guía de Estilos | ⏳ Pendiente en documento | Mariana |
 
 ---
 
@@ -272,24 +272,17 @@ MindStreak combina múltiples mecanismos psicológicos para mantener al usuario 
 
 ## 4. Seguimiento del proyecto
 
-El seguimiento de MindStreak se realiza de forma estructurada y continua, integrando tanto el avance técnico como las decisiones de diseño, validación del problema y evolución del backlog.
-
-Toda la trazabilidad del proyecto se documenta en el siguiente recurso:
+El progreso diario del proyecto, incluyendo decisiones de diseño, avances técnicos, bloqueos y acuerdos del equipo, se registra en el siguiente documento de seguimiento:
 
 🔗 **[Documentación diaria del proyecto](https://bit.ly/3R69DjK)**
 
-Este documento consolida:
+Este documento contiene:
+- Bitácora de actividad por fecha.
+- Decisiones de arquitectura y diseño tomadas en equipo.
+- Estado actualizado de tareas y responsables.
+- Notas de reuniones y revisiones.
 
-- Registro detallado de actividades por fase (estrategia, diseño, arquitectura).
-- Decisiones clave de diseño (UX/UI, flujos de usuario, componentes).
-- Definiciones técnicas (stack, arquitectura, backlog y planificación).
-- Resultados de validación (encuestas, análisis de Pareto, 5 Whys).
-- Evolución del problema, propuesta de valor y alcance del proyecto.
-- Seguimiento de tareas, responsables y estado real del avance.
-
-Este enfoque garantiza trazabilidad completa del proceso de diseño, permitiendo evidenciar cómo cada decisión tomada está directamente conectada con el problema identificado y los objetivos del proyecto.
-
-Se recomienda utilizar este documento como fuente principal de referencia para revisiones académicas y validaciones del proyecto.
+Se recomienda consultarlo como fuente primaria de contexto antes de cualquier sesión de trabajo o revisión de avance.
 
 ---
 
@@ -349,64 +342,22 @@ Para más detalle sobre qué componentes existen y cómo usarlos, consultar [`co
 
 ## 6. Próximos pasos
 
-Con la fase de diseño completada y la arquitectura definida a nivel conceptual, los siguientes hitos se enfocan en la transición hacia construcción del POC y validación técnica:
+Los siguientes hitos son prioritarios para avanzar el proyecto hacia la fase de desarrollo:
 
-1. **Finalizar el modelo de datos (DER)**  
-   Definir de forma completa las entidades del sistema (usuarios, hábitos, registros diarios, rachas, logros y relaciones sociales), asegurando consistencia con los requisitos funcionales y reglas de negocio.
+1. **Completar la documentación de diseño** — User Flow (Santiago), Wireframes y UI Kit (Mariana). Estos entregables son el prerequisito directo para iniciar desarrollo.
 
-2. **Diseñar y documentar las APIs**  
-   Especificar los endpoints necesarios para autenticación, gestión de hábitos, registro de cumplimiento, cálculo de rachas, notificaciones y dashboard.  
-   Incluir contratos (request/response), validaciones y manejo de errores.
+2. **Finalizar el modelo de datos** — Definir el Diagrama Entidad-Relación (DER) con todas las entidades del MVP: usuarios, hábitos, rachas, logros, amigos y grupos.
 
-3. **Definir la arquitectura técnica detallada**  
-   Pasar de arquitectura conceptual a diseño implementable:
-   - Estructura backend (servicios, controladores, repositorios)
-   - Integración con base de datos (Supabase/Firebase)
-   - Flujo de notificaciones (FCM)
-   - Manejo de estado y sincronización
+3. **Diseñar las APIs y webhooks** — Especificar los contratos de endpoints necesarios para sincronización de datos, notificaciones push y funcionalidades sociales.
 
-4. **Implementar autenticación y seguridad**  
-   Configurar el sistema de autenticación (OAuth2 / Firebase Auth), incluyendo:
-   - Gestión de sesiones
-   - Encriptación de contraseñas (bcrypt)
-   - Reglas de acceso y protección de endpoints
-   - Cumplimiento básico de protección de datos
+4. **Definir autenticación y roles** — Completar la configuración de seguridad: proveedor de auth (Firebase Auth / Supabase), roles de usuario y reglas de acceso.
 
-5. **Configurar el entorno de desarrollo**  
-   Unificar el setup del equipo:
-   - Proyecto Android (Android Studio)
-   - Backend y base de datos
-   - Variables de entorno
-   - Servicios externos (auth, notificaciones)
+5. **Configurar el entorno de desarrollo del equipo** — Setup unificado del proyecto Android en los equipos de todos los desarrolladores, incluyendo variables de entorno y accesos a servicios.
 
-6. **Iniciar desarrollo del POC (Iteraciones 1 y 2)**  
-   Implementar las funcionalidades core priorizadas:
-   - Gestión de cuenta (registro, login, recuperación)
-   - CRUD de hábitos
-   - Registro diario y cálculo de rachas
-   - Notificaciones y recordatorios
-   - Dashboard de progreso y gamificación básica
+6. **Iniciar la implementación del Core** — Con diseño y arquitectura cerrados, comenzar el desarrollo de las funcionalidades Must-Have del MVP según la priorización MoSCoW.
 
-7. **Definir e implementar estrategia de QA**  
-   Establecer un enfoque de calidad alineado con los RNF:
-   - Pruebas unitarias (ViewModels, lógica de negocio)
-   - Pruebas de integración (flujos críticos)
-   - Pruebas de usuario (usabilidad y experiencia)
-   - Validación de rendimiento y seguridad básica
-
-8. **Preparar validación con usuarios (UAT)**  
-   Planear pruebas con estudiantes universitarios para evaluar:
-   - Facilidad de uso (onboarding < 3 min)
-   - Nivel de adopción
-   - Percepción de valor (motivación, claridad, constancia)
-
-9. **Ajuste y evolución hacia MVP**  
-   Con base en resultados del POC:
-   - Refinar funcionalidades existentes
-   - Priorizar features de iteraciones 3–4 (recomendaciones y social)
-   - Optimizar rendimiento, accesibilidad y escalabilidad
+7. **Definir la estrategia de QA** — Establecer la pirámide de testing: unitarios para ViewModels y repositorios, integración para flujos críticos y pruebas de usuario para validación del UX.
 
 ---
 
-*Documento generado como parte del modulo de Capstone Design Project – MindStreak.  
-La trazabilidad completa del proceso, decisiones y evolución del proyecto se encuentra documentada en: https://bit.ly/3R69DjK*
+*Documento generado como parte del seguimiento del proyecto MindStreak. Para consultar el historial de cambios y decisiones diarias, visitar: [https://bit.ly/3R69DjK](https://bit.ly/3R69DjK)*

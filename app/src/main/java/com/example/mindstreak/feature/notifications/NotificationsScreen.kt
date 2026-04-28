@@ -32,6 +32,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 
 // ViewModel y Navegación
+import com.example.mindstreak.core.components.CustomToggle
+import com.example.mindstreak.core.components.NotificationTypeRow
 import com.example.mindstreak.core.theme.*
 import androidx.compose.material3.MaterialTheme
 import com.example.mindstreak.feature.home.AppViewModel
@@ -178,64 +180,3 @@ fun NotificationsScreen(
     }
 }
 
-@Composable
-fun NotificationTypeRow(
-    icon: ImageVector,
-    label: String,
-    sub: String,
-    color: Color,
-    value: Boolean,
-    onValueChange: (Boolean) -> Unit,
-    masterEnabled: Boolean
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface)
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        Box(
-            modifier = Modifier.size(36.dp).background(color.copy(alpha = 0.15f), RoundedCornerShape(10.dp)),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(icon, null, tint = color, modifier = Modifier.size(16.dp))
-        }
-        Column(Modifier.weight(1f)) {
-            Text(label, color = MaterialTheme.colorScheme.onSurface, fontSize = 14.sp, fontWeight = FontWeight.Bold)
-            Text(sub, color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 11.sp)
-        }
-        CustomToggle(checked = value, onCheckedChange = { if(masterEnabled) onValueChange(it) }, activeColor = color)
-    }
-}
-
-@Composable
-fun CustomToggle(
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-    activeColor: Color = HabitPurple
-) {
-    val thumbOffset by animateDpAsState(
-        targetValue = if (checked) 20.dp else 0.dp,
-        animationSpec = spring(stiffness = Spring.StiffnessMediumLow),
-        label = "toggle"
-    )
-
-    Box(
-        modifier = Modifier
-            .size(48.dp, 28.dp)
-            .clip(CircleShape)
-            .background(if (checked) activeColor else MaterialTheme.colorScheme.outlineVariant)
-            .clickable { onCheckedChange(!checked) }
-            .padding(3.dp)
-    ) {
-        Box(
-            modifier = Modifier
-                .offset(x = thumbOffset)
-                .size(22.dp)
-                .background(Color.White, CircleShape)
-                .shadow(elevation = 4.dp, shape = CircleShape)
-        )
-    }
-}

@@ -31,6 +31,7 @@ import com.example.mindstreak.data.mock.MockData
 import com.example.mindstreak.data.model.Habit
 import com.example.mindstreak.feature.home.AppViewModel
 import kotlinx.coroutines.launch
+import com.example.mindstreak.core.components.SectionLabel
 import com.example.mindstreak.core.theme.*
 private val EMOJIS = listOf(
     "🏃", "🧘", "💧", "📚", "😴", "📖", "🥗", "🏋️",
@@ -740,16 +741,3 @@ private fun ScheduleStep(
     }
 }
 
-// ─── Helper ─────────────────────────────────────────────────────────────────
-
-@Composable
-private fun SectionLabel(text: String, withPadding: Boolean = true) {
-    Text(
-        text = text.uppercase(),
-        fontSize = 11.sp,
-        fontWeight = FontWeight.SemiBold,
-        letterSpacing = 0.8.sp,
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
-        modifier = if (withPadding) Modifier.padding(bottom = 8.dp) else Modifier,
-    )
-}

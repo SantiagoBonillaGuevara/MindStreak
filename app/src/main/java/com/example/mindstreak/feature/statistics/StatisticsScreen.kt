@@ -28,6 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.mindstreak.core.components.ProgressRing
+import com.example.mindstreak.core.components.StatSmallCard
+import com.example.mindstreak.core.components.clickableWithoutRipple
 import com.example.mindstreak.feature.home.AppViewModel
 import kotlin.math.roundToInt
 import androidx.compose.foundation.Canvas
@@ -140,29 +142,6 @@ fun StatisticsScreen(
     }
 }
 
-@Composable
-private fun StatSmallCard(emoji: String, value: String, label: String, color: Color, modifier: Modifier) {
-    Column(
-        modifier = modifier
-            .border(1.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(16.dp))
-            .background(MaterialTheme.colorScheme.surface, RoundedCornerShape(16.dp))
-            .padding(12.dp)
-    ) {
-        Text(emoji, fontSize = 18.sp)
-        Text(
-            value,
-            style = MaterialTheme.typography.headlineSmall,
-            color = color,
-            modifier = Modifier.padding(top = 4.dp)
-        )
-        Text(
-            label.uppercase(),
-            style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            letterSpacing = 0.5.sp
-        )
-    }
-}
 
 @Composable
 private fun HabitsBarChart(tab: String) {
@@ -547,12 +526,4 @@ private fun SummaryRingCard(percent: Int, done: Int, total: Int) {
         }
     }
 }
-
-// Extension para evitar el efecto de ripple visual al clickear pestañas
-@Composable
-fun Modifier.clickableWithoutRipple(onClick: () -> Unit): Modifier = this.clickable(
-    interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() },
-    indication = null,
-    onClick = onClick
-)
 
