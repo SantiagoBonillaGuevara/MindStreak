@@ -28,7 +28,11 @@ fun HabitCompletionRateCard(
     Card(
         modifier = modifier.padding(horizontal = 20.dp),
         shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f))
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.secondary.copy(
+                alpha = 0.1f
+            )
+        )
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
@@ -41,14 +45,35 @@ fun HabitCompletionRateCard(
                 strokeWidth = 6.dp,
                 color = habitColor
             ) {
-                Text("${(completionRate * 100).roundToInt()}%", fontSize = 12.sp, fontWeight = FontWeight.ExtraBold)
+                Text(
+                    "${(completionRate * 100).roundToInt()}%",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.ExtraBold
+                )
             }
             Column {
                 Text(title, fontSize = 15.sp, fontWeight = FontWeight.Bold)
-                Text(subtitle, fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Icon(Icons.AutoMirrored.Filled.TrendingUp, contentDescription = null, modifier = Modifier.size(12.dp), tint = HabitTeal)
-                    Text(comparisonText, color = HabitTeal, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                Text(
+                    subtitle,
+                    fontSize = 13.sp,
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    Icon(
+                        Icons.AutoMirrored.Filled.TrendingUp,
+                        contentDescription = null,
+                        modifier = Modifier.size(12.dp),
+                        tint = HabitTeal
+                    )
+                    Text(
+                        comparisonText,
+                        color = HabitTeal,
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
             }
         }

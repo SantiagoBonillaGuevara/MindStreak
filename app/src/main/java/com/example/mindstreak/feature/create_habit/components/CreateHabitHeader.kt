@@ -71,8 +71,8 @@ fun CreateHabitHeader(
                         .background(
                             when {
                                 isCurrent -> MaterialTheme.colorScheme.primary
-                                isPast    -> HabitTeal
-                                else      -> MaterialTheme.colorScheme.secondary
+                                isPast -> HabitTeal
+                                else -> MaterialTheme.colorScheme.secondary
                             }
                         ),
                 )

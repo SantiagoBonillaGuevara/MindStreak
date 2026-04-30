@@ -57,7 +57,8 @@ fun CreateHabitScreen(
 
     val handleSave = {
         if (name.isNotBlank()) {
-            appViewModel.addHabit(Habit(
+            appViewModel.addHabit(
+                Habit(
                 id = System.currentTimeMillis().toString(),
                 name = name.trim(), emoji = selectedEmoji, category = selectedCategory,
                 color = category.color, streak = 0, completedToday = false,
@@ -85,34 +86,68 @@ fun CreateHabitScreen(
             )
         }
     ) { innerPadding ->
-        Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
+        Column(modifier = Modifier
+            .fillMaxSize()
+            .padding(innerPadding)) {
             CreateHabitHeader(
                 currentStepIndex = if (step == CreateStep.DETAILS) 0 else 1,
-                totalSteps = CreateStep.entries.size, 
+                totalSteps = CreateStep.entries.size,
                 onBack = onBack,
                 title = texts.screenTitle,
                 backContentDescription = texts.backDesc
             )
             AnimatedContent(
                 targetState = step,
-                transitionSpec = { (fadeIn(tween(300)) + slideInHorizontally(tween(300)) { it / 4 }).togetherWith(fadeOut(tween(200))) },
-                modifier = Modifier.weight(1f).fillMaxWidth(),
+                transitionSpec = {
+                    (fadeIn(tween(300)) + slideInHorizontally(tween(300)) { it / 4 }).togetherWith(
+                        fadeOut(tween(200))
+                    )
+                },
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
                 label = "stepContent"
             ) { currentStep ->
-                Column(modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp).padding(bottom = 16.dp)) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                        .padding(horizontal = 20.dp)
+                        .padding(bottom = 16.dp)
+                ) {
                     when (currentStep) {
                         CreateStep.DETAILS -> DetailsStep(
-                            name, { name = it }, nameTouched, selectedEmoji, { selectedEmoji = it }, 
-                            selectedCategory, { selectedCategory = it }, category, EMOJIS,
-                            nameLabel = texts.habitNameLabel, namePlaceholder = texts.habitNamePlaceholder,
-                            nameError = texts.habitNameError, emojiLabel = texts.iconLabel,
-                            categoryLabel = texts.categoryLabel, previewPlaceholder = texts.previewPlaceholder
+                            name,
+                            { name = it },
+                            nameTouched,
+                            selectedEmoji,
+                            { selectedEmoji = it },
+                            selectedCategory,
+                            { selectedCategory = it },
+                            category,
+                            EMOJIS,
+                            nameLabel = texts.habitNameLabel,
+                            namePlaceholder = texts.habitNamePlaceholder,
+                            nameError = texts.habitNameError,
+                            emojiLabel = texts.iconLabel,
+                            categoryLabel = texts.categoryLabel,
+                            previewPlaceholder = texts.previewPlaceholder
                         )
+
                         CreateStep.SCHEDULE -> ScheduleStep(
-                            selectedFreq, { selectedFreq = it }, selectedTime, { selectedTime = it }, 
-                            name, selectedEmoji, category, FREQUENCIES, TIMES,
-                            freqLabel = texts.freqLabel, timeLabel = texts.timeLabel,
-                            summaryTitle = texts.summaryTitle, summaryPlaceholder = texts.summaryPlaceholder,
+                            selectedFreq,
+                            { selectedFreq = it },
+                            selectedTime,
+                            { selectedTime = it },
+                            name,
+                            selectedEmoji,
+                            category,
+                            FREQUENCIES,
+                            TIMES,
+                            freqLabel = texts.freqLabel,
+                            timeLabel = texts.timeLabel,
+                            summaryTitle = texts.summaryTitle,
+                            summaryPlaceholder = texts.summaryPlaceholder,
                             summaryReminderTemplate = texts.summaryReminderTemplate
                         )
                     }

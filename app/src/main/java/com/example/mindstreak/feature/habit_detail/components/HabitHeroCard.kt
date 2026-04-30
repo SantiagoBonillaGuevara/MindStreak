@@ -41,7 +41,10 @@ fun HabitHeroCard(
             modifier = Modifier
                 .background(
                     Brush.linearGradient(
-                        colors = listOf(habitColor.copy(alpha = 0.15f), habitColor.copy(alpha = 0.05f))
+                        colors = listOf(
+                            habitColor.copy(alpha = 0.15f),
+                            habitColor.copy(alpha = 0.05f)
+                        )
                     )
                 )
                 .border(1.dp, habitColor.copy(alpha = 0.2f), RoundedCornerShape(28.dp))
@@ -79,9 +82,24 @@ fun HabitHeroCard(
                     modifier = Modifier.padding(top = 20.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    StatItem(Modifier.weight(1f), streak, statsLabels.getOrElse(0) { "" }, habitColor)
-                    StatItem(Modifier.weight(1f), bestStreak, statsLabels.getOrElse(1) { "" }, com.example.mindstreak.core.theme.HabitOrange)
-                    StatItem(Modifier.weight(1f), completionRate, statsLabels.getOrElse(2) { "" }, com.example.mindstreak.core.theme.HabitTeal)
+                    StatItem(
+                        Modifier.weight(1f),
+                        streak,
+                        statsLabels.getOrElse(0) { "" },
+                        habitColor
+                    )
+                    StatItem(
+                        Modifier.weight(1f),
+                        bestStreak,
+                        statsLabels.getOrElse(1) { "" },
+                        com.example.mindstreak.core.theme.HabitOrange
+                    )
+                    StatItem(
+                        Modifier.weight(1f),
+                        completionRate,
+                        statsLabels.getOrElse(2) { "" },
+                        com.example.mindstreak.core.theme.HabitTeal
+                    )
                 }
             }
         }

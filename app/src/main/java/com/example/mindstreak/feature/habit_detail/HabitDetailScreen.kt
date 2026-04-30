@@ -16,6 +16,7 @@ import androidx.core.graphics.toColorInt
 import kotlin.math.roundToInt
 
 private data class DayCell(val day: Int, val level: Int)
+
 private val MONTH_GRID: List<DayCell?> = List(35) { i ->
     if (i < 3) null
     else {
@@ -65,7 +66,11 @@ fun HabitDetailScreen(
     }
 
     val habitColor = remember(habit.color) {
-        try { Color(habit.color.toColorInt()) } catch (_: Exception) { Color(0xFF8B5CF6) }
+        try {
+            Color(habit.color.toColorInt())
+        } catch (_: Exception) {
+            Color(0xFF8B5CF6)
+        }
     }
 
     val levelColors = listOf(

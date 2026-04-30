@@ -25,9 +25,15 @@ fun HabitDetailActions(
     ) {
         OutlinedButton(
             onClick = onEdit,
-            modifier = Modifier.weight(1f).height(52.dp),
+            modifier = Modifier
+                .weight(1f)
+                .height(52.dp),
             shape = RoundedCornerShape(16.dp),
-            colors = ButtonDefaults.outlinedButtonColors(containerColor = MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f))
+            colors = ButtonDefaults.outlinedButtonColors(
+                containerColor = MaterialTheme.colorScheme.secondary.copy(
+                    alpha = 0.1f
+                )
+            )
         ) {
             Icon(Icons.Default.Edit, contentDescription = null, modifier = Modifier.size(16.dp))
             Spacer(Modifier.width(8.dp))
@@ -41,7 +47,10 @@ fun HabitDetailActions(
                 containerColor = MaterialTheme.colorScheme.error.copy(alpha = 0.1f),
                 contentColor = MaterialTheme.colorScheme.error
             ),
-            border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.error.copy(alpha = 0.2f)),
+            border = androidx.compose.foundation.BorderStroke(
+                1.dp,
+                MaterialTheme.colorScheme.error.copy(alpha = 0.2f)
+            ),
             contentPadding = PaddingValues(0.dp)
         ) {
             Icon(Icons.Default.Delete, contentDescription = deleteContentDescription)

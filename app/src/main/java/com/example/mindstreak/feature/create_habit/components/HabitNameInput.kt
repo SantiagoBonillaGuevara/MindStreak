@@ -56,9 +56,9 @@ fun HabitNameInput(
                 modifier = Modifier.weight(1f),
                 colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = Color.Transparent,
-                    focusedContainerColor   = Color.Transparent,
+                    focusedContainerColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
-                    focusedIndicatorColor   = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
                 ),
                 singleLine = true,
                 textStyle = LocalTextStyle.current.copy(

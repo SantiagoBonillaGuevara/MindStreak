@@ -41,22 +41,35 @@ fun HabitWeekProgress(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
-                    Text(day, fontSize = 10.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f))
+                    Text(
+                        day,
+                        fontSize = 10.sp,
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
+                    )
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(36.dp)
                             .clip(RoundedCornerShape(10.dp))
-                            .background(if (isDone) habitColor.copy(alpha = 0.15f) else MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f))
+                            .background(
+                                if (isDone) habitColor.copy(alpha = 0.15f) else MaterialTheme.colorScheme.secondary.copy(
+                                    alpha = 0.1f
+                                )
+                            )
                             .border(
                                 width = if (isDone) 1.5.dp else 1.dp,
-                                color = if (isDone) habitColor.copy(alpha = 0.3f) else MaterialTheme.colorScheme.outline.copy(alpha = 0.1f),
+                                color = if (isDone) habitColor.copy(alpha = 0.3f) else MaterialTheme.colorScheme.outline.copy(
+                                    alpha = 0.1f
+                                ),
                                 shape = RoundedCornerShape(10.dp)
                             ),
                         contentAlignment = Alignment.Center
                     ) {
                         if (isDone) Text("✓", color = habitColor, fontWeight = FontWeight.Bold)
-                        else Text("-", color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f))
+                        else Text(
+                            "-",
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f)
+                        )
                     }
                 }
             }

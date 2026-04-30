@@ -67,7 +67,7 @@ fun NavGraphBuilder.mainGraph(
     }
 
     composable(Screen.Statistics.route) {
-        StatisticsScreen(appViewModel = appViewModel, navController = navController)
+        StatisticsScreen(appViewModel = appViewModel)
     }
 
     composable(Screen.Notifications.route) {
