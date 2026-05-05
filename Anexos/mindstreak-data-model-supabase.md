@@ -1,13 +1,5 @@
 # Modelo de Datos MindStreak con Supabase
 
-> **Documento:** Entregable académico — Diseño de Base de Datos de Producción  
-> **Proyecto:** MindStreak — Aplicación móvil de seguimiento de hábitos  
-> **Motor de base de datos:** Supabase / PostgreSQL  
-> **Fecha de análisis:** Mayo 2026  
-> **Rama analizada:** `docs/readme`
-
----
-
 ## 1. Análisis del Estado Actual del Proyecto
 
 ### 1.1 Mecanismo de persistencia actual
