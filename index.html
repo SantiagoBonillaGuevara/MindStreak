@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindStreak API — Swagger UI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0d14;
+  --bg2: #0f1320;
+  --bg3: #141826;
+  --bg4: #1a2035;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #e8eaf0;
+  --text2: #8b91a8;
+  --text3: #555d78;
+  --accent: #6c63ff;
+  --accent2: #8b85ff;
+  --accent-glow: rgba(108,99,255,0.15);
+
+  --get: #22c55e; --get-bg: rgba(34,197,94,0.1); --get-border: rgba(34,197,94,0.25);
+  --post: #3b82f6; --post-bg: rgba(59,130,246,0.1); --post-border: rgba(59,130,246,0.25);
+  --patch: #f59e0b; --patch-bg: rgba(245,158,11,0.1); --patch-border: rgba(245,158,11,0.25);
+  --delete: #ef4444; --delete-bg: rgba(239,68,68,0.1); --delete-border: rgba(239,68,68,0.25);
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --transition: 0.18s cubic-bezier(0.4,0,0.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Sora', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* subtle grid bg */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(108,99,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108,99,255,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* ---- HEADER ---- */
+.header {
+  padding: 2.5rem 2rem 2rem;
+  background: linear-gradient(135deg, rgba(108,99,255,0.08) 0%, rgba(15,19,32,0) 60%);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(108,99,255,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.app-name {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.app-icon {
+  width: 36px; height: 36px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.badge {
+  font-size: 11px; font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.02em;
+}
+.badge-v  { color: var(--get);    background: var(--get-bg);    border-color: var(--get-border); }
+.badge-oas{ color: var(--accent2); background: var(--accent-glow); border-color: rgba(108,99,255,0.3); }
+.badge-pg { color: #38bdf8;       background: rgba(56,189,248,0.1); border-color: rgba(56,189,248,0.25); }
+
+.server-url {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text2);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.server-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--get); box-shadow: 0 0 6px var(--get); flex-shrink: 0; }
+.desc-text { font-size: 13px; color: var(--text2); margin-top: 10px; line-height: 1.7; }
+.desc-text code { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent2); background: var(--accent-glow); padding: 1px 5px; border-radius: 3px; }
+
+/* ---- SEARCH + FILTERS ---- */
+.controls { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
+.search-wrap {
+  position: relative;
+}
+.search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--text3); font-size: 15px; pointer-events: none;
+}
+#ep-search {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 10px 14px 10px 40px;
+  font-size: 13px;
+  color: var(--text);
+  font-family: 'Sora', sans-serif;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+#ep-search::placeholder { color: var(--text3); }
+#ep-search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+.filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.filter-btn {
+  font-size: 12px; font-weight: 500;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: 'Sora', sans-serif;
+  letter-spacing: 0.02em;
+}
+.filter-btn:hover { border-color: var(--border2); color: var(--text); background: var(--bg3); }
+.filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 12px var(--accent-glow); }
+.filter-btn.f-get.active    { background: var(--get);    border-color: var(--get);    box-shadow: 0 0 12px var(--get-bg); color:#fff; }
+.filter-btn.f-post.active   { background: var(--post);   border-color: var(--post);   box-shadow: 0 0 12px var(--post-bg); color:#fff; }
+.filter-btn.f-patch.active  { background: var(--patch);  border-color: var(--patch);  box-shadow: 0 0 12px var(--patch-bg); color:#fff; }
+.filter-btn.f-delete.active { background: var(--delete); border-color: var(--delete); box-shadow: 0 0 12px var(--delete-bg); color:#fff; }
+
+/* ---- STATS BAR ---- */
+.stats-bar {
+  display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+.stat-chip {
+  font-size: 11px; color: var(--text2);
+  background: var(--bg2); border: 1px solid var(--border);
+  padding: 4px 10px; border-radius: 20px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.stat-chip b { color: var(--text); font-weight: 500; }
+
+/* ---- TAG SECTION ---- */
+.tag-section {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.tag-section:hover { border-color: var(--border2); }
+
+.tag-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  background: var(--bg2);
+  transition: background var(--transition);
+  user-select: none;
+}
+.tag-header:hover { background: var(--bg3); }
+
+.tag-icon {
+  width: 28px; height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-glow);
+  border: 1px solid rgba(108,99,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; flex-shrink: 0;
+}
+.tag-name { font-size: 14px; font-weight: 600; color: var(--text); }
+.tag-desc { font-size: 12px; color: var(--text3); margin-left: 4px; }
+.tag-count {
+  margin-left: auto;
+  font-size: 11px; color: var(--text3);
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--bg3); border: 1px solid var(--border);
+  padding: 2px 8px; border-radius: 10px;
+  flex-shrink: 0;
+}
+.tag-chevron {
+  font-size: 13px; color: var(--text3);
+  transition: transform var(--transition);
+  margin-left: 6px; flex-shrink: 0;
+}
+.tag-chevron.open { transform: rotate(180deg); }
+
+.tag-body { display: none; }
+.tag-body.open { display: block; }
+
+/* ---- ENDPOINT ROW ---- */
+.ep {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 11px 16px;
+  cursor: pointer;
+  border-top: 1px solid var(--border);
+  transition: background var(--transition);
+}
+.ep:hover { background: rgba(255,255,255,0.02); }
+.ep.expanded { background: rgba(108,99,255,0.04); border-left: 2px solid var(--accent); padding-left: 14px; }
+
+.method-badge {
+  font-size: 10px; font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+  min-width: 56px; text-align: center;
+  flex-shrink: 0; margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+.m-GET    { color: var(--get);    background: var(--get-bg);    border-color: var(--get-border); }
+.m-POST   { color: var(--post);   background: var(--post-bg);   border-color: var(--post-border); }
+.m-PATCH  { color: var(--patch);  background: var(--patch-bg);  border-color: var(--patch-border); }
+.m-DELETE { color: var(--delete); background: var(--delete-bg); border-color: var(--delete-border); }
+
+.ep-info { flex: 1; min-width: 0; }
+.ep-path {
+  font-size: 13px; font-family: 'JetBrains Mono', monospace;
+  color: var(--text); line-height: 1.4;
+}
+.ep-summary { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.ep-arrow {
+  font-size: 13px; color: var(--text3);
+  margin-top: 3px; flex-shrink: 0;
+  transition: transform var(--transition);
+}
+.ep.expanded .ep-arrow { transform: rotate(180deg); color: var(--accent); }
+
+/* ---- DETAIL PANEL ---- */
+.ep-detail {
+  display: none;
+  padding: 16px;
+  background: var(--bg3);
+  border-top: 1px solid var(--border);
+}
+.ep-detail.open { display: block; }
+
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 600px) { .detail-grid { grid-template-columns: 1fr; } }
+.detail-full { grid-column: 1 / -1; }
+
+.ep-section { }
+.section-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--text3); text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex; align-items: center; gap: 6px;
+}
+.section-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+.desc-p { font-size: 12px; color: var(--text2); line-height: 1.7; }
+.desc-p code { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent2); background: var(--accent-glow); padding: 1px 4px; border-radius: 3px; }
+
+/* params table */
+.params-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.params-table tr { border-bottom: 1px solid var(--border); }
+.params-table tr:last-child { border-bottom: none; }
+.params-table td { padding: 6px 8px; vertical-align: top; }
+.p-name { font-family: 'JetBrains Mono', monospace; color: var(--text); font-size: 11px; }
+.p-req  { color: var(--delete); font-size: 10px; }
+.p-in   { font-size: 10px; font-family: 'JetBrains Mono', monospace; padding: 2px 6px; border-radius: 4px; background: rgba(56,189,248,0.1); color: #38bdf8; border: 1px solid rgba(56,189,248,0.2); white-space: nowrap; }
+.p-desc { color: var(--text2); }
+
+/* schema box */
+.schema-box {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  color: var(--text2);
+  line-height: 1.7;
+  white-space: pre;
+  overflow: auto;
+  max-height: 180px;
+}
+.schema-key { color: #93c5fd; }
+.schema-val { color: #86efac; }
+.schema-req { color: #fda4af; }
+.schema-opt { color: #a5b4fc; }
+
+/* responses */
+.resp-list { display: flex; flex-direction: column; gap: 4px; }
+.resp-row { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.resp-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600;
+  padding: 2px 8px; border-radius: 4px; flex-shrink: 0;
+}
+.c2 { color: var(--get);    background: var(--get-bg);    border: 1px solid var(--get-border); }
+.c4 { color: var(--delete); background: var(--delete-bg); border: 1px solid var(--delete-border); }
+.resp-desc { color: var(--text2); }
+
+/* rls pill */
+.rls-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-family: 'JetBrains Mono', monospace;
+  color: var(--patch); background: var(--patch-bg);
+  border: 1px solid var(--patch-border);
+  padding: 5px 10px; border-radius: var(--radius-sm);
+  line-height: 1.4;
+}
+.rls-icon { font-size: 13px; flex-shrink: 0; }
+
+.hidden { display: none !important; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* --- tag icons map --- */
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="app-name">
+          <div class="app-icon">⚡</div>
+          MindStreak API
+        </div>
+        <div class="badges">
+          <span class="badge badge-v">v1.0.0</span>
+          <span class="badge badge-oas">OpenAPI 3.0.3</span>
+          <span class="badge badge-pg">Supabase PostgREST</span>
+        </div>
+      </div>
+    </div>
+    <p class="desc-text">API REST expuesta por Supabase. Todas las rutas requieren <code>Authorization: Bearer &lt;token&gt;</code> + header <code>apikey</code>.</p>
+    <div class="server-url">
+      <span class="server-dot"></span>
+      https://klxhkfbzizsswjjpumpm.supabase.co/rest/v1
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="ep-search" placeholder="Buscar endpoint o ruta..." oninput="filterEndpoints(this.value)">
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterByMethod('all',this)">Todos</button>
+      <button class="filter-btn f-get"    onclick="filterByMethod('GET',this)">GET</button>
+      <button class="filter-btn f-post"   onclick="filterByMethod('POST',this)">POST</button>
+      <button class="filter-btn f-patch"  onclick="filterByMethod('PATCH',this)">PATCH</button>
+      <button class="filter-btn f-delete" onclick="filterByMethod('DELETE',this)">DELETE</button>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <span class="stat-chip"><b>14</b> tablas</span>
+    <span class="stat-chip"><b>38</b> endpoints</span>
+    <span class="stat-chip"><b>11</b> grupos</span>
+    <span class="stat-chip">RLS <b>habilitado</b></span>
+    <span class="stat-chip">JWT <b>requerido</b></span>
+  </div>
+
+  <div id="tags-container"></div>
+
+</div>
+
+<script>
+const TAG_ICONS = {
+  "Auth":"🔐","Profiles":"👤","Categories":"🏷️","Habits":"✅",
+  "Habit Logs":"📅","Achievements":"🏆","Friendships":"🤝",
+  "Groups":"👥","Activity Feed":"📡","Notifications":"🔔","Motivational Quotes":"💬"
+};
+
+const SPEC = [
+  {name:"Auth",desc:"Autenticación y sesiones via Supabase Auth",endpoints:[
+    {method:"POST",path:"/auth/v1/signup",summary:"Registrar nuevo usuario",
+      desc:"Crea cuenta email/password. El trigger <code>trg_on_auth_user_created</code> genera perfil y <code>notification_preferences</code> automáticamente.",
+      params:[],
+      body:[["email","string","required"],["password","string (min 6)","required"],["data.name","string","optional"],["data.username","string","optional"]],
+      responses:[{code:"200",c:"c2",desc:"Token JWT + datos de usuario"},{code:"422",c:"c4",desc:"Email ya registrado"}],rls:null},
+    {method:"POST",path:"/auth/v1/token",summary:"Iniciar sesión (email/password)",
+      desc:"Retorna <code>access_token</code> JWT para el header Authorization.",
+      params:[],
+      body:[["email","string","required"],["password","string","required"]],
+      responses:[{code:"200",c:"c2",desc:"access_token, refresh_token, expires_in"},{code:"400",c:"c4",desc:"Credenciales incorrectas"}],rls:null},
+    {method:"POST",path:"/auth/v1/logout",summary:"Cerrar sesión",
+      desc:"Invalida el token actual en el servidor.",
+      params:[],body:null,
+      responses:[{code:"204",c:"c2",desc:"Sesión cerrada"}],rls:null}
+  ]},
+  {name:"Profiles",desc:"Perfil público del usuario",endpoints:[
+    {method:"GET",path:"/profiles",summary:"Listar perfiles — leaderboard / búsqueda",
+      desc:"Lectura pública. Filtros PostgREST: <code>?username=eq.mariana</code>, <code>?order=best_streak.desc</code>",
+      params:[{name:"select",in:"query",desc:"Columnas: *, id,name,username,level"},{name:"order",in:"query",desc:"best_streak.desc, level.desc"},{name:"limit",in:"query",desc:"Máx resultados (default 20)"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de Profile"}],rls:"SELECT público — sin restricción RLS"},
+    {method:"GET",path:"/profiles/{id}",summary:"Obtener perfil por ID",
+      desc:"Retorna un perfil específico por UUID.",
+      params:[{name:"id",in:"path",desc:"UUID del perfil",req:true}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Objeto Profile"},{code:"404",c:"c4",desc:"No encontrado"}],rls:"SELECT público"},
+    {method:"PATCH",path:"/profiles/{id}",summary:"Actualizar perfil propio",
+      desc:"Solo el usuario autenticado puede actualizar su propio perfil.",
+      params:[{name:"id",in:"path",desc:"UUID del perfil",req:true}],
+      body:[["name","string","optional"],["username","string","optional"],["university","string","optional"],["avatar_emoji","string","optional"]],
+      responses:[{code:"204",c:"c2",desc:"Actualizado"},{code:"403",c:"c4",desc:"No es tu perfil"}],rls:"UPDATE solo si auth.uid() = id"}
+  ]},
+  {name:"Categories",desc:"Categorías de hábitos (sistema + personalizadas)",endpoints:[
+    {method:"GET",path:"/categories",summary:"Listar todas las categorías",
+      desc:"Devuelve las 8 categorías del sistema (<code>is_default=true</code>) y las personalizadas del usuario.",
+      params:[{name:"is_default",in:"query",desc:"eq.true para solo sistema"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de Category"}],rls:"SELECT público"},
+    {method:"POST",path:"/categories",summary:"Crear categoría personalizada",
+      desc:"El campo <code>created_by</code> se infiere del JWT automáticamente.",
+      params:[],
+      body:[["name","string","required"],["emoji","string","required"],["color","string #RRGGBB","required"]],
+      responses:[{code:"201",c:"c2",desc:"Category creada"},{code:"403",c:"c4",desc:"No autenticado"}],rls:"INSERT solo si auth.uid() = created_by"},
+    {method:"PATCH",path:"/categories/{id}",summary:"Actualizar categoría personalizada",
+      desc:"Solo el creador puede modificar. Las categorías del sistema (<code>is_default=true</code>) son inmutables.",
+      params:[{name:"id",in:"path",desc:"UUID",req:true}],
+      body:[["name","string","optional"],["emoji","string","optional"],["color","string","optional"]],
+      responses:[{code:"204",c:"c2",desc:"Actualizada"},{code:"403",c:"c4",desc:"No eres el creador o es de sistema"}],rls:"UPDATE si auth.uid() = created_by AND is_default = false"},
+    {method:"DELETE",path:"/categories/{id}",summary:"Eliminar categoría personalizada",
+      desc:"No se pueden eliminar categorías del sistema.",
+      params:[{name:"id",in:"path",desc:"UUID",req:true}],
+      body:null,
+      responses:[{code:"204",c:"c2",desc:"Eliminada"},{code:"403",c:"c4",desc:"No autorizado"}],rls:"DELETE si auth.uid() = created_by AND is_default = false"}
+  ]},
+  {name:"Habits",desc:"Gestión de hábitos del usuario",endpoints:[
+    {method:"GET",path:"/habits",summary:"Listar hábitos del usuario autenticado",
+      desc:"RLS garantiza que solo se devuelvan los hábitos propios. Para activos: <code>?is_active=eq.true</code>",
+      params:[{name:"is_active",in:"query",desc:"eq.true (activos) / eq.false (archivados)"},{name:"order",in:"query",desc:"current_streak.desc"},{name:"select",in:"query",desc:"*, category:categories(name,emoji,color)"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de Habit"}],rls:"SELECT solo si auth.uid() = user_id"},
+    {method:"POST",path:"/habits",summary:"Crear nuevo hábito",
+      desc:"<code>user_id</code> se asigna automáticamente del JWT vía RLS.",
+      params:[],
+      body:[["name","string","required"],["frequency","DAILY|WEEKDAYS|WEEKENDS|CUSTOM","required"],["emoji","string","optional"],["category_id","uuid","optional"],["reminder_time","HH:MM:SS","optional"]],
+      responses:[{code:"201",c:"c2",desc:"Habit creado"},{code:"403",c:"c4",desc:"No autenticado"}],rls:"INSERT solo si auth.uid() = user_id"},
+    {method:"PATCH",path:"/habits/{id}",summary:"Actualizar hábito",
+      desc:"Para archivar usar <code>{is_active: false}</code>. Conserva historial en habit_logs.",
+      params:[{name:"id",in:"path",desc:"UUID",req:true}],
+      body:[["name","string","optional"],["emoji","string","optional"],["frequency","string","optional"],["reminder_time","time","optional"],["is_active","boolean","optional"]],
+      responses:[{code:"204",c:"c2",desc:"Actualizado"},{code:"403",c:"c4",desc:"No es tu hábito"}],rls:"UPDATE solo si auth.uid() = user_id"},
+    {method:"DELETE",path:"/habits/{id}",summary:"Eliminar hábito",
+      desc:"Se recomienda soft delete via <code>is_active=false</code> para conservar el historial.",
+      params:[{name:"id",in:"path",desc:"UUID",req:true}],
+      body:null,
+      responses:[{code:"204",c:"c2",desc:"Eliminado"}],rls:"DELETE solo si auth.uid() = user_id"}
+  ]},
+  {name:"Habit Logs",desc:"Registro diario de completación",endpoints:[
+    {method:"GET",path:"/habit_logs",summary:"Obtener registros de completación",
+      desc:"Filtrar por hábito, fecha o rango. Ej: <code>?habit_id=eq.UUID&completed_date=gte.2026-05-01</code>",
+      params:[{name:"habit_id",in:"query",desc:"eq.<uuid>"},{name:"completed_date",in:"query",desc:"eq.2026-05-06 o gte.2026-05-01"},{name:"completed",in:"query",desc:"eq.true"},{name:"limit",in:"query",desc:"Default 20"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de HabitLog"}],rls:"SELECT solo si auth.uid() = user_id"},
+    {method:"POST",path:"/habit_logs",summary:"Registrar completación (upsert recomendado)",
+      desc:"Usar header <code>Prefer: resolution=merge-duplicates</code> para upsert automático.",
+      params:[{name:"Prefer",in:"header",desc:"resolution=merge-duplicates"}],
+      body:[["habit_id","uuid","required"],["completed_date","date YYYY-MM-DD","required"],["completed","boolean","required"]],
+      responses:[{code:"201",c:"c2",desc:"HabitLog creado/actualizado"}],rls:"INSERT solo si auth.uid() = user_id"},
+    {method:"PATCH",path:"/habit_logs/{id}",summary:"Actualizar registro (solo día actual por RLS)",
+      desc:"RLS restringe UPDATE al día actual: <code>completed_date = CURRENT_DATE</code>. Los logs pasados son inmutables.",
+      params:[{name:"id",in:"path",desc:"UUID",req:true}],
+      body:[["completed","boolean","required"]],
+      responses:[{code:"204",c:"c2",desc:"Actualizado"},{code:"403",c:"c4",desc:"RLS: solo se puede editar log del día actual"}],rls:"UPDATE si auth.uid() = user_id AND completed_date = CURRENT_DATE"}
+  ]},
+  {name:"Achievements",desc:"Logros del sistema y progreso del usuario",endpoints:[
+    {method:"GET",path:"/achievements",summary:"Catálogo de logros (lectura pública)",
+      desc:"Devuelve los 10 logros del sistema. Ordenar por <code>sort_order.asc</code>.",
+      params:[{name:"order",in:"query",desc:"sort_order.asc"},{name:"rarity",in:"query",desc:"eq.LEGENDARY"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de Achievement"}],rls:"SELECT público — sin restricción"},
+    {method:"GET",path:"/user_achievements",summary:"Progreso de logros del usuario autenticado",
+      desc:"Combinar con join: <code>select=*, achievement:achievements(name,emoji,rarity)</code>",
+      params:[{name:"earned",in:"query",desc:"eq.true (solo desbloqueados)"},{name:"select",in:"query",desc:"*, achievement:achievements(name,emoji,rarity)"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de UserAchievement"}],rls:"SELECT solo si auth.uid() = user_id"}
+  ]},
+  {name:"Friendships",desc:"Relaciones sociales entre usuarios",endpoints:[
+    {method:"GET",path:"/friendships",summary:"Listar amistades del usuario autenticado",
+      desc:"Devuelve relaciones donde el usuario es requester o addressee. Filtrar por status.",
+      params:[{name:"status",in:"query",desc:"eq.ACCEPTED | eq.PENDING | eq.BLOCKED"},{name:"select",in:"query",desc:"*, requester:profiles!requester_id(name,username)"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de Friendship"}],rls:"SELECT si auth.uid() = requester_id OR addressee_id"},
+    {method:"POST",path:"/friendships",summary:"Enviar solicitud de amistad",
+      desc:"<code>requester_id</code> se asigna del JWT. Estado inicial: PENDING.",
+      params:[],
+      body:[["addressee_id","uuid","required"]],
+      responses:[{code:"201",c:"c2",desc:"Friendship creada (status: PENDING)"},{code:"409",c:"c4",desc:"Ya existe solicitud entre estos usuarios"}],rls:"INSERT solo si auth.uid() = requester_id"},
+    {method:"PATCH",path:"/friendships/{id}",summary:"Aceptar o bloquear solicitud",
+      desc:"Cambiar status a ACCEPTED o BLOCKED.",
+      params:[{name:"id",in:"path",desc:"UUID",req:true}],
+      body:[["status","ACCEPTED | BLOCKED","required"]],
+      responses:[{code:"204",c:"c2",desc:"Estado actualizado"}],rls:"UPDATE si auth.uid() = requester_id OR addressee_id"},
+    {method:"DELETE",path:"/friendships/{id}",summary:"Eliminar amistad o cancelar solicitud",
+      params:[{name:"id",in:"path",desc:"UUID",req:true}],
+      body:null,
+      responses:[{code:"204",c:"c2",desc:"Eliminada"}],rls:"DELETE si auth.uid() = requester_id OR addressee_id"}
+  ]},
+  {name:"Groups",desc:"Grupos sociales, miembros y desafíos",endpoints:[
+    {method:"GET",path:"/groups",summary:"Listar grupos públicos y del usuario",
+      desc:"RLS muestra grupos públicos + privados donde el usuario es miembro.",
+      params:[{name:"is_public",in:"query",desc:"eq.true"},{name:"order",in:"query",desc:"current_streak.desc"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de Group"}],rls:"SELECT si is_public=true OR es miembro"},
+    {method:"POST",path:"/groups",summary:"Crear grupo",
+      params:[],
+      body:[["name","string","required"],["description","string","optional"],["emoji","string","optional"],["is_public","boolean","optional"]],
+      responses:[{code:"201",c:"c2",desc:"Group creado"}],rls:"INSERT solo si auth.uid() = created_by"},
+    {method:"PATCH",path:"/groups/{id}",summary:"Actualizar grupo (solo admin)",
+      params:[{name:"id",in:"path",desc:"UUID",req:true}],
+      body:[["name","string","optional"],["description","string","optional"],["is_public","boolean","optional"]],
+      responses:[{code:"204",c:"c2",desc:"Actualizado"},{code:"403",c:"c4",desc:"No eres admin del grupo"}],rls:"UPDATE solo si role = ADMIN en group_members"},
+    {method:"GET",path:"/group_members",summary:"Listar miembros de un grupo",
+      params:[{name:"group_id",in:"query",desc:"eq.<uuid> (requerido)",req:true},{name:"select",in:"query",desc:"*, user:profiles(name,username,avatar_emoji,level)"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de GroupMember"}],rls:"SELECT si eres miembro del grupo"},
+    {method:"POST",path:"/group_members",summary:"Unirse a un grupo",
+      params:[],
+      body:[["group_id","uuid","required"]],
+      responses:[{code:"201",c:"c2",desc:"Membresía creada (role: MEMBER)"}],rls:"INSERT solo si auth.uid() = user_id"},
+    {method:"GET",path:"/group_challenges",summary:"Listar desafíos de un grupo",
+      params:[{name:"group_id",in:"query",desc:"eq.<uuid> (requerido)",req:true},{name:"end_date",in:"query",desc:"gte.2026-05-06 (activos)"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de GroupChallenge"}],rls:"SELECT si eres miembro del grupo"},
+    {method:"POST",path:"/group_challenges",summary:"Crear desafío semanal",
+      params:[],
+      body:[["group_id","uuid","required"],["title","string","required"],["start_date","date","required"],["end_date","date","required"],["description","string","optional"]],
+      responses:[{code:"201",c:"c2",desc:"GroupChallenge creado"},{code:"403",c:"c4",desc:"No eres admin del grupo"}],rls:"INSERT solo si role = ADMIN en group_members"}
+  ]},
+  {name:"Activity Feed",desc:"Feed de actividad social",endpoints:[
+    {method:"GET",path:"/activity_feed",summary:"Feed propio + amigos aceptados",
+      desc:"RLS filtra automáticamente. Paginación por cursor: <code>?order=created_at.desc&limit=20</code>",
+      params:[{name:"activity_type",in:"query",desc:"eq.HABIT_COMPLETED | eq.STREAK_HIT | eq.ACHIEVEMENT_UNLOCKED"},{name:"order",in:"query",desc:"created_at.desc"},{name:"limit",in:"query",desc:"Default 20"},{name:"select",in:"query",desc:"*, user:profiles(name,username,avatar_emoji)"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de ActivityFeedItem"}],rls:"SELECT si auth.uid() = user_id OR amistad ACCEPTED"}
+  ]},
+  {name:"Notifications",desc:"Preferencias globales y por hábito",endpoints:[
+    {method:"GET",path:"/notification_preferences",summary:"Obtener preferencias del usuario",
+      desc:"Retorna el registro único 1:1 con el perfil.",
+      params:[],body:null,
+      responses:[{code:"200",c:"c2",desc:"Array con un objeto NotificationPreferences"}],rls:"ALL solo si auth.uid() = user_id"},
+    {method:"PATCH",path:"/notification_preferences",summary:"Actualizar preferencias",
+      desc:"Usar <code>?user_id=eq.&lt;uuid&gt;</code> como filtro PostgREST.",
+      params:[{name:"user_id",in:"query",desc:"eq.<uuid>",req:true}],
+      body:[["master_enabled","boolean","optional"],["streak_alert","boolean","optional"],["daily_summary","boolean","optional"],["achievements_enabled","boolean","optional"],["social_enabled","boolean","optional"],["motivational_enabled","boolean","optional"]],
+      responses:[{code:"204",c:"c2",desc:"Actualizado"}],rls:"ALL solo si auth.uid() = user_id"},
+    {method:"GET",path:"/habit_notification_settings",summary:"Configuración de recordatorios por hábito",
+      params:[{name:"habit_id",in:"query",desc:"eq.<uuid>"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de HabitNotificationSettings"}],rls:"ALL solo si auth.uid() = user_id"},
+    {method:"POST",path:"/habit_notification_settings",summary:"Crear/actualizar recordatorio (upsert)",
+      params:[{name:"Prefer",in:"header",desc:"resolution=merge-duplicates"}],
+      body:[["habit_id","uuid","required"],["reminder_enabled","boolean","optional"],["reminder_time","HH:MM:SS","optional"]],
+      responses:[{code:"201",c:"c2",desc:"Configuración guardada"}],rls:"ALL solo si auth.uid() = user_id"}
+  ]},
+  {name:"Motivational Quotes",desc:"Citas motivacionales para HomeScreen",endpoints:[
+    {method:"GET",path:"/motivational_quotes",summary:"Obtener citas activas",
+      desc:"Para cita aleatoria: <code>?limit=1&order=random()</code>. Solo devuelve <code>is_active=true</code> por RLS.",
+      params:[{name:"limit",in:"query",desc:"1 para cita aleatoria"},{name:"order",in:"query",desc:"random()"}],
+      body:null,
+      responses:[{code:"200",c:"c2",desc:"Array de MotivationalQuote"}],rls:"SELECT solo si is_active = true"}
+  ]}
+];
+
+let activeMethod='all', searchText='';
+
+function buildSchema(body){
+  if(!body) return '';
+  return body.map(([k,v,r])=>{
+    const rClass = r==='required' ? 'schema-req' : 'schema-opt';
+    return `  <span class="schema-key">"${k}"</span>: <span class="schema-val">"${v}"</span><span class="${rClass}"> // ${r}</span>`;
+  }).join('\n');
+}
+
+function render(){
+  const c = document.getElementById('tags-container');
+  c.innerHTML='';
+  SPEC.forEach((tag,ti)=>{
+    const filtered = tag.endpoints.filter(ep=>{
+      const mOk = activeMethod==='all' || ep.method===activeMethod;
+      const sOk = !searchText || ep.path.toLowerCase().includes(searchText) || ep.summary.toLowerCase().includes(searchText);
+      return mOk && sOk;
+    });
+    if(!filtered.length) return;
+
+    const sec = document.createElement('div');
+    sec.className='tag-section';
+
+    const hdr = document.createElement('div');
+    hdr.className='tag-header';
+    hdr.innerHTML=`
+      <div class="tag-icon">${TAG_ICONS[tag.name]||'📦'}</div>
+      <span class="tag-name">${tag.name}</span>
+      <span class="tag-desc">· ${tag.desc}</span>
+      <span class="tag-count">${filtered.length} endpoint${filtered.length>1?'s':''}</span>
+      <span class="tag-chevron">▾</span>`;
+    hdr.onclick=()=>{
+      const b = sec.querySelector('.tag-body');
+      const ch = hdr.querySelector('.tag-chevron');
+      b.classList.toggle('open');
+      ch.classList.toggle('open');
+    };
+
+    const body = document.createElement('div');
+    body.className='tag-body';
+
+    filtered.forEach(ep=>{
+      const row = document.createElement('div');
+      row.className='ep';
+      row.innerHTML=`
+        <span class="method-badge m-${ep.method}">${ep.method}</span>
+        <div class="ep-info">
+          <div class="ep-path">${ep.path}</div>
+          <div class="ep-summary">${ep.summary}</div>
+        </div>
+        <span class="ep-arrow">▾</span>`;
+
+      const detail = document.createElement('div');
+      detail.className='ep-detail';
+
+      let hasLeft = ep.params?.length || ep.body;
+      let hasRight = ep.responses?.length || ep.rls;
+
+      let html=`<div class="detail-grid">`;
+
+      // LEFT
+      html+=`<div>`;
+      html+=`<div class="ep-section" style="margin-bottom:12px">
+        <div class="section-label">descripción</div>
+        <p class="desc-p">${ep.desc}</p>
+      </div>`;
+
+      if(ep.params?.length){
+        html+=`<div class="ep-section" style="margin-bottom:12px">
+          <div class="section-label">parámetros</div>
+          <table class="params-table">`;
+        ep.params.forEach(p=>{
+          html+=`<tr>
+            <td><span class="p-name">${p.name}</span>${p.req?'<span class="p-req"> *</span>':''}</td>
+            <td><span class="p-in">${p.in}</span></td>
+            <td class="p-desc">${p.desc}</td>
+          </tr>`;
+        });
+        html+=`</table></div>`;
+      }
+
+      if(ep.body){
+        html+=`<div class="ep-section">
+          <div class="section-label">request body</div>
+          <div class="schema-box">{\n${buildSchema(ep.body)}\n}</div>
+        </div>`;
+      }
+      html+=`</div>`;
+
+      // RIGHT
+      html+=`<div>`;
+      if(ep.responses?.length){
+        html+=`<div class="ep-section" style="margin-bottom:12px">
+          <div class="section-label">respuestas</div>
+          <div class="resp-list">`;
+        ep.responses.forEach(r=>{
+          html+=`<div class="resp-row"><span class="resp-code ${r.c}">${r.code}</span><span class="resp-desc">${r.desc}</span></div>`;
+        });
+        html+=`</div></div>`;
+      }
+      if(ep.rls){
+        html+=`<div class="ep-section">
+          <div class="section-label">row level security</div>
+          <div class="rls-pill"><span class="rls-icon">🛡</span>${ep.rls}</div>
+        </div>`;
+      }
+      html+=`</div>`;
+      html+=`</div>`;
+
+      detail.innerHTML=html;
+
+      row.onclick=()=>{
+        const isOpen = detail.classList.contains('open');
+        body.querySelectorAll('.ep-detail.open').forEach(d=>d.classList.remove('open'));
+        body.querySelectorAll('.ep.expanded').forEach(e=>e.classList.remove('expanded'));
+        if(!isOpen){
+          detail.classList.add('open');
+          row.classList.add('expanded');
+        }
+      };
+
+      body.appendChild(row);
+      body.appendChild(detail);
+    });
+
+    sec.appendChild(hdr);
+    sec.appendChild(body);
+    c.appendChild(sec);
+  });
+}
+
+function filterByMethod(m, btn){
+  activeMethod=m;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+function filterEndpoints(val){
+  searchText=val.toLowerCase().trim();
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
