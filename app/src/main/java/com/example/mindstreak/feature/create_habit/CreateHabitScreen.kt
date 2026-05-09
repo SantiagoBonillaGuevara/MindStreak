@@ -1,7 +1,7 @@
 package com.example.mindstreak.feature.create_habit
 
 import androidx.compose.animation.*
-import androidx.compose.animation.core.*
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -12,15 +12,11 @@ import androidx.compose.ui.unit.dp
 import com.example.mindstreak.data.mock.MockData
 import com.example.mindstreak.data.model.Habit
 import com.example.mindstreak.feature.home.AppViewModel
-import kotlinx.coroutines.launch
 import com.example.mindstreak.feature.create_habit.components.*
+import kotlinx.coroutines.launch
 
 @Composable
-fun CreateHabitScreen(
-    appViewModel: AppViewModel,
-    onBack: () -> Unit,
-    onCreated: () -> Unit,
-) {
+fun CreateHabitScreen(appViewModel: AppViewModel, onBack: () -> Unit, onCreated: () -> Unit) {
     var name by remember { mutableStateOf("") }
     var nameTouched by remember { mutableStateOf(false) }
     var selectedEmoji by remember { mutableStateOf("🏃") }
@@ -28,45 +24,29 @@ fun CreateHabitScreen(
     var selectedFreq by remember { mutableStateOf("Daily") }
     var selectedTime by remember { mutableStateOf("07:00") }
     var step by remember { mutableStateOf(CreateStep.DETAILS) }
-
-    val category = MockData.CATEGORIES.find { it.id == selectedCategory }
-        ?: MockData.CATEGORIES.first()
-
-    val snackbarHostState = remember { SnackbarHostState() }
+    val texts = rememberCreateHabitTexts()
     val scope = rememberCoroutineScope()
-
-    // Centralized strings for future localization
-    val texts = object {
-        val screenTitle = "New Habit"
-        val backDesc = "Back"
-        val nextBtn = "Next: Schedule"
-        val backBtn = "Back"
-        val finishBtn = "Create Habit"
-        val habitNameLabel = "Habit Name"
-        val habitNamePlaceholder = "e.g. Morning Run"
-        val habitNameError = "Please enter a habit name"
-        val iconLabel = "Icon"
-        val categoryLabel = "Category"
-        val previewPlaceholder = "Your new habit"
-        val freqLabel = "Frequency"
-        val timeLabel = "Reminder Time"
-        val summaryTitle = "SUMMARY"
-        val summaryPlaceholder = "Your habit"
-        val summaryReminderTemplate = "Reminder at %s every day"
-    }
+    val snackbarHostState = remember { SnackbarHostState() }
+    val category =
+        MockData.CATEGORIES.find { it.id == selectedCategory } ?: MockData.CATEGORIES.first()
 
     val handleSave = {
         if (name.isNotBlank()) {
             appViewModel.addHabit(
                 Habit(
-                id = System.currentTimeMillis().toString(),
-                name = name.trim(), emoji = selectedEmoji, category = selectedCategory,
-                color = category.color, streak = 0, completedToday = false,
-                frequency = selectedFreq, completionRate = 0f,
-                reminderTime = selectedTime, weekHistory = List(7) { false }
-            ))
-            scope.launch { snackbarHostState.showSnackbar("\"${name.trim()}\" added!") }
-            onCreated()
+                    id = System.currentTimeMillis().toString(),
+                    name = name.trim(),
+                    emoji = selectedEmoji,
+                    category = selectedCategory,
+                    color = category.color,
+                    streak = 0,
+                    completedToday = false,
+                    frequency = selectedFreq,
+                    completionRate = 0f,
+                    reminderTime = selectedTime,
+                    weekHistory = List(7) { false })
+            )
+            scope.launch { snackbarHostState.showSnackbar(texts.addedMsg.format(name.trim())) }; onCreated()
         }
     }
 
@@ -75,26 +55,25 @@ fun CreateHabitScreen(
         containerColor = MaterialTheme.colorScheme.background,
         bottomBar = {
             CreateHabitFooter(
-                isFirstStep = step == CreateStep.DETAILS,
-                isValid = name.isNotBlank(),
-                onNext = { if (name.isNotBlank()) step = CreateStep.SCHEDULE },
-                onBack = { step = CreateStep.DETAILS },
-                onFinish = { handleSave() },
-                nextText = texts.nextBtn,
-                backText = texts.backBtn,
-                finishText = texts.finishBtn
+                step == CreateStep.DETAILS,
+                name.isNotBlank(),
+                { if (name.isNotBlank()) step = CreateStep.SCHEDULE },
+                { step = CreateStep.DETAILS },
+                { handleSave() },
+                texts.nextBtn,
+                texts.backBtn,
+                texts.finishBtn
             )
-        }
-    ) { innerPadding ->
-        Column(modifier = Modifier
+        }) { padding ->
+        Column(Modifier
             .fillMaxSize()
-            .padding(innerPadding)) {
+            .padding(padding)) {
             CreateHabitHeader(
-                currentStepIndex = if (step == CreateStep.DETAILS) 0 else 1,
-                totalSteps = CreateStep.entries.size,
-                onBack = onBack,
-                title = texts.screenTitle,
-                backContentDescription = texts.backDesc
+                if (step == CreateStep.DETAILS) 0 else 1,
+                CreateStep.entries.size,
+                onBack,
+                texts.screenTitle,
+                texts.backDesc
             )
             AnimatedContent(
                 targetState = step,
@@ -106,51 +85,48 @@ fun CreateHabitScreen(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth(),
-                label = "stepContent"
-            ) { currentStep ->
+                label = "step"
+            ) { curStep ->
                 Column(
-                    modifier = Modifier
+                    Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
                         .padding(horizontal = 20.dp)
                         .padding(bottom = 16.dp)
                 ) {
-                    when (currentStep) {
-                        CreateStep.DETAILS -> DetailsStep(
-                            name,
-                            { name = it },
-                            nameTouched,
-                            selectedEmoji,
-                            { selectedEmoji = it },
-                            selectedCategory,
-                            { selectedCategory = it },
-                            category,
-                            EMOJIS,
-                            nameLabel = texts.habitNameLabel,
-                            namePlaceholder = texts.habitNamePlaceholder,
-                            nameError = texts.habitNameError,
-                            emojiLabel = texts.iconLabel,
-                            categoryLabel = texts.categoryLabel,
-                            previewPlaceholder = texts.previewPlaceholder
-                        )
-
-                        CreateStep.SCHEDULE -> ScheduleStep(
-                            selectedFreq,
-                            { selectedFreq = it },
-                            selectedTime,
-                            { selectedTime = it },
-                            name,
-                            selectedEmoji,
-                            category,
-                            FREQUENCIES,
-                            TIMES,
-                            freqLabel = texts.freqLabel,
-                            timeLabel = texts.timeLabel,
-                            summaryTitle = texts.summaryTitle,
-                            summaryPlaceholder = texts.summaryPlaceholder,
-                            summaryReminderTemplate = texts.summaryReminderTemplate
-                        )
-                    }
+                    if (curStep == CreateStep.DETAILS) DetailsStep(
+                        name,
+                        { name = it },
+                        nameTouched,
+                        selectedEmoji,
+                        { selectedEmoji = it },
+                        selectedCategory,
+                        { selectedCategory = it },
+                        category,
+                        EMOJIS,
+                        texts.habitNameLabel,
+                        texts.habitNamePlaceholder,
+                        texts.habitNameError,
+                        texts.iconLabel,
+                        texts.categoryLabel,
+                        texts.previewPlaceholder
+                    )
+                    else ScheduleStep(
+                        selectedFreq,
+                        { selectedFreq = it },
+                        selectedTime,
+                        { selectedTime = it },
+                        name,
+                        selectedEmoji,
+                        category,
+                        FREQUENCIES,
+                        TIMES,
+                        texts.freqLabel,
+                        texts.timeLabel,
+                        texts.summaryTitle,
+                        texts.summaryPlaceholder,
+                        texts.summaryReminderTemplate
+                    )
                 }
             }
         }

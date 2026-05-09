@@ -1,3 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MindStreak</string>
+    <!-- Home Screen -->
+    <string name="home_date">Wednesday, April 8</string>
+    <string name="home_greeting">Good morning, Alex 👋</string>
+    <string name="home_notifications">Notifications</string>
+    <string name="home_streak_label">CURRENT STREAK</string>
+    <string name="home_streak_days_suffix">days 🔥</string>
+    <string name="home_next_milestone">Next milestone: 30 days</string>
+    <string name="home_best_streak">🏆 Best: 34</string>
+    <string name="home_goal_progress">↑ 62% to goal</string>
+    <string name="home_day_zero">Day 0</string>
+    <string name="home_day_goal">Day 30</string>
+    <string name="home_day">Day</string>
+    <string name="home_week_days">M,T,W,T,F,S,S</string>
+    <string name="home_progress_title">Today\'s Progress</string>
+    <string name="home_progress_template">%d%% complete</string>
+    <string name="home_habits_title">Today\'s Habits</string>
+    <string name="home_add_btn">Add</string>
+    <string name="home_empty_title">No habits yet</string>
+    <string name="home_empty_desc">Start building your streak by adding your first habit.</string>
+    <string name="home_empty_btn">Add First Habit</string>
+    <string name="home_add_new_habit">Add a new habit</string>
+    <string name="home_all_done_msg">All habits done today! 🎉</string>
+    <string name="habit_card_rate_template">%d%% rate</string>
+
+    <!-- Statistics Screen -->
+    <string name="stats_title">Statistics</string>
+    <string name="stats_week_label">This Week</string>
+    <string name="stats_best_streak_label">Best Streak</string>
+    <string name="stats_avg_day_label">Avg/Day</string>
+    <string name="stats_tab_week">Week</string>
+    <string name="stats_tab_month">Month</string>
+    <string name="stats_tab_year">Year</string>
+    <string name="stats_bar_chart_title">Habits Completed</string>
+    <string name="stats_done_label">done</string>
+    <string name="stats_total_label">total</string>
+    <string name="stats_trend_title">Completion Trend</string>
+    <string name="stats_rate_label">rate</string>
+    <string name="stats_breakdown_title">Habit Breakdown</string>
+    <string name="stats_summary_title">Overall Today</string>
+    <string name="stats_summary_subtitle_template">%d of %d habits done</string>
+    <string name="stats_more_to_go_template">%d more to go!</string>
+
+    <!-- Achievements Screen -->
+    <string name="achievements_title">Achievements</string>
+    <string name="achievements_subtitle">Level up your habits</string>
+    <string name="achievements_earned">Earned</string>
+    <string name="achievements_locked">Locked</string>
+    <string name="achievements_xp_total">Total XP</string>
+    <string name="achievements_level">Level</string>
+    <string name="achievements_lvl_name">Habit Architect</string>
+    <string name="achievements_recently_earned">Recently Earned</string>
+    <string name="achievements_tab_all">All</string>
+
+    <!-- Auth Screen -->
+    <string name="auth_app_name">MindStreak</string>
+    <string name="auth_subtitle">For university students</string>
+    <string name="auth_greeting_login">Welcome back 👋</string>
+    <string name="auth_greeting_register">Let\'s get you started 🚀</string>
+    <string name="auth_tab_login">Log In</string>
+    <string name="auth_tab_register">Sign Up</string>
+    <string name="auth_name_placeholder">Full name</string>
+    <string name="auth_university_placeholder">University &amp; Year</string>
+    <string name="auth_email_placeholder">Email address</string>
+    <string name="auth_password_placeholder">Password</string>
+    <string name="auth_forgot_password">Forgot password?</string>
+    <string name="auth_divider_or">OR CONTINUE WITH</string>
+    <string name="auth_submit_login">Log In</string>
+    <string name="auth_submit_register">Create Account</string>
+
+    <!-- Streak Screen -->
+    <string name="streak_title">Streak</string>
+    <string name="streak_shield_label">Streak Shield</string>
+    <string name="streak_day_streak">Day Streak</string>
+    <string name="streak_since">Since March 18, 2026</string>
+    <string name="streak_best_ever">Best Ever</string>
+    <string name="streak_total_logs">Total Logs</string>
+    <string name="streak_this_month">This Month</string>
+    <string name="streak_next_milestone">Next Milestone</string>
+    <string name="streak_away_template">%d days away 🌟</string>
+    <string name="streak_day_label_template">Day %d</string>
+    <string name="streak_milestones_title">Milestones</string>
+    <string name="streak_days_label">days</string>
+    <string name="streak_remaining_template">%dd</string>
+    <string name="streak_calendar_month">April 2026</string>
+    <string name="streak_day_label">Streak day</string>
+    <string name="streak_cta_title">Don\'t break the chain!</string>
+    <string name="streak_cta_sub_template">Log today\'s habits to keep your %d-day streak alive.</string>
+    <string name="streak_habit_streaks_title">Habit Streaks</string>
+
+    <!-- Social Screen -->
+    <string name="social_title">Social</string>
+    <string name="social_invite">Invite</string>
+    <string name="social_search_placeholder">Search friends…</string>
+    <string name="social_tab_leaderboard">Leaderboard</string>
+    <string name="social_tab_activity">Activity</string>
+    <string name="social_tab_groups">Groups</string>
+    <string name="social_challenge_title">Weekly Challenge</string>
+    <string name="social_challenge_sub">Most habits logged wins!</string>
+    <string name="social_challenge_time">3 days left</string>
+    <string name="social_you_label">YOU</string>
+    <string name="social_level_template">Lvl %d · %d habits/wk</string>
+    <string name="social_group_sub_template">%d members · 🔥 %d day group streak</string>
+    <string name="social_create_group">+ Create a Group</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_level_label">Level</string>
+    <string name="profile_member_since">Member since</string>
+    <string name="profile_verified">✓ Verified Student</string>
+    <string name="profile_edit">Edit</string>
+    <string name="profile_achievements">Achievements</string>
+    <string name="profile_social">Social</string>
+    <string name="profile_reminders">Reminders</string>
+    <string name="profile_pref_section">Preferences</string>
+    <string name="profile_dark_mode">Dark Mode</string>
+    <string name="profile_dark_mode_sub">Always on</string>
+    <string name="profile_notif_label">Notifications</string>
+    <string name="profile_notif_enabled">Enabled</string>
+    <string name="profile_notif_disabled">Disabled</string>
+    <string name="profile_account_section">Account</string>
+    <string name="profile_privacy">Privacy &amp; Data</string>
+    <string name="profile_pro">MindStreak Pro</string>
+    <string name="profile_pro_badge">Upgrade</string>
+    <string name="profile_refer">Refer a Friend</string>
+    <string name="profile_refer_badge">+50 XP</string>
+    <string name="profile_logout">Log Out</string>
+    <string name="profile_stat_streak">Streak</string>
+    <string name="profile_stat_best">Best</string>
+    <string name="profile_stat_habits">Habits</string>
+
+    <!-- Create Habit Screen -->
+    <string name="create_habit_title">New Habit</string>
+    <string name="create_habit_back_desc">Back</string>
+    <string name="create_habit_next_btn">Next: Schedule</string>
+    <string name="create_habit_back_btn">Back</string>
+    <string name="create_habit_finish_btn">Create Habit</string>
+    <string name="create_habit_name_label">Habit Name</string>
+    <string name="create_habit_name_placeholder">e.g. Morning Run</string>
+    <string name="create_habit_name_error">Please enter a habit name</string>
+    <string name="create_habit_icon_label">Icon</string>
+    <string name="create_habit_category_label">Category</string>
+    <string name="create_habit_preview_placeholder">Your new habit</string>
+    <string name="create_habit_freq_label">Frequency</string>
+    <string name="create_habit_time_label">Reminder Time</string>
+    <string name="create_habit_summary_title">SUMMARY</string>
+    <string name="create_habit_summary_placeholder">Your habit</string>
+    <string name="create_habit_summary_reminder_template">Reminder at %s every day</string>
+    <string name="create_habit_added_msg">\"%s\" added!</string>
+
+    <!-- Habit Detail Screen -->
+    <string name="habit_detail_not_found">Habit not found</string>
+    <string name="habit_detail_return_home">Return Home</string>
+    <string name="habit_detail_back_desc">Back</string>
+    <string name="habit_detail_more_desc">More</string>
+    <string name="habit_detail_reminder_template">⏰ %s at %s</string>
+    <string name="habit_detail_stat_current">Current</string>
+    <string name="habit_detail_stat_best">Best</string>
+    <string name="habit_detail_stat_rate">Rate</string>
+    <string name="habit_detail_this_week">This Week</string>
+    <string name="habit_detail_heatmap_month">April 2026</string>
+    <string name="habit_detail_less">Less</string>
+    <string name="habit_detail_more">More</string>
+    <string name="habit_detail_completion_rate_title">Completion Rate</string>
+    <string name="habit_detail_completion_rate_subtitle">Last 30 days</string>
+    <string name="habit_detail_comparison_text">+8% vs last month</string>
+    <string name="habit_detail_edit">Edit</string>
+    <string name="habit_detail_delete_desc">Delete habit</string>
+
+    <!-- Notifications Screen -->
+    <string name="notif_title">Notifications</string>
+    <string name="notif_back_desc">Back</string>
+    <string name="notif_master_title">All Notifications</string>
+    <string name="notif_master_active">Reminders are active</string>
+    <string name="notif_master_muted">All muted</string>
+    <string name="notif_alert_types_section">ALERT TYPES</string>
+    <string name="notif_habit_reminders_title">Habit Reminders</string>
+    <string name="notif_type_streak">Streak Alerts</string>
+    <string name="notif_type_streak_desc">When streak is at risk</string>
+    <string name="notif_type_summary">Daily Summary</string>
+    <string name="notif_type_summary_desc">End of day report</string>
+    <string name="notif_type_achievements">Achievements</string>
+    <string name="notif_type_achievements_desc">Unlock notifications</string>
+    <string name="notif_type_social">Social Activity</string>
+    <string name="notif_type_social_desc">Friends &amp; leaderboard</string>
+
+    <!-- Onboarding Screen -->
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_continue">Continue</string>
+    <string name="onboarding_finish">Get Started</string>
+    <string name="onboarding_slide1_title">Build Habits\nThat Stick</string>
+    <string name="onboarding_slide1_subtitle">Track your daily habits with one tap. Stay consistent and watch your life transform.</string>
+    <string name="onboarding_slide2_title">Streaks Keep\nYou Going</string>
+    <string name="onboarding_slide2_subtitle">Never break the chain. Watch your streak grow and unlock achievements as you level up.</string>
+    <string name="onboarding_slide3_title">Better Together\nWith Friends</string>
+    <string name="onboarding_slide3_subtitle">Compete on leaderboards, share milestones, and motivate each other every single day.</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_stats">Stats</string>
+    <string name="nav_streak">Streak</string>
+    <string name="nav_awards">Awards</string>
+    <string name="nav_profile">Profile</string>
 </resources>

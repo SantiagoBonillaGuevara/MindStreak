@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
 import com.example.mindstreak.core.navigation.NavItem
 import com.example.mindstreak.core.theme.HabitPurple
 
@@ -33,6 +34,7 @@ fun NavItemButton(
     val activeColor = HabitPurple
     val inactiveColor = MaterialTheme.colorScheme.onSurfaceVariant
     val activeBg = activeColor.copy(alpha = 0.12f)
+    val label = stringResource(item.labelRes)
 
     val contentColor by animateColorAsState(
         targetValue = if (active) activeColor else inactiveColor,
@@ -58,14 +60,14 @@ fun NavItemButton(
         } else if (item.icon != null) {
             Icon(
                 imageVector = item.icon,
-                contentDescription = item.label,
+                contentDescription = label,
                 tint = contentColor,
                 modifier = Modifier.size(if (active) 20.dp else 18.dp),
             )
         }
 
         Text(
-            text = item.label,
+            text = label,
             color = contentColor,
             fontSize = 10.sp,
             fontWeight = if (active) FontWeight.SemiBold else FontWeight.Normal,

@@ -47,27 +47,33 @@ fun GlowingBlob(
     )
 
     Box(contentAlignment = Alignment.Center) {
-        Box(modifier = Modifier
-            .size(236.dp)
-            .rotate(orbit2Rotation)) {
+        Box(
+            modifier = Modifier
+                .size(236.dp)
+                .rotate(orbit2Rotation)
+        ) {
             CircleBorderDashed(
                 color = accentColor.copy(alpha = 0.2f),
                 modifier = Modifier.fillMaxSize()
             )
         }
-        Box(modifier = Modifier
-            .size(226.dp)
-            .rotate(orbit1Rotation)) {
+        Box(
+            modifier = Modifier
+                .size(226.dp)
+                .rotate(orbit1Rotation)
+        ) {
             CircleBorderDashed(
                 color = accentColor.copy(alpha = 0.4f),
                 modifier = Modifier.fillMaxSize()
             )
         }
-        Box(modifier = Modifier
-            .size(220.dp)
-            .clip(CircleShape)
-            .background(blobColor)
-            .blur(2.dp))
+        Box(
+            modifier = Modifier
+                .size(220.dp)
+                .clip(CircleShape)
+                .background(blobColor)
+                .blur(2.dp)
+        )
         Text(text = emoji, fontSize = (80 * emojiScale).sp, textAlign = TextAlign.Center)
     }
 }
@@ -193,5 +199,3 @@ fun FriendsIllustration(accentColor: Color, friends: List<FriendData>) {
         }
     }
 }
-
-data class FriendData(val emoji: String, val name: String, val streak: Int)

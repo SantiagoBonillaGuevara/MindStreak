@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -26,6 +27,7 @@ fun HomeHeader(
     onProfileClick: () -> Unit,
     notificationsContentDescription: String,
     modifier: Modifier = Modifier,
+    onLanguageSwitch: () -> Unit = {},
 ) {
     Row(
         modifier = modifier
@@ -53,6 +55,18 @@ fun HomeHeader(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(top = 4.dp),
         ) {
+            FilledTonalIconButton(
+                onClick = onLanguageSwitch,
+                modifier = Modifier.size(36.dp),
+                shape = CircleShape,
+            ) {
+                Icon(
+                    Icons.Default.Language,
+                    contentDescription = "Switch Language",
+                    modifier = Modifier.size(17.dp),
+                )
+            }
+
             Box {
                 FilledTonalIconButton(
                     onClick = onNotificationsClick,

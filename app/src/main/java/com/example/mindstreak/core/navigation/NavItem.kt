@@ -1,23 +1,25 @@
 package com.example.mindstreak.core.navigation
 
+import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.mindstreak.R
 
 sealed class NavItem(
     val route: String,
-    val label: String,
+    @param:StringRes val labelRes: Int,
     val icon: ImageVector?,
     val emoji: String? = null,
 ) {
-    object Home : NavItem("home", "Home", Icons.Default.Home)
-    object Stats : NavItem("statistics", "Stats", Icons.Default.BarChart)
-    object Streak : NavItem("streak", "Streak", icon = null, emoji = "🔥")
-    object Achievements : NavItem("achievements", "Awards", Icons.Default.EmojiEvents)
-    object Profile : NavItem("profile", "Profile", Icons.Default.Person)
+    object Home : NavItem("home", R.string.nav_home, Icons.Default.Home)
+    object Stats : NavItem("statistics", R.string.nav_stats, Icons.Default.BarChart)
+    object Streak : NavItem("streak", R.string.nav_streak, icon = null, emoji = "🔥")
+    object Achievements : NavItem("achievements", R.string.nav_awards, Icons.Default.EmojiEvents)
+    object Profile : NavItem("profile", R.string.nav_profile, Icons.Default.Person)
 }
 
 val NAV_ITEMS = listOf(

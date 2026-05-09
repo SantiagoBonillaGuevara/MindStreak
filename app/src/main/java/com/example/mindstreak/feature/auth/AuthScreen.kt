@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.mindstreak.R
 import com.example.mindstreak.feature.auth.components.AuthDivider
 import com.example.mindstreak.feature.auth.components.AuthForm
 import com.example.mindstreak.feature.auth.components.AuthHeader
@@ -16,12 +18,28 @@ import com.example.mindstreak.feature.auth.components.AuthTabSelector
 
 @Composable
 fun AuthScreen(onLogin: () -> Unit) {
-    // estado local — equivalente a los useState del componente
     var tab by remember { mutableStateOf(AuthTab.LOGIN) }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
     var university by remember { mutableStateOf("") }
+
+    val texts = object {
+        val appName = stringResource(R.string.auth_app_name)
+        val subtitle = stringResource(R.string.auth_subtitle)
+        val greetingLogin = stringResource(R.string.auth_greeting_login)
+        val greetingRegister = stringResource(R.string.auth_greeting_register)
+        val titleLogin = stringResource(R.string.auth_tab_login)
+        val titleRegister = stringResource(R.string.auth_tab_register)
+        val namePlaceholder = stringResource(R.string.auth_name_placeholder)
+        val universityPlaceholder = stringResource(R.string.auth_university_placeholder)
+        val emailPlaceholder = stringResource(R.string.auth_email_placeholder)
+        val passwordPlaceholder = stringResource(R.string.auth_password_placeholder)
+        val forgotPasswordText = stringResource(R.string.auth_forgot_password)
+        val dividerOr = stringResource(R.string.auth_divider_or)
+        val loginText = stringResource(R.string.auth_submit_login)
+        val registerText = stringResource(R.string.auth_submit_register)
+    }
 
     Column(
         modifier = Modifier
@@ -31,17 +49,17 @@ fun AuthScreen(onLogin: () -> Unit) {
     ) {
         AuthHeader(
             isLogin = tab == AuthTab.LOGIN,
-            appName = "MindStreak",
-            subtitle = "For university students",
-            greetingLogin = "Welcome back 👋",
-            greetingRegister = "Let's get you started 🚀"
+            appName = texts.appName,
+            subtitle = texts.subtitle,
+            greetingLogin = texts.greetingLogin,
+            greetingRegister = texts.greetingRegister
         )
 
         AuthTabSelector(
             selectedTab = tab,
             onTabSelected = { tab = it },
-            titleLoging = "Log In",
-            titleRegister = "Sign Up"
+            titleLoging = texts.titleLogin,
+            titleRegister = texts.titleRegister
         )
 
         AuthForm(
@@ -54,22 +72,21 @@ fun AuthScreen(onLogin: () -> Unit) {
             onNameChange = { name = it },
             university = university,
             onUniversityChange = { university = it },
-            namePlaceholder = "Full name",
-            universityPlaceholder = "University & Year",
-            emailPlaceholder = "Email address",
-            passwordPlaceholder = "Password",
-            forgotPasswordText = "Forgot password?",
+            namePlaceholder = texts.namePlaceholder,
+            universityPlaceholder = texts.universityPlaceholder,
+            emailPlaceholder = texts.emailPlaceholder,
+            passwordPlaceholder = texts.passwordPlaceholder,
+            forgotPasswordText = texts.forgotPasswordText,
         )
 
-        AuthDivider(text = "OR CONTINUE WITH")
+        AuthDivider(text = texts.dividerOr)
         AuthSocialLogin(onClick = {}, providers = listOf("🅖" to "Google"))
 
         AuthSubmit(
             onClick = onLogin,
             tab = tab,
-            loginText = "Log In",
-            registerText = "Create Account"
+            loginText = texts.loginText,
+            registerText = texts.registerText
         )
     }
 }
-

@@ -8,97 +8,76 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.mindstreak.data.model.Rarity
-import com.example.mindstreak.feature.achievements.components.AchievementGrid
-import com.example.mindstreak.feature.achievements.components.Header
-import com.example.mindstreak.feature.achievements.components.LevelCard
-import com.example.mindstreak.feature.achievements.components.RecentlyEarned
-import com.example.mindstreak.feature.achievements.components.TabPicker
-import com.example.mindstreak.feature.achievements.components.Tooltip
+import com.example.mindstreak.feature.achievements.components.*
 import com.example.mindstreak.feature.home.AppViewModel
 
 @Composable
 fun AchievementsScreen(appViewModel: AppViewModel) {
     val uiState by appViewModel.uiState.collectAsState()
-    var selectedTab by remember { mutableStateOf("All") }
+    val texts = rememberAchievementsTexts()
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
     var highlightedId by remember { mutableStateOf<String?>(null) }
-
     val achievement = uiState.achievements.find { it.id == highlightedId }
     val earned = remember(uiState.achievements) { uiState.achievements.filter { it.earned } }
     val locked = remember(uiState.achievements) { uiState.achievements.filter { !it.earned } }
-    val displayed = when (selectedTab) {
-        "Earned" -> earned
-        "Locked" -> locked
-        else -> uiState.achievements
+    val displayed = when (selectedTabIndex) {
+        1 -> earned; 2 -> locked; else -> uiState.achievements
     }
+    val tabLabels = listOf(texts.allText, texts.earnedText, texts.lockedText)
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(bottom = 120.dp)
-        ) {
-            item {
-                Header(title = "Achievements", subtitle = "Level up your habits")
-            }
-
+    Box(Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colorScheme.background)) {
+        LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(bottom = 120.dp)) {
+            item { Header(texts.title, texts.subtitle) }
             item {
                 LevelCard(
-                    userLevel = 12,
-                    currentXp = 2840,
-                    nextLevelXp = 3000,
-                    earned = 5,
-                    locked = 5,
-                    totalXpK = "2.8k",
-                    earnedText = "Earned",
-                    lockedText = "Locked",
-                    xpText = "Total XP",
-                    levelText = "Level",
-                    emoji = "👑",
-                    lvlName = "Habit Architect"
+                    12,
+                    2840,
+                    3000,
+                    5,
+                    5,
+                    "2.8k",
+                    texts.earnedText,
+                    texts.lockedText,
+                    texts.xpText,
+                    texts.levelText,
+                    "👑",
+                    texts.lvlName
                 )
             }
-
-            if (earned.isNotEmpty()) {
-                item {
-                    RecentlyEarned(
-                        earned = earned,
-                        onGetConfig = { ach -> ach.rarity.toUi() },
-                        title = "Recently Earned"
-                    )
-                }
+            if (earned.isNotEmpty()) item {
+                RecentlyEarned(
+                    earned,
+                    { it.rarity.toUi() },
+                    texts.recentlyEarned
+                )
             }
-
             item {
                 TabPicker(
-                    earned = earned,
-                    locked = locked,
-                    selectedTab = selectedTab,
-                    onClick = { selectedTab = it },
-                    allText = "All",
-                    earnedText = "Earned",
-                    lockedText = "Locked"
+                    earned,
+                    locked,
+                    tabLabels[selectedTabIndex],
+                    { selectedTabIndex = tabLabels.indexOf(it) },
+                    texts.allText,
+                    texts.earnedText,
+                    texts.lockedText
                 )
             }
-
             item {
                 AchievementGrid(
-                    achievements = displayed,
-                    highlightedId = highlightedId,
-                    onSelect = { id -> highlightedId = if (highlightedId == id) null else id },
-                    onGetConfig = { ach -> ach.rarity.toUi() }
-                )
+                    displayed,
+                    highlightedId,
+                    { id -> highlightedId = if (highlightedId == id) null else id },
+                    { it.rarity.toUi() })
             }
         }
-
         Tooltip(
-            highlightedId = highlightedId,
-            achievement = achievement,
-            onClose = { highlightedId = null },
-            text = "Earned",
-            config = achievement?.rarity?.toUi() ?: Rarity.COMMON.toUi()
+            highlightedId,
+            achievement,
+            { highlightedId = null },
+            texts.earnedText,
+            achievement?.rarity?.toUi() ?: Rarity.COMMON.toUi()
         )
     }
 }

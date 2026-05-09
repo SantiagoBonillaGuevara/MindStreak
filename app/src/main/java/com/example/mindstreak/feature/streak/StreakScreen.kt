@@ -22,53 +22,15 @@ import com.example.mindstreak.feature.home.AppViewModel
 import com.example.mindstreak.feature.streak.components.*
 import com.example.mindstreak.core.theme.HabitOrange
 
-data class Milestone(
-    val days: Int,
-    val emoji: String,
-    val label: String,
-    val achieved: Boolean,
-    val current: Boolean = false
-)
-
-private val MILESTONES = listOf(
-    Milestone(7, "🔥", "First Flame", true),
-    Milestone(14, "💪", "Iron Will", true),
-    Milestone(21, "⚡", "Current", true, current = true),
-    Milestone(30, "🌟", "Habit Hero", false),
-    Milestone(50, "💎", "Diamond Mind", false),
-    Milestone(100, "👑", "Legend", false)
-)
-
 @SuppressLint("DefaultLocale")
 @Composable
 fun StreakScreen(appViewModel: AppViewModel, navController: NavController) {
     val uiState by appViewModel.uiState.collectAsState()
+    val texts = rememberStreakTexts()
     val orangeMain = HabitOrange
 
-    val texts = object {
-        val title = "Streak"
-        val shieldLabel = "Streak Shield"
-        val streakLabel = "Day Streak"
-        val sinceText = "Since March 18, 2026"
-        val bestEverLabel = "Best Ever"
-        val totalLogsLabel = "Total Logs"
-        val thisMonthLabel = "This Month"
-        val nextMilestoneTitle = "Next Milestone"
-        val awayTemplate = "%d days away 🌟"
-        val dayLabelTemplate = "Day %d"
-        val milestonesTitle = "Milestones"
-        val daysLabel = "days"
-        val remainingTemplate = "%dd"
-        val calendarMonth = "April 2026"
-        val streakDayLabel = "Streak day"
-        val dayLabels = listOf("M", "T", "W", "T", "F", "S", "S")
-        val ctaTitle = "Don't break the chain!"
-        val ctaSubTemplate = "Log today's habits to keep your %d-day streak alive."
-        val habitStreaksTitle = "Habit Streaks"
-    }
-
     LazyColumn(
-        modifier = Modifier
+        Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
         contentPadding = PaddingValues(bottom = 24.dp)
@@ -128,39 +90,11 @@ fun StreakScreen(appViewModel: AppViewModel, navController: NavController) {
             )
         }
         item {
-            Card(
-                modifier = Modifier
-                    .padding(horizontal = 20.dp, vertical = 8.dp)
-                    .clickable { navController.navigate("home") },
-                shape = RoundedCornerShape(24.dp),
-                colors = CardDefaults.cardColors(containerColor = orangeMain.copy(alpha = 0.1f)),
-                border = androidx.compose.foundation.BorderStroke(
-                    1.dp,
-                    orangeMain.copy(alpha = 0.2f)
-                )
-            ) {
-                Row(
-                    modifier = Modifier.padding(16.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    Icon(
-                        Icons.Default.Bolt,
-                        null,
-                        tint = orangeMain,
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Column(modifier = Modifier.weight(1f)) {
-                        Text(texts.ctaTitle, fontSize = 14.sp, fontWeight = FontWeight.ExtraBold)
-                        Text(
-                            String.format(texts.ctaSubTemplate, uiState.currentStreak),
-                            fontSize = 12.sp,
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
-                        )
-                    }
-                    Icon(Icons.Default.ChevronRight, null, tint = orangeMain)
-                }
-            }
+            StreakCtaCard(
+                texts.ctaTitle,
+                String.format(texts.ctaSubTemplate, uiState.currentStreak),
+                orangeMain
+            ) { navController.navigate("home") }
         }
         item {
             Text(
@@ -177,6 +111,40 @@ fun StreakScreen(appViewModel: AppViewModel, navController: NavController) {
                 habit.streak,
                 habit.color
             )
+        }
+    }
+}
+
+@Composable
+fun StreakCtaCard(
+    title: String,
+    subtitle: String,
+    color: androidx.compose.ui.graphics.Color,
+    onClick: () -> Unit
+) {
+    Card(
+        Modifier
+            .padding(horizontal = 20.dp, vertical = 8.dp)
+            .clickable(onClick = onClick),
+        shape = RoundedCornerShape(24.dp),
+        colors = CardDefaults.cardColors(containerColor = color.copy(0.1f)),
+        border = androidx.compose.foundation.BorderStroke(1.dp, color.copy(0.2f))
+    ) {
+        Row(
+            Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Icon(Icons.Default.Bolt, null, tint = color, modifier = Modifier.size(24.dp))
+            Column(Modifier.weight(1f)) {
+                Text(title, fontSize = 14.sp, fontWeight = FontWeight.ExtraBold)
+                Text(
+                    subtitle,
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colorScheme.onSurface.copy(0.6f)
+                )
+            }
+            Icon(Icons.Default.ChevronRight, null, tint = color)
         }
     }
 }
