@@ -14,9 +14,11 @@ fun SocialScreen() {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
     var searchQuery by remember { mutableStateOf("") }
 
-    Column(Modifier
-        .fillMaxSize()
-        .background(MaterialTheme.colorScheme.background)) {
+    Column(
+        Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+    ) {
         SocialHeader(texts.title, texts.invite, { })
         SocialSearchBar(searchQuery, { searchQuery = it }, texts.searchPlaceholder)
         SocialTabPicker(

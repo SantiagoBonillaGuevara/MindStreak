@@ -54,7 +54,8 @@ fun HomeScreen(appViewModel: AppViewModel, navController: NavController) {
                 texts.notificationsDesc
             ) {
                 val config = context.resources.configuration
-                @Suppress("DEPRECATION") val locale = Locale(if (config.locales[0].language == "es") "en" else "es")
+                @Suppress("DEPRECATION") val locale =
+                    Locale(if (config.locales[0].language == "es") "en" else "es")
                 Locale.setDefault(locale); config.setLocale(locale)
                 @Suppress("DEPRECATION")
                 context.resources.updateConfiguration(config, context.resources.displayMetrics)
