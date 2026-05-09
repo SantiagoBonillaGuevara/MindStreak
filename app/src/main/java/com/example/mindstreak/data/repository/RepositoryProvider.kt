@@ -1,0 +1,35 @@
+package com.example.mindstreak.data.repository
+
+import android.content.Context
+
+object RepositoryProvider {
+
+    // Cambia esto a true cuando quieras usar Supabase
+    private const val USE_SUPABASE = false
+
+    private var habitRepository: HabitRepository? = null
+    private var userRepository: UserRepository? = null
+
+    fun getHabitRepository(context: Context): HabitRepository {
+        return habitRepository ?: synchronized(this) {
+            val instance =
+                if (USE_SUPABASE) SupabaseHabitRepository()
+                else LocalHabitRepository(context.applicationContext)
+
+            habitRepository = instance
+            instance
+        }
+    }
+
+    fun getUserRepository(context: Context): UserRepository {
+        return userRepository ?: synchronized(this) {
+            val instance = if (USE_SUPABASE) {
+                SupabaseUserRepository()
+            } else {
+                MockUserRepository()
+            }
+            userRepository = instance
+            instance
+        }
+    }
+}
