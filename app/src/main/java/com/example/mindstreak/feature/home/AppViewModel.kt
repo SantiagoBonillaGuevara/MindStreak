@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mindstreak.data.mock.MockData
 import com.example.mindstreak.data.model.Achievement
 import com.example.mindstreak.data.model.Habit
-import com.example.mindstreak.data.repository.HabitRepository
+import com.example.mindstreak.data.repository.RepositoryProvider
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -23,7 +23,7 @@ data class AppUiState(
 
 class AppViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = HabitRepository(application)
+    private val repository = RepositoryProvider.getHabitRepository(application)
     private val _habits = MutableStateFlow<List<Habit>>(emptyList())
     private val _achievements = MutableStateFlow(MockData.ACHIEVEMENTS)
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")

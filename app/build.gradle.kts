@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.3.21"
 }
 
 android {
@@ -59,18 +59,29 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    implementation("androidx.compose.material:material-icons-extended:1.7.8")
+    implementation(libs.androidx.compose.material.icons.extended)
 
-    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation(libs.androidx.navigation.compose)
 
     // DataStore (reemplaza localStorage)
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation(libs.androidx.datastore.preferences)
 
     // ViewModel + Coroutines
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.3")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.kotlinx.coroutines.android)
 
     // Serialización JSON (reemplaza JSON.parse/stringify)
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
+    implementation(libs.kotlinx.serialization.json)
+
+    // Supabase
+    implementation(libs.supabase.postgrest)
+    implementation(libs.supabase.auth)
+    implementation(libs.supabase.realtime)
+
+    // Ktor (Required for Supabase)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.serialization)
+    implementation(libs.ktor.client.logging)
 }
