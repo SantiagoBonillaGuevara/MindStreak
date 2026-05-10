@@ -31,11 +31,13 @@ fun NavGraphBuilder.mainGraph(
     }
 
     composable(Screen.Auth.route) {
-        AuthScreen(onLogin = {
-            navController.navigate(Screen.Home.route) {
-                popUpTo(Screen.Auth.route) { inclusive = true }
+        AuthScreen(
+            onLogin = {
+                navController.navigate(Screen.Home.route) {
+                    popUpTo(Screen.Auth.route) { inclusive = true }
+                }
             }
-        })
+        )
     }
 
     composable(Screen.Home.route) {
@@ -49,7 +51,7 @@ fun NavGraphBuilder.mainGraph(
             onCreated = { navController.popBackStack() },
         )
     }
-    // path: 'habit/:id' → "habit_detail/{habitId}"
+    
     composable(
         route = Screen.HabitDetail.route,
         arguments = listOf(navArgument("habitId") { type = NavType.StringType }),
@@ -76,7 +78,7 @@ fun NavGraphBuilder.mainGraph(
 
     composable(Screen.Achievements.route) { AchievementsScreen(appViewModel = appViewModel) }
 
-    composable(Screen.Social.route) { SocialScreen(/*appViewModel = appViewModel*/) }
+    composable(Screen.Social.route) { SocialScreen() }
 
     composable(Screen.Profile.route) {
         ProfileScreen(onNavigate = { route ->

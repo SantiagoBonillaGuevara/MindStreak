@@ -5,6 +5,7 @@ import com.example.mindstreak.data.model.*
 object MockData {
 
     val USER = User(
+        id= "1",
         name = "Alex Chen",
         username = "@alexchen",
         university = "MIT — Computer Science, Year 3",
