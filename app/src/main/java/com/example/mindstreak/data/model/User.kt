@@ -8,7 +8,7 @@ data class User(
     val avatarEmoji: String,
     val level: Int,
     val xp: Int,
-    val nextLevelXp: Int,
+    val next_level_xp: Int,
     val totalStreak: Int,
     val bestStreak: Int,
     val totalHabitsCompleted: Int,

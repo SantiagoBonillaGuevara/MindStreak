@@ -3,13 +3,13 @@
     <string name="app_name">MindStreak</string>
     <!-- Home Screen -->
     <string name="home_date">Wednesday, April 8</string>
-    <string name="home_greeting">Good morning, Alex 👋</string>
+    <string name="home_greeting">Good morning</string>
     <string name="home_notifications">Notifications</string>
     <string name="home_streak_label">CURRENT STREAK</string>
     <string name="home_streak_days_suffix">days 🔥</string>
     <string name="home_next_milestone">Next milestone: 30 days</string>
     <string name="home_best_streak">🏆 Best: 34</string>
-    <string name="home_goal_progress">↑ 62% to goal</string>
+    <string name="home_goal_progress">to goal</string>
     <string name="home_day_zero">Day 0</string>
     <string name="home_day_goal">Day 30</string>
     <string name="home_day">Day</string>

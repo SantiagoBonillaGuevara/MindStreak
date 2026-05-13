@@ -23,6 +23,7 @@ import com.example.mindstreak.core.theme.HabitTeal
 fun HomeHeader(
     dateText: String,
     greetingText: String,
+    profileEmoji: String,
     onNotificationsClick: () -> Unit,
     onProfileClick: () -> Unit,
     notificationsContentDescription: String,
@@ -36,7 +37,7 @@ fun HomeHeader(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Top,
     ) {
-        Column {
+        Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = dateText,
                 style = MaterialTheme.typography.bodySmall,
@@ -47,13 +48,15 @@ fun HomeHeader(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.padding(top = 2.dp),
+                softWrap = true,
+                maxLines = 2
             )
         }
 
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(top = 4.dp),
+            modifier = Modifier.padding(top = 4.dp).wrapContentWidth(),
         ) {
             FilledTonalIconButton(
                 onClick = onLanguageSwitch,
@@ -67,10 +70,10 @@ fun HomeHeader(
                 )
             }
 
-            Box {
+            Box(modifier = Modifier.size(36.dp)) {
                 FilledTonalIconButton(
                     onClick = onNotificationsClick,
-                    modifier = Modifier.size(36.dp),
+                    modifier = Modifier.fillMaxSize(),
                     shape = CircleShape,
                 ) {
                     Icon(
@@ -83,10 +86,10 @@ fun HomeHeader(
                     modifier = Modifier
                         .size(8.dp)
                         .align(Alignment.TopEnd)
-                        .offset(x = (-6).dp, y = 6.dp)
+                        .offset(x = (-2).dp, y = 2.dp)
                         .clip(CircleShape)
                         .background(HabitOrange)
-                        .border(2.dp, MaterialTheme.colorScheme.background, CircleShape),
+                        .border(1.5.dp, MaterialTheme.colorScheme.background, CircleShape),
                 )
             }
 
@@ -102,7 +105,7 @@ fun HomeHeader(
                     .clickable(onClick = onProfileClick),
                 contentAlignment = Alignment.Center,
             ) {
-                Text("🧑‍💻", fontSize = 16.sp)
+                Text(profileEmoji, fontSize = 16.sp)
             }
         }
     }

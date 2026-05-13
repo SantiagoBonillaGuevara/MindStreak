@@ -12,7 +12,7 @@ object MockData {
         avatarEmoji = "🧑‍💻",
         level = 12,
         xp = 2840,
-        nextLevelXp = 3000,
+        next_level_xp = 3000,
         totalStreak = 21,
         bestStreak = 34,
         totalHabitsCompleted = 342,

@@ -14,9 +14,12 @@ class AndroidSessionManager(context: Context) : SessionManager {
     }
 
     override suspend fun loadSession(): UserSession {
-        val json = prefs.getString("session", null)
-        return json?.let { Json.decodeFromString<UserSession>(it) }
-            ?: throw IllegalStateException("No session found")
+        val json = prefs.getString("session", null) ?: throw IllegalStateException("No session found")
+        return try {
+            Json.decodeFromString<UserSession>(json)
+        } catch (e: Exception) {
+            throw IllegalStateException("Invalid session format", e)
+        }
     }
 
     override suspend fun deleteSession() {

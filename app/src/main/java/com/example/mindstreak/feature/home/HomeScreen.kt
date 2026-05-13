@@ -35,6 +35,13 @@ fun HomeScreen(appViewModel: AppViewModel, navController: NavController) {
         }
     }
 
+    if (state.user == null) {
+        Box(Modifier.fillMaxSize(), contentAlignment = androidx.compose.ui.Alignment.Center) {
+            CircularProgressIndicator()
+        }
+        return
+    }
+
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         containerColor = MaterialTheme.colorScheme.background
@@ -47,11 +54,12 @@ fun HomeScreen(appViewModel: AppViewModel, navController: NavController) {
                 .padding(bottom = 24.dp)
         ) {
             HomeHeader(
-                texts.dateText,
-                texts.greetingText,
-                { navController.navigate(Screen.Notifications.route) },
-                { navController.navigate(Screen.Profile.route) },
-                texts.notificationsDesc
+                dateText = texts.dateText,
+                greetingText = "${texts.greetingText}, ${state.user!!.name.split(" ")[0]}!",
+                profileEmoji = state.user!!.avatarEmoji,
+                onNotificationsClick = { navController.navigate(Screen.Notifications.route) },
+                onProfileClick = { navController.navigate(Screen.Profile.route) },
+                notificationsContentDescription = texts.notificationsDesc
             ) {
                 val config = context.resources.configuration
                 @Suppress("DEPRECATION") val locale =
@@ -69,17 +77,17 @@ fun HomeScreen(appViewModel: AppViewModel, navController: NavController) {
                     .padding(bottom = 16.dp)
             ) {
                 StreakCard(
-                    state.currentStreak,
+                    state.user!!.totalStreak,
                     texts.streakLabel,
                     texts.streakDaysSuffix,
                     texts.nextMilestone,
-                    texts.bestStreak,
+                    state.user!!.bestStreak.toString(),
                     texts.goalProgress,
                     texts.dayZero,
-                    "${texts.dayText} ${state.currentStreak}",
+                    "${texts.dayText} ${state.user!!.totalStreak}",
                     texts.dayGoal,
                     texts.weekDays,
-                    2
+                    (java.time.LocalDate.now().dayOfWeek.value + 6) % 7
                 )
             }
             AnimatedVisibility(

@@ -2,26 +2,73 @@ package com.example.mindstreak.data.repository
 
 import com.example.mindstreak.data.model.User
 import com.example.mindstreak.data.remote.SupabaseClientProvider
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import com.example.mindstreak.data.remote.dto.UserDto
+import com.example.mindstreak.data.remote.dto.toDomain
+import com.example.mindstreak.data.remote.dto.toDto
 import io.github.jan.supabase.auth.auth
+import io.github.jan.supabase.auth.status.SessionStatus
+import io.github.jan.supabase.postgrest.postgrest
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
+import android.util.Log
+import kotlinx.coroutines.flow.onStart
 
 class SupabaseUserRepository : UserRepository {
-    private val client = SupabaseClientProvider.client
+    private val client by lazy { SupabaseClientProvider.client }
+    private val TAG = "SupabaseUserRepo"
 
-    override val userFlow: Flow<User?> = flow {
-        val userId = client.auth.currentSessionOrNull()?.user?.id
-        if (userId != null) {
-            emit(getProfile(userId))
-        } else {
-            emit(null)
+    override val userFlow: Flow<User?> = client.auth.sessionStatus
+        .onStart { Log.d(TAG, "userFlow collection started") }
+        .flatMapLatest { status ->
+            Log.d(TAG, "Auth status changed: $status")
+            if (status is SessionStatus.Authenticated) {
+                flow {
+                    val userId = status.session.user?.id
+                    if (userId != null) {
+                        Log.d(TAG, "Fetching profile for $userId")
+                        val profile = getProfile(userId)
+                        Log.d(TAG, "Profile result: ${profile?.name}")
+                        emit(profile)
+                    } else {
+                        Log.e(TAG, "User ID is null in authenticated session")
+                        emit(null)
+                    }
+                }
+            } else {
+                Log.d(TAG, "Not authenticated, emitting null user")
+                flowOf(null)
+            }
+        }
+
+    override suspend fun getProfile(userId: String): User? {
+        Log.d(TAG, "Calling getProfile for $userId")
+        return try {
+            val result = client.postgrest["profiles"]
+                .select {
+                    filter {
+                        eq("id", userId)
+                    }
+                }
+                .decodeSingleOrNull<UserDto>()
+            Log.d(TAG, "Raw profile result: $result")
+            result?.toDomain()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error fetching profile: ${e.message}", e)
+            null
         }
     }
 
-    override suspend fun getProfile(userId: String): User? {
-        return null 
-    }
-
     override suspend fun updateProfile(user: User) {
+        try {
+            client.postgrest["profiles"].update(user.toDto()) {
+                filter {
+                    eq("id", user.id)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error updating profile: ${e.message}")
+        }
     }
 }

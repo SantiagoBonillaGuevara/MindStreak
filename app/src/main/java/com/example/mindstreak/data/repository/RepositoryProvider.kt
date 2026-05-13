@@ -5,7 +5,7 @@ import android.content.Context
 object RepositoryProvider {
 
     // Cambia esto a true cuando quieras usar Supabase
-    private const val USE_SUPABASE = false
+    private const val USE_SUPABASE = true
 
     private var habitRepository: HabitRepository? = null
     private var userRepository: UserRepository? = null

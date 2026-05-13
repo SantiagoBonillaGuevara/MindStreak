@@ -1,11 +1,17 @@
 package com.example.mindstreak.feature.profile
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mindstreak.data.model.User
 import com.example.mindstreak.data.remote.SupabaseClientProvider
+import com.example.mindstreak.data.repository.RepositoryProvider
 import io.github.jan.supabase.auth.auth
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 sealed class ProfileState {
@@ -15,10 +21,18 @@ sealed class ProfileState {
     data class Error(val message: String) : ProfileState()
 }
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(application: Application) : AndroidViewModel(application) {
     private val client = SupabaseClientProvider.client
+    private val userRepository = RepositoryProvider.getUserRepository(application)
+    
     private val _state = MutableStateFlow<ProfileState>(ProfileState.Idle)
     val state = _state.asStateFlow()
+
+    val user: StateFlow<User?> = userRepository.userFlow.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = null
+    )
 
     fun logout() {
         viewModelScope.launch {

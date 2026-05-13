@@ -21,21 +21,31 @@ data class HabitDto(
     @SerialName("last_completed_date") val lastCompletedDate: String?
 )
 
-fun HabitDto.toDomain(): Habit {
+fun HabitDto.toDomain(completionLog: Map<String, Boolean> = emptyMap()): Habit {
+    val today = java.time.LocalDate.now()
+    val todayStr = today.toString()
+    
+    // Derive week history (last 7 days starting from Monday)
+    val mondayOffset = today.dayOfWeek.value - 1
+    val weekHistory = (0..6).map { i ->
+        val date = today.minusDays(mondayOffset.toLong()).plusDays(i.toLong())
+        completionLog[date.toString()] == true
+    }
+
     return Habit(
         id = id,
         name = name,
         emoji = emoji,
-        category = categoryId ?: "Uncategorized", // Simplification for now
-        color = color ?: "#FF6B35",
+        category = categoryId ?: "Uncategorized",
+        color = color ?: "#7C6EFF",
         streak = currentStreak,
-        completedToday = false, // This usually depends on lastCompletedDate logic
+        completedToday = lastCompletedDate == todayStr,
         lastCompletedDate = lastCompletedDate,
         frequency = frequency,
         completionRate = completionRate,
         reminderTime = reminderTime ?: "08:00",
-        weekHistory = emptyList(), // This needs logs
-        completionLog = emptyMap() // This needs logs
+        weekHistory = weekHistory,
+        completionLog = completionLog
     )
 }
 

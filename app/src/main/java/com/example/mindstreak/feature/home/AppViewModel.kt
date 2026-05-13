@@ -1,6 +1,7 @@
 package com.example.mindstreak.feature.home
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mindstreak.data.mock.MockData
@@ -12,7 +13,10 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+import com.example.mindstreak.data.model.User
+
 data class AppUiState(
+    val user: User? = null,
     val habits: List<Habit> = emptyList(),
     val achievements: List<Achievement> = emptyList(),
     val currentStreak: Int = 0,
@@ -23,36 +27,51 @@ data class AppUiState(
 
 class AppViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val TAG = "AppViewModel"
     private val repository = RepositoryProvider.getHabitRepository(application)
+    private val userRepository = RepositoryProvider.getUserRepository(application)
+    
     private val _habits = MutableStateFlow<List<Habit>>(emptyList())
     private val _achievements = MutableStateFlow(MockData.ACHIEVEMENTS)
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
-    val uiState: StateFlow<AppUiState> = combine(_habits, _achievements) { habits, achievements ->
-        deriveUiState(habits, achievements)
+    val uiState: StateFlow<AppUiState> = combine(
+        userRepository.userFlow,
+        _habits,
+        _achievements
+    ) { user, habits, achievements ->
+        Log.d(TAG, "Combining UI State - User: ${user?.name}, Habits: ${habits.size}")
+        deriveUiState(user, habits, achievements)
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(5_000),
+        started = SharingStarted.Eagerly, // Cambiado a Eagerly para asegurar emisión inmediata
         initialValue = AppUiState(),
     )
 
     init {
-        loadAndReconcileHabits()
+        Log.d(TAG, "Initializing AppViewModel")
+        loadUserAndHabits()
         observeAndSaveHabits()
     }
 
-    private fun loadAndReconcileHabits() {
+    private fun loadUserAndHabits() {
+        // Observar usuario
         viewModelScope.launch {
-            val stored = repository.habitsFlow.firstOrNull()
-            _habits.value = if (!stored.isNullOrEmpty()) {
-                reconcileHabitsOnLaunch(stored)
-            } else {
-                MockData.HABITS
+            userRepository.userFlow.collect { user ->
+                Log.d(TAG, "User flow emitted: ${user?.name}")
             }
+        }
 
+        // Observar hábitos
+        viewModelScope.launch {
+            Log.d(TAG, "Starting habits collection")
             repository.habitsFlow.collect { stored ->
-                if (stored.isNotEmpty() && stored != _habits.value) {
-                    _habits.value = stored
+                Log.d(TAG, "Habits flow emitted: ${stored.size} items")
+                if (stored.isNotEmpty()) {
+                    _habits.value = reconcileHabitsOnLaunch(stored)
+                } else if (_habits.value.isEmpty()) {
+                    Log.d(TAG, "Habits empty, using MockData as fallback")
+                    _habits.value = MockData.HABITS
                 }
             }
         }
@@ -61,7 +80,10 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private fun observeAndSaveHabits() {
         viewModelScope.launch {
             _habits.drop(1).collect { habits ->
-                repository.saveHabits(habits)
+                if (habits.isNotEmpty() && habits != MockData.HABITS) {
+                    Log.d(TAG, "Saving ${habits.size} habits to repository")
+                    repository.saveHabits(habits)
+                }
             }
         }
     }
@@ -137,10 +159,11 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    private fun deriveUiState(habits: List<Habit>, achievements: List<Achievement>): AppUiState {
+    private fun deriveUiState(user: User?, habits: List<Habit>, achievements: List<Achievement>): AppUiState {
         val completedToday = habits.count { it.completedToday }
         val total = habits.size
         return AppUiState(
+            user = user,
             habits = habits,
             achievements = achievements,
             currentStreak = habits.maxOfOrNull { it.streak } ?: 0,

@@ -51,7 +51,7 @@ fun NavGraphBuilder.mainGraph(
             onCreated = { navController.popBackStack() },
         )
     }
-    
+
     composable(
         route = Screen.HabitDetail.route,
         arguments = listOf(navArgument("habitId") { type = NavType.StringType }),
@@ -86,8 +86,6 @@ fun NavGraphBuilder.mainGraph(
                 navController.navigate(route) {
                     popUpTo(0) { inclusive = true }
                 }
-            } else {
-                navController.navigate(route)
             }
         })
     }

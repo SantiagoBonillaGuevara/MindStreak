@@ -7,7 +7,7 @@ import com.example.mindstreak.R
 data class HomeTexts(
     val dateText: String, val greetingText: String, val notificationsDesc: String,
     val streakLabel: String, val streakDaysSuffix: String, val nextMilestone: String,
-    val bestStreak: String, val goalProgress: String, val dayZero: String,
+    val goalProgress: String, val dayZero: String,
     val dayGoal: String, val dayText: String, val weekDays: List<String>,
     val progressTitle: String, val progressTemplate: String, val habitsTitle: String,
     val addBtnText: String, val emptyEmoji: String, val emptyTitle: String,
@@ -23,7 +23,6 @@ fun rememberHomeTexts() = HomeTexts(
     streakLabel = stringResource(R.string.home_streak_label),
     streakDaysSuffix = stringResource(R.string.home_streak_days_suffix),
     nextMilestone = stringResource(R.string.home_next_milestone),
-    bestStreak = stringResource(R.string.home_best_streak),
     goalProgress = stringResource(R.string.home_goal_progress),
     dayZero = stringResource(R.string.home_day_zero),
     dayGoal = stringResource(R.string.home_day_goal),

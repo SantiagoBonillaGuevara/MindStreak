@@ -24,7 +24,7 @@ fun ProfileScreen(
     onNavigate: (String) -> Unit,
     viewModel: ProfileViewModel = viewModel()
 ) {
-    val user = MockData.USER
+    val user by viewModel.user.collectAsState()
     val texts = rememberProfileTexts()
     val context = LocalContext.current
     val state by viewModel.state.collectAsState()
@@ -40,11 +40,18 @@ fun ProfileScreen(
         }
     }
 
+    if (user == null) {
+        Box(Modifier.fillMaxSize(), contentAlignment = androidx.compose.ui.Alignment.Center) {
+            CircularProgressIndicator()
+        }
+        return
+    }
+
     val stats = listOf(
-        texts.statStreak to "${user.totalStreak}🔥",
-        texts.statBest to "${user.bestStreak}",
-        texts.statHabits to "${user.totalHabitsCompleted}",
-        texts.levelLabel to "${user.level}"
+        texts.statStreak to "${user!!.totalStreak}🔥",
+        texts.statBest to "${user!!.bestStreak}",
+        texts.statHabits to "${user!!.totalHabitsCompleted}",
+        texts.levelLabel to "${user!!.level}"
     )
 
     Column(
@@ -55,15 +62,15 @@ fun ProfileScreen(
     ) {
         ProfileHeader(texts.title)
         ProfileHeroCard(
-            user.avatarEmoji,
-            user.name,
-            user.username,
-            user.university,
-            user.level,
+            user!!.avatarEmoji,
+            user!!.name,
+            user!!.username,
+            user!!.university,
+            user!!.level,
             texts.levelLabel,
-            user.xp,
-            user.nextLevelXp,
-            user.joinDate,
+            user!!.xp,
+            user!!.next_level_xp,
+            user!!.joinDate,
             texts.memberSince,
             texts.verified,
             texts.edit
