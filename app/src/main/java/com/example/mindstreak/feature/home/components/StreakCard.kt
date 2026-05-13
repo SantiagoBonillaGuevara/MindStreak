@@ -129,7 +129,7 @@ fun StreakCard(
                             )
                         }
                         Text(
-                            text = "↑ ${if (currentStreak == 0) 100 else (3000.0 / currentStreak).toInt()}% ${goalText}",
+                            text = "↑ ${if (currentStreak == 0) 100 else (currentStreak*100 / 30.0).toInt()}% ${goalText}",
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                         )

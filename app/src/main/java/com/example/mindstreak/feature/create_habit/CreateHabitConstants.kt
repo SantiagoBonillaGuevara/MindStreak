@@ -5,7 +5,7 @@ val EMOJIS = listOf(
     "🚴", "🎯", "💊", "🧠", "☀️", "🌙", "🎵",
 )
 
-val FREQUENCIES = listOf("Daily", "Weekdays", "3× a week", "Weekly")
+val FREQUENCIES = listOf("Daily", "Weekdays", "Weekends")
 
 val TIMES = listOf(
     "06:00", "07:00", "08:00", "09:00",
