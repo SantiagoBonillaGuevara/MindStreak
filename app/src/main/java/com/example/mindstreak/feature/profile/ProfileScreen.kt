@@ -13,12 +13,33 @@ import com.example.mindstreak.data.mock.MockData
 import com.example.mindstreak.core.theme.*
 import com.example.mindstreak.feature.profile.components.*
 
+import androidx.lifecycle.viewmodel.compose.viewModel
+import android.widget.Toast
+import androidx.compose.ui.platform.LocalContext
+
+import com.example.mindstreak.core.navigation.Screen
+
 @Composable
-fun ProfileScreen(onNavigate: (String) -> Unit) {
+fun ProfileScreen(
+    onNavigate: (String) -> Unit,
+    viewModel: ProfileViewModel = viewModel()
+) {
     val user = MockData.USER
     val texts = rememberProfileTexts()
+    val context = LocalContext.current
+    val state by viewModel.state.collectAsState()
+    
     var darkMode by remember { mutableStateOf(true) }
     var notifications by remember { mutableStateOf(true) }
+
+    LaunchedEffect(state) {
+        if (state is ProfileState.LoggedOut) {
+            onNavigate(Screen.Auth.route)
+        } else if (state is ProfileState.Error) {
+            Toast.makeText(context, (state as ProfileState.Error).message, Toast.LENGTH_SHORT).show()
+        }
+    }
+
     val stats = listOf(
         texts.statStreak to "${user.totalStreak}🔥",
         texts.statBest to "${user.bestStreak}",
@@ -85,6 +106,13 @@ fun ProfileScreen(onNavigate: (String) -> Unit) {
             SettingsClickItem(Icons.Default.Star, texts.pro, HabitYellow, badge = texts.proBadge)
             SettingsClickItem(Icons.Default.Group, texts.refer, HabitPink, badge = texts.referBadge)
         }
-        LogoutButton(texts.logout, { onNavigate("auth") })
+        
+        if (state is ProfileState.Loading) {
+            Box(Modifier.fillMaxWidth(), contentAlignment = androidx.compose.ui.Alignment.Center) {
+                CircularProgressIndicator(Modifier.padding(20.dp))
+            }
+        }
+        
+        LogoutButton(texts.logout, { viewModel.logout() })
     }
 }

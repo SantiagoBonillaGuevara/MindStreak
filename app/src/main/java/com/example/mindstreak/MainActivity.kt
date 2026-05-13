@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
         
         SupabaseClientProvider.init(applicationContext)
         enableEdgeToEdge()
-        
+
         handleIntent(intent)
 
         setContent {

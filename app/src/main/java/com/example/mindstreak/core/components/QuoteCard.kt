@@ -20,6 +20,9 @@ fun QuoteCard(quote: String) {
         ),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)),
         elevation = CardDefaults.cardElevation(0.dp),
+        modifier = Modifier
+            .padding(horizontal = 20.dp)
+            .padding(bottom = 16.dp)
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),

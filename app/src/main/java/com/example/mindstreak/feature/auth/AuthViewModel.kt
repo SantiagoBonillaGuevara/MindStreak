@@ -31,7 +31,6 @@ class AuthViewModel : ViewModel() {
     init {
         viewModelScope.launch {
             client.auth.sessionStatus.collect { status ->
-                Log.d(TAG, "Estado de sesión cambió a: $status")
                 if (status is SessionStatus.Authenticated && !isManualAction) {
                     // Login vía Google (o sesión persistida) -> Al Home
                     _authState.value = AuthState.Success("¡Bienvenido!")
