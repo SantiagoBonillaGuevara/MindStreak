@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.*
 import android.util.Log
 
 import com.example.mindstreak.data.remote.dto.HabitLogDto
+import com.example.mindstreak.data.remote.dto.CategoryDto
+import com.example.mindstreak.data.model.Category
 
 class SupabaseHabitRepository : HabitRepository {
 
@@ -118,6 +120,18 @@ class SupabaseHabitRepository : HabitRepository {
             }
         } catch (e: Exception) {
             Log.e(TAG, "Error updating habit: ${e.message}")
+        }
+    }
+
+    override suspend fun getCategories(): List<Category> {
+        return try {
+            val categoriesDto = client.postgrest["categories"]
+                .select()
+                .decodeList<CategoryDto>()
+            categoriesDto.map { it.toDomain() }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error fetching categories: ${e.message}")
+            emptyList()
         }
     }
 }

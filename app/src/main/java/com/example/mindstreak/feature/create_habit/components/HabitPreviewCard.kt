@@ -22,11 +22,11 @@ import androidx.core.graphics.toColorInt
 fun HabitPreviewCard(
     name: String,
     emoji: String,
-    category: Category,
+    category: Category?,
     placeholderName: String,
     modifier: Modifier = Modifier,
 ) {
-    val catColor = remember(category.color) { Color(category.color.toColorInt()) }
+    val catColor = remember(category?.color) { Color(category!!.color.toColorInt()) }
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -46,7 +46,7 @@ fun HabitPreviewCard(
                 color = MaterialTheme.colorScheme.onSurface,
             )
             Text(
-                text = category.name,
+                text = category!!.name,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Medium,
                 color = catColor,

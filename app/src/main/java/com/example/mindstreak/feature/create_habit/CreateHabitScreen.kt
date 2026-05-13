@@ -9,35 +9,48 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.mindstreak.data.mock.MockData
 import com.example.mindstreak.data.model.Habit
 import com.example.mindstreak.feature.home.AppViewModel
 import com.example.mindstreak.feature.create_habit.components.*
 import kotlinx.coroutines.launch
 
+import java.util.UUID
+
 @Composable
 fun CreateHabitScreen(appViewModel: AppViewModel, onBack: () -> Unit, onCreated: () -> Unit) {
+    val state by appViewModel.uiState.collectAsState()
+    val categories = state.categories
+    
     var name by remember { mutableStateOf("") }
     var nameTouched by remember { mutableStateOf(false) }
     var selectedEmoji by remember { mutableStateOf("🏃") }
-    var selectedCategory by remember { mutableStateOf("fitness") }
+    // Initialize selectedCategory with the first category ID if available
+    var selectedCategory by remember { mutableStateOf("") }
+    
+    // Update selectedCategory when categories are loaded
+    LaunchedEffect(categories) {
+        if (selectedCategory.isEmpty() && categories.isNotEmpty()) {
+            selectedCategory = categories.first().id
+        }
+    }
+    
     var selectedFreq by remember { mutableStateOf("Daily") }
     var selectedTime by remember { mutableStateOf("07:00") }
     var step by remember { mutableStateOf(CreateStep.DETAILS) }
     val texts = rememberCreateHabitTexts()
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
-    val category =
-        MockData.CATEGORIES.find { it.id == selectedCategory } ?: MockData.CATEGORIES.first()
+    
+    val category = categories.find { it.id == selectedCategory } ?: categories.firstOrNull()
 
     val handleSave = {
-        if (name.isNotBlank()) {
+        if (name.isNotBlank() && category != null) {
             appViewModel.addHabit(
                 Habit(
-                    id = System.currentTimeMillis().toString(),
+                    id = UUID.randomUUID().toString(),
                     name = name.trim(),
                     emoji = selectedEmoji,
-                    category = selectedCategory,
+                    category = category.id, // Guardamos el ID de la categoría
                     color = category.color,
                     streak = 0,
                     completedToday = false,
@@ -96,13 +109,14 @@ fun CreateHabitScreen(appViewModel: AppViewModel, onBack: () -> Unit, onCreated:
                 ) {
                     if (curStep == CreateStep.DETAILS) DetailsStep(
                         name,
-                        { name = it },
+                        onNameChange = { name = it },
                         nameTouched,
                         selectedEmoji,
-                        { selectedEmoji = it },
+                        onEmojiSelect = { selectedEmoji = it },
                         selectedCategory,
-                        { selectedCategory = it },
+                        onCategorySelect = { selectedCategory = it },
                         category,
+                        categories,
                         EMOJIS,
                         texts.habitNameLabel,
                         texts.habitNamePlaceholder,

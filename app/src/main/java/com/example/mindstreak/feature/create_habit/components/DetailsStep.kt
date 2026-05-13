@@ -16,7 +16,8 @@ fun DetailsStep(
     onEmojiSelect: (String) -> Unit,
     selectedCategory: String,
     onCategorySelect: (String) -> Unit,
-    category: Category,
+    category: Category?,
+    categories: List<Category>,
     emojis: List<String>,
     nameLabel: String,
     namePlaceholder: String,
@@ -47,7 +48,7 @@ fun DetailsStep(
         )
 
         CategoryGrid(
-            categories = MockData.CATEGORIES,
+            categories = categories,
             selectedCategoryId = selectedCategory,
             onCategorySelect = onCategorySelect,
             label = categoryLabel

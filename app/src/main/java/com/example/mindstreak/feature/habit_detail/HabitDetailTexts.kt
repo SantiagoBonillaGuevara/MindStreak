@@ -6,7 +6,7 @@ import com.example.mindstreak.R
 
 data class HabitDetailTexts(
     val notFound: String, val returnHome: String, val backDesc: String,
-    val moreDesc: String, val reminderTemplate: String, val statsLabels: List<String>,
+    val reminderTemplate: String, val statsLabels: List<String>,
     val thisWeekTitle: String, val daysInitialLabels: List<String>,
     val heatmapMonth: String, val lessLabel: String, val moreLabel: String,
     val completionRateTitle: String, val completionRateSubtitle: String,
@@ -18,7 +18,6 @@ fun rememberHabitDetailTexts() = HabitDetailTexts(
     notFound = stringResource(R.string.habit_detail_not_found),
     returnHome = stringResource(R.string.habit_detail_return_home),
     backDesc = stringResource(R.string.habit_detail_back_desc),
-    moreDesc = stringResource(R.string.habit_detail_more_desc),
     reminderTemplate = stringResource(R.string.habit_detail_reminder_template),
     statsLabels = listOf(stringResource(R.string.habit_detail_stat_current), stringResource(R.string.habit_detail_stat_best), stringResource(R.string.habit_detail_stat_rate)),
     thisWeekTitle = stringResource(R.string.habit_detail_this_week),

@@ -24,7 +24,7 @@ data class HabitDto(
 fun HabitDto.toDomain(completionLog: Map<String, Boolean> = emptyMap()): Habit {
     val today = java.time.LocalDate.now()
     val todayStr = today.toString()
-    
+
     // Derive week history (last 7 days starting from Monday)
     val mondayOffset = today.dayOfWeek.value - 1
     val weekHistory = (0..6).map { i ->
@@ -41,24 +41,24 @@ fun HabitDto.toDomain(completionLog: Map<String, Boolean> = emptyMap()): Habit {
         streak = currentStreak,
         completedToday = lastCompletedDate == todayStr,
         lastCompletedDate = lastCompletedDate,
-        frequency = frequency,
+        frequency = frequency.lowercase().replaceFirstChar { it.uppercase() }, // e.g., "DAILY" -> "Daily"
         completionRate = completionRate,
         reminderTime = reminderTime ?: "08:00",
         weekHistory = weekHistory,
         completionLog = completionLog
     )
-}
+    }
 
-// Map from Domain to DTO for saving
-fun Habit.toDto(userId: String): HabitDto {
+    // Map from Domain to DTO for saving
+    fun Habit.toDto(userId: String): HabitDto {
     return HabitDto(
         id = id,
         userId = userId,
         name = name,
         emoji = emoji,
-        categoryId = null, // Needs mapping
+        categoryId = category, // Use category as ID
         color = color,
-        frequency = frequency,
+        frequency = frequency.uppercase(), // Maps "Daily" to "DAILY" for Supabase Enum
         reminderTime = reminderTime,
         isActive = true,
         currentStreak = streak,
@@ -66,4 +66,6 @@ fun Habit.toDto(userId: String): HabitDto {
         completionRate = completionRate,
         lastCompletedDate = lastCompletedDate
     )
-}
+    }
+
+

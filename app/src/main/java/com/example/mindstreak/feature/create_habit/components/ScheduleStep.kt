@@ -14,7 +14,7 @@ fun ScheduleStep(
     onTimeSelect: (String) -> Unit,
     name: String,
     selectedEmoji: String,
-    category: Category,
+    category: Category?,
     frequencies: List<String>,
     times: List<String>,
     freqLabel: String,

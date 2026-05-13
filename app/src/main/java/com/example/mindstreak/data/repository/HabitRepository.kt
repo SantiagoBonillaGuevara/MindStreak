@@ -1,6 +1,7 @@
 package com.example.mindstreak.data.repository
 
 import com.example.mindstreak.data.model.Habit
+import com.example.mindstreak.data.model.Category
 import kotlinx.coroutines.flow.Flow
 
 interface HabitRepository {
@@ -9,4 +10,5 @@ interface HabitRepository {
     suspend fun addHabit(habit: Habit)
     suspend fun deleteHabit(id: String)
     suspend fun updateHabit(habit: Habit)
+    suspend fun getCategories(): List<Category>
 }

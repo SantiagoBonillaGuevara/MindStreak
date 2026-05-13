@@ -92,22 +92,6 @@ object MockData {
         Achievement("10", "Legend",           "👑", "Reach a 100-day streak",         earned = false, progress = 21, total = 100, rarity = Rarity.LEGENDARY),
     )
 
-    val WEEK_DATA = listOf(
-        WeekDay("M", 5, 6), WeekDay("T", 6, 6), WeekDay("W", 4, 6),
-        WeekDay("T", 6, 6), WeekDay("F", 5, 6), WeekDay("S", 3, 6),
-        WeekDay("S", 4, 6),
-    )
-
-    // En Kotlin generamos el MONTH_DATA con la misma lógica aleatoria
-    // Pero en producción esto vendrá de la base de datos
-    val MONTH_DATA: List<MonthDay> = (1..30).map { day ->
-        MonthDay(
-            day = day,
-            completed = Math.random() > 0.25,
-            partial = Math.random() > 0.6,
-        )
-    }
-
     val MOTIVATIONAL_QUOTES = listOf(
         "You're on fire! 🔥 Keep the chain alive.",
         "21 days strong! You're unstoppable 💪",

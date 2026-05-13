@@ -17,9 +17,7 @@ import androidx.compose.ui.unit.sp
 fun HabitDetailHeader(
     title: String,
     onBack: () -> Unit,
-    onMoreClick: () -> Unit,
     backContentDescription: String,
-    moreContentDescription: String,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -46,16 +44,5 @@ fun HabitDetailHeader(
             fontSize = 18.sp,
             fontWeight = FontWeight.ExtraBold
         )
-        FilledTonalIconButton(
-            onClick = onMoreClick,
-            modifier = Modifier.size(36.dp),
-            shape = CircleShape
-        ) {
-            Icon(
-                imageVector = Icons.Default.MoreVert,
-                contentDescription = moreContentDescription,
-                modifier = Modifier.size(16.dp)
-            )
-        }
     }
 }

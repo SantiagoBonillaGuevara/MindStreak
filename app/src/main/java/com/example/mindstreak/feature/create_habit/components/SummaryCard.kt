@@ -24,7 +24,7 @@ import androidx.core.graphics.toColorInt
 fun SummaryCard(
     name: String,
     emoji: String,
-    category: Category,
+    category: Category?,
     frequency: String,
     reminderTime: String,
     title: String,
@@ -32,7 +32,7 @@ fun SummaryCard(
     reminderTemplate: String,
     modifier: Modifier = Modifier,
 ) {
-    val catColor = remember(category.color) { Color(category.color.toColorInt()) }
+    val catColor = remember(category!!.color) { Color(category.color.toColorInt()) }
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(16.dp),

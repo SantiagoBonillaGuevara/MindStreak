@@ -52,7 +52,7 @@ fun HabitDetailScreen(habitId: String, appViewModel: AppViewModel, onBack: () ->
             .background(MaterialTheme.colorScheme.background)
             .verticalScroll(rememberScrollState())
     ) {
-        HabitDetailHeader(habit.name, onBack, { }, texts.backDesc, texts.moreDesc)
+        HabitDetailHeader(habit.name, onBack, texts.backDesc)
         HabitHeroCard(
             habit.name,
             habit.emoji,
