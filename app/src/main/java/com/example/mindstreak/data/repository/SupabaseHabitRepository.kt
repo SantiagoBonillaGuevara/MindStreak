@@ -15,15 +15,22 @@ import com.example.mindstreak.data.remote.dto.HabitLogDto
 import com.example.mindstreak.data.remote.dto.CategoryDto
 import com.example.mindstreak.data.model.Category
 
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.combine
+
 class SupabaseHabitRepository : HabitRepository {
 
     private val client by lazy { SupabaseClientProvider.client }
     private val TAG = "SupabaseHabitRepo"
+    private val refreshTrigger = MutableSharedFlow<Unit>(replay = 1).apply { tryEmit(Unit) }
 
-    override val habitsFlow: Flow<List<Habit>> = client.auth.sessionStatus
+    override val habitsFlow: Flow<List<Habit>> = combine(
+        client.auth.sessionStatus,
+        refreshTrigger
+    ) { status, _ -> status }
         .onStart { Log.d(TAG, "habitsFlow collection started") }
         .flatMapLatest { status ->
-            Log.d(TAG, "Auth status changed: $status")
+            Log.d(TAG, "Auth status changed or refresh triggered: $status")
             if (status is SessionStatus.Authenticated) {
                 flow {
                     try {
@@ -68,6 +75,11 @@ class SupabaseHabitRepository : HabitRepository {
                 flowOf(emptyList())
             }
         }
+
+    override fun refresh() {
+        Log.d(TAG, "Refreshing habits manually")
+        refreshTrigger.tryEmit(Unit)
+    }
 
     override suspend fun saveHabits(habits: List<Habit>) {
         val userId = client.auth.currentSessionOrNull()?.user?.id ?: return

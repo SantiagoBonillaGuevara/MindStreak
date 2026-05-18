@@ -41,4 +41,8 @@ class LocalHabitRepository(private val context: Context) : HabitRepository {
     override suspend fun getCategories(): List<Category> {
         return MockData.CATEGORIES
     }
+
+    override fun refresh() {
+        // No-op for local as it uses DataStore which is already reactive
+    }
 }

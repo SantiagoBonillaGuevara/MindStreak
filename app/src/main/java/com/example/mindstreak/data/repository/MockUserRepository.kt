@@ -15,4 +15,8 @@ class MockUserRepository : UserRepository {
     override suspend fun updateProfile(user: User) {
         _userFlow.value = user
     }
+
+    override fun refresh() {
+        // No-op for mock
+    }
 }
