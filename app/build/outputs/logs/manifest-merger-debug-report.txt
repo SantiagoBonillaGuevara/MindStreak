@@ -1,0 +1,526 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-38:12
+INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-38:12
+INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-38:12
+INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-38:12
+MERGED from [androidx.navigation:navigation-runtime-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/37019cf002d234228efeabbf8aeb6ede/transformed/navigation-runtime-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-common-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/9c6d1ffad53a24d5fe50507dac1885a3/transformed/navigation-common-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.navigation:navigation-compose-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3d874459fa001eb0fb475184c673b4ea/transformed/navigation-compose-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-core-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4d857cf7286976a4460239fe89b3586c/transformed/animation-core/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-ripple-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/01b9413262463de0b567d31840a944f8/transformed/material-ripple/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.animation:animation-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/513da1eab4f59bbcaa56eac0e1f7add2/transformed/animation/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/7e8b5edfbba9644687a246e885fa944d/transformed/foundation-layout/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/31fc1dcf26a19852497e3b92f49935c1/transformed/ui-tooling-data/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-unit-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/81ff480e7d2e0a8193448ac15ed34d6b/transformed/ui-unit/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-geometry-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/c3671c39b2f64d5006b52d494cc05801/transformed/ui-geometry/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-util-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/2aa972c3b5d4f1d2d5d4e527c1770dea/transformed/ui-util/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-text-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/0a66b7350ba05fe9757f911602e3091f/transformed/ui-text/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/cd01cd0b74e1b0aa6222090bdc57d1dc/transformed/ui-tooling-preview/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.ui:ui-graphics-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/417b018bd6109f370ceb2ae3341e066f/transformed/ui-graphics/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.compose.material3:material3-android:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b6982c09f6d5f369fedd7ae384a43007/transformed/material3/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.compose.foundation:foundation-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f7dcbe890435e42ae5c7d892df29e94a/transformed/foundation/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e77ba6ee4d159b93ff838c96f3d10612/transformed/navigationevent/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.navigationevent:navigationevent-compose-android:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/2045c08d3d092d4c7271a316b6797a59/transformed/navigationevent-compose/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-retain-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/1e498d3a68d22cb2ec99b72878556f32/transformed/runtime-retain/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a6369d29c09cd899b145e84cc5d7a5a1/transformed/runtime-annotation/AndroidManifest.xml:2:1-7:12
+MERGED from [io.github.jan-tennert.supabase:realtime-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8a3a318c8c7a8e36dbc45096b60f3e72/transformed/realtime-kt/AndroidManifest.xml:2:1-7:12
+MERGED from [io.github.jan-tennert.supabase:postgrest-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/2998da6a55469ad8a6a3d431918f37c3/transformed/postgrest-kt/AndroidManifest.xml:2:1-7:12
+MERGED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:2:1-20:12
+MERGED from [androidx.browser:browser:1.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b24c34dbac6bcabb063a8c5d3ce1b523/transformed/browser-1.10.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4c5a4c85e70ace56676f81a1d2ab8355/transformed/autofill-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/758609e45f397649e83ce9b8743eff2e/transformed/transition-1.6.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.window:window-core-android:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f101af696d4cfb42acba5d09225665b5/transformed/window-core/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/90596f537310943f737cd0b9e1a33b79/transformed/graphics-path-1.0.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ede13bd942c0267ffea0639f0fe050a5/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/903a9fa2a3d85e9b698aa7c226fa6293/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4484b5c88f3f180d397d53df85d93add/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.activity:activity-ktx:1.13.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f9bb930fe04c1bfaa5d7b97c4375efe2/transformed/activity-ktx-1.13.0/AndroidManifest.xml:2:1-7:12
+MERGED from [io.github.jan-tennert.supabase:supabase-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/6d34784d37fe20c1fa1c91fce2ba6d62/transformed/supabase-kt/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5bf6de574a3b4aae4c3710ac20ece317/transformed/lifecycle-livedata-core-ktx-2.10.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/08a44a536875cc6ef87d0c11ec5f8a24/transformed/lifecycle-livedata-2.10.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/01d1ab618d18ad2f38ddd7f750aae83e/transformed/lifecycle-livedata-core-2.10.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e4e0701a1df1b423ca052eb8d8954d4c/transformed/lifecycle-viewmodel-ktx-2.10.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/37504403d5bb33dda603e425e05d8f2c/transformed/lifecycle-viewmodel-2.10.0/AndroidManifest.xml:2:1-5:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/bb62dd54985202fe6e68a41274e67989/transformed/lifecycle-viewmodel/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/bed9254c64d880570010b9289ed796e0/transformed/lifecycle-runtime/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e75d9ef61215313f912f3cec1536123c/transformed/lifecycle-viewmodel-savedstate/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/955c8f330cccd163ef9a9882e3af5e31/transformed/savedstate-ktx-1.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/7f003ad26b57fbaa317f6cce5eb6816f/transformed/savedstate/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.savedstate:savedstate-compose-android:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/94c7d83b1164d4260ca4753a32eccdc8/transformed/savedstate-compose/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/65e11f92d2e65792469ef8cf48a58597/transformed/runtime/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a9708c9b030a517fcf7c1b0b9aac8644/transformed/runtime-saveable/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/6d0f84eda4b3a16db72c1b48a1559532/transformed/lifecycle-runtime-compose/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/195ad51165d84908616fdebc16f4ceca/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/08800f00e3dccf3e7c660a5a271b9882/transformed/lifecycle-viewmodel-compose/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/53f1c6485ee0a41f4ad69ce52c42557d/transformed/material-icons-extended-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5066e9f8ba391e8881d32a22db849b8b/transformed/material-icons-core-release/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e4b62be7a742f872713a9d9bebc0d604/transformed/ui/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:17:1-29:12
+MERGED from [androidx.activity:activity:1.13.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/487ed3b24efe968c0864ad1313fd2941/transformed/activity-1.13.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity-compose:1.13.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/fd0662bf5026e048a74314f4c717788d/transformed/activity-compose-1.13.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ec621018e3c48fe8f819da8955502a35/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:17:1-23:12
+MERGED from [androidx.core:core-ktx:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4f6ca83ef8aecd0101ed77442cb3b349/transformed/core-ktx-1.18.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.benchmark:benchmark-traceprocessor-android:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/cf130a7e881ed2a84583405ea2b2c877/transformed/benchmark-traceprocessor/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:17:1-39:12
+MERGED from [androidx.datastore:datastore-core-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ab27dec6bd6d582f5010aeb6add2815/transformed/datastore-core/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.datastore:datastore-preferences-core-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f799d500c646a9cb5bb6bc8645687e7c/transformed/datastore-preferences-core/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.datastore:datastore-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/253cccb5dda2c2cd9c2d72ce1b75cd81/transformed/datastore/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.datastore:datastore-preferences-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/091a18994a065bad5fdbf0716bc3ce15/transformed/datastore-preferences/AndroidManifest.xml:17:1-22:12
+MERGED from [com.russhwolf:multiplatform-settings-coroutines-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a536a73c38e27fdfc9dd1614d0d296a9/transformed/multiplatform-settings-coroutines-debug/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.test:monitor:1.6.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/397a109a50de198a1d70e7769f9f5ea5/transformed/monitor-1.6.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.test:annotation:1.0.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/dd881034efe107365e5dc0b2ddffabda/transformed/annotation-1.0.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f90e095924274b8f375fa36015fb4b94/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/d4aa3ea4e1992d8db39b4e748a4df06d/transformed/core-viewtree-1.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:17:1-55:12
+MERGED from [com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.startup:startup-runtime:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/99edd315940e3c59a98cdd4872098135/transformed/startup-runtime-1.2.0/AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/bdbc395684d9ddb0b50b6b0fee538a85/transformed/tracing-1.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.tracing:tracing-ktx:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/03912be28113c2e0f56422c01d5ffa26/transformed/tracing-ktx-1.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/1eeea986c7b39aefa9edd06d3e5c4e56/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/7a76408701fa2a08eb0760742839d12a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/c46d37f56f3a046ed613310b24d49f81/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/c04a4693aa9b73fc7e2e75bf231c60a3/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/6462e62d323c891def218202988b3ef7/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/9aba669ee001957da8c1dce8c13f0042/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [co.touchlab:kermit-android-debug:2.1.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5a0c330e741c33dfae2b82a1ff5a8562/transformed/kermit-debug/AndroidManifest.xml:2:1-7:12
+MERGED from [com.russhwolf:multiplatform-settings-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/fef727af1408009f470e4cb6ede98280/transformed/multiplatform-settings-debug/AndroidManifest.xml:2:1-7:12
+MERGED from [co.touchlab:kermit-core-android-debug:2.1.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/d7c46724ae4383f0cafcf4c07e7fa22b/transformed/kermit-core-debug/AndroidManifest.xml:2:1-7:12
+	package
+		INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:4:5-79
+	android:name
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:4:22-76
+uses-permission#android.permission.INTERNET
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:5:22-64
+application
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:7:5-36:19
+INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:7:5-36:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:22:5-26:19
+MERGED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:8:5-18:19
+MERGED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:8:5-18:19
+MERGED from [androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:22:5-29:19
+MERGED from [androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:22:5-29:19
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:22:5-27:19
+MERGED from [androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:22:5-27:19
+MERGED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:29:5-37:19
+MERGED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:29:5-37:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:23:5-33:19
+MERGED from [com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.startup:startup-runtime:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/99edd315940e3c59a98cdd4872098135/transformed/startup-runtime-1.2.0/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.startup:startup-runtime:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/99edd315940e3c59a98cdd4872098135/transformed/startup-runtime-1.2.0/AndroidManifest.xml:23:5-29:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/7a76408701fa2a08eb0760742839d12a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/7a76408701fa2a08eb0760742839d12a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:14:9-35
+	android:label
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:12:9-41
+	android:fullBackupContent
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:10:9-54
+	android:roundIcon
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:13:9-54
+	android:icon
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:11:9-43
+	android:allowBackup
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:8:9-35
+	android:theme
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:15:9-48
+	android:dataExtractionRules
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:9:9-65
+activity#com.example.mindstreak.MainActivity
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:16:9-35:20
+	android:launchMode
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:19:13-43
+	android:exported
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:18:13-36
+	android:theme
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:20:13-52
+	android:name
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:17:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:21:13-24:29
+action#android.intent.action.MAIN
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:22:17-69
+	android:name
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:22:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:23:17-77
+	android:name
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:23:27-74
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:login-callback+data:scheme:mindstreak
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:27:13-34:29
+	android:label
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:27:28-57
+action#android.intent.action.VIEW
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:28:17-69
+	android:name
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:28:25-66
+category#android.intent.category.DEFAULT
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:29:17-76
+	android:name
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:29:27-73
+category#android.intent.category.BROWSABLE
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:30:17-78
+	android:name
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:30:27-75
+data
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:33:17-83
+	android:host
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:33:51-80
+	android:scheme
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:33:23-50
+uses-sdk
+INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml
+INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml
+MERGED from [androidx.navigation:navigation-runtime-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/37019cf002d234228efeabbf8aeb6ede/transformed/navigation-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-runtime-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/37019cf002d234228efeabbf8aeb6ede/transformed/navigation-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/9c6d1ffad53a24d5fe50507dac1885a3/transformed/navigation-common-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-common-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/9c6d1ffad53a24d5fe50507dac1885a3/transformed/navigation-common-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.navigation:navigation-compose-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3d874459fa001eb0fb475184c673b4ea/transformed/navigation-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigation:navigation-compose-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3d874459fa001eb0fb475184c673b4ea/transformed/navigation-compose-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4d857cf7286976a4460239fe89b3586c/transformed/animation-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-core-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4d857cf7286976a4460239fe89b3586c/transformed/animation-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/01b9413262463de0b567d31840a944f8/transformed/material-ripple/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-ripple-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/01b9413262463de0b567d31840a944f8/transformed/material-ripple/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/513da1eab4f59bbcaa56eac0e1f7add2/transformed/animation/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.animation:animation-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/513da1eab4f59bbcaa56eac0e1f7add2/transformed/animation/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/7e8b5edfbba9644687a246e885fa944d/transformed/foundation-layout/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-layout-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/7e8b5edfbba9644687a246e885fa944d/transformed/foundation-layout/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/31fc1dcf26a19852497e3b92f49935c1/transformed/ui-tooling-data/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-data-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/31fc1dcf26a19852497e3b92f49935c1/transformed/ui-tooling-data/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/81ff480e7d2e0a8193448ac15ed34d6b/transformed/ui-unit/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-unit-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/81ff480e7d2e0a8193448ac15ed34d6b/transformed/ui-unit/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/c3671c39b2f64d5006b52d494cc05801/transformed/ui-geometry/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-geometry-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/c3671c39b2f64d5006b52d494cc05801/transformed/ui-geometry/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/2aa972c3b5d4f1d2d5d4e527c1770dea/transformed/ui-util/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-util-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/2aa972c3b5d4f1d2d5d4e527c1770dea/transformed/ui-util/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/0a66b7350ba05fe9757f911602e3091f/transformed/ui-text/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-text-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/0a66b7350ba05fe9757f911602e3091f/transformed/ui-text/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/cd01cd0b74e1b0aa6222090bdc57d1dc/transformed/ui-tooling-preview/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/cd01cd0b74e1b0aa6222090bdc57d1dc/transformed/ui-tooling-preview/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/417b018bd6109f370ceb2ae3341e066f/transformed/ui-graphics/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-graphics-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/417b018bd6109f370ceb2ae3341e066f/transformed/ui-graphics/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b6982c09f6d5f369fedd7ae384a43007/transformed/material3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.material3:material3-android:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b6982c09f6d5f369fedd7ae384a43007/transformed/material3/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f7dcbe890435e42ae5c7d892df29e94a/transformed/foundation/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.foundation:foundation-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f7dcbe890435e42ae5c7d892df29e94a/transformed/foundation/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e77ba6ee4d159b93ff838c96f3d10612/transformed/navigationevent/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-android:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e77ba6ee4d159b93ff838c96f3d10612/transformed/navigationevent/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-compose-android:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/2045c08d3d092d4c7271a316b6797a59/transformed/navigationevent-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.navigationevent:navigationevent-compose-android:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/2045c08d3d092d4c7271a316b6797a59/transformed/navigationevent-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-retain-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/1e498d3a68d22cb2ec99b72878556f32/transformed/runtime-retain/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-retain-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/1e498d3a68d22cb2ec99b72878556f32/transformed/runtime-retain/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a6369d29c09cd899b145e84cc5d7a5a1/transformed/runtime-annotation/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-annotation-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a6369d29c09cd899b145e84cc5d7a5a1/transformed/runtime-annotation/AndroidManifest.xml:5:5-44
+MERGED from [io.github.jan-tennert.supabase:realtime-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8a3a318c8c7a8e36dbc45096b60f3e72/transformed/realtime-kt/AndroidManifest.xml:5:5-44
+MERGED from [io.github.jan-tennert.supabase:realtime-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8a3a318c8c7a8e36dbc45096b60f3e72/transformed/realtime-kt/AndroidManifest.xml:5:5-44
+MERGED from [io.github.jan-tennert.supabase:postgrest-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/2998da6a55469ad8a6a3d431918f37c3/transformed/postgrest-kt/AndroidManifest.xml:5:5-44
+MERGED from [io.github.jan-tennert.supabase:postgrest-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/2998da6a55469ad8a6a3d431918f37c3/transformed/postgrest-kt/AndroidManifest.xml:5:5-44
+MERGED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:6:5-44
+MERGED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:6:5-44
+MERGED from [androidx.browser:browser:1.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b24c34dbac6bcabb063a8c5d3ce1b523/transformed/browser-1.10.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.browser:browser:1.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b24c34dbac6bcabb063a8c5d3ce1b523/transformed/browser-1.10.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4c5a4c85e70ace56676f81a1d2ab8355/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.autofill:autofill:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4c5a4c85e70ace56676f81a1d2ab8355/transformed/autofill-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/758609e45f397649e83ce9b8743eff2e/transformed/transition-1.6.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.transition:transition:1.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/758609e45f397649e83ce9b8743eff2e/transformed/transition-1.6.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window:window-core-android:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f101af696d4cfb42acba5d09225665b5/transformed/window-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window:window-core-android:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f101af696d4cfb42acba5d09225665b5/transformed/window-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/90596f537310943f737cd0b9e1a33b79/transformed/graphics-path-1.0.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.graphics:graphics-path:1.0.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/90596f537310943f737cd0b9e1a33b79/transformed/graphics-path-1.0.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ede13bd942c0267ffea0639f0fe050a5/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ede13bd942c0267ffea0639f0fe050a5/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/903a9fa2a3d85e9b698aa7c226fa6293/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/903a9fa2a3d85e9b698aa7c226fa6293/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4484b5c88f3f180d397d53df85d93add/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4484b5c88f3f180d397d53df85d93add/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-ktx:1.13.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f9bb930fe04c1bfaa5d7b97c4375efe2/transformed/activity-ktx-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-ktx:1.13.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f9bb930fe04c1bfaa5d7b97c4375efe2/transformed/activity-ktx-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [io.github.jan-tennert.supabase:supabase-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/6d34784d37fe20c1fa1c91fce2ba6d62/transformed/supabase-kt/AndroidManifest.xml:5:5-44
+MERGED from [io.github.jan-tennert.supabase:supabase-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/6d34784d37fe20c1fa1c91fce2ba6d62/transformed/supabase-kt/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5bf6de574a3b4aae4c3710ac20ece317/transformed/lifecycle-livedata-core-ktx-2.10.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5bf6de574a3b4aae4c3710ac20ece317/transformed/lifecycle-livedata-core-ktx-2.10.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/08a44a536875cc6ef87d0c11ec5f8a24/transformed/lifecycle-livedata-2.10.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/08a44a536875cc6ef87d0c11ec5f8a24/transformed/lifecycle-livedata-2.10.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/01d1ab618d18ad2f38ddd7f750aae83e/transformed/lifecycle-livedata-core-2.10.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/01d1ab618d18ad2f38ddd7f750aae83e/transformed/lifecycle-livedata-core-2.10.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e4e0701a1df1b423ca052eb8d8954d4c/transformed/lifecycle-viewmodel-ktx-2.10.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e4e0701a1df1b423ca052eb8d8954d4c/transformed/lifecycle-viewmodel-ktx-2.10.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/37504403d5bb33dda603e425e05d8f2c/transformed/lifecycle-viewmodel-2.10.0/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/37504403d5bb33dda603e425e05d8f2c/transformed/lifecycle-viewmodel-2.10.0/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/bb62dd54985202fe6e68a41274e67989/transformed/lifecycle-viewmodel/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/bb62dd54985202fe6e68a41274e67989/transformed/lifecycle-viewmodel/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/bed9254c64d880570010b9289ed796e0/transformed/lifecycle-runtime/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/bed9254c64d880570010b9289ed796e0/transformed/lifecycle-runtime/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e75d9ef61215313f912f3cec1536123c/transformed/lifecycle-viewmodel-savedstate/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e75d9ef61215313f912f3cec1536123c/transformed/lifecycle-viewmodel-savedstate/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/955c8f330cccd163ef9a9882e3af5e31/transformed/savedstate-ktx-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-ktx:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/955c8f330cccd163ef9a9882e3af5e31/transformed/savedstate-ktx-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/7f003ad26b57fbaa317f6cce5eb6816f/transformed/savedstate/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/7f003ad26b57fbaa317f6cce5eb6816f/transformed/savedstate/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-compose-android:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/94c7d83b1164d4260ca4753a32eccdc8/transformed/savedstate-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-compose-android:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/94c7d83b1164d4260ca4753a32eccdc8/transformed/savedstate-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/65e11f92d2e65792469ef8cf48a58597/transformed/runtime/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/65e11f92d2e65792469ef8cf48a58597/transformed/runtime/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a9708c9b030a517fcf7c1b0b9aac8644/transformed/runtime-saveable/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.runtime:runtime-saveable-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a9708c9b030a517fcf7c1b0b9aac8644/transformed/runtime-saveable/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/6d0f84eda4b3a16db72c1b48a1559532/transformed/lifecycle-runtime-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-compose-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/6d0f84eda4b3a16db72c1b48a1559532/transformed/lifecycle-runtime-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/195ad51165d84908616fdebc16f4ceca/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/195ad51165d84908616fdebc16f4ceca/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/08800f00e3dccf3e7c660a5a271b9882/transformed/lifecycle-viewmodel-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-compose-android:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/08800f00e3dccf3e7c660a5a271b9882/transformed/lifecycle-viewmodel-compose/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/53f1c6485ee0a41f4ad69ce52c42557d/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-extended-android:1.7.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/53f1c6485ee0a41f4ad69ce52c42557d/transformed/material-icons-extended-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5066e9f8ba391e8881d32a22db849b8b/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.material:material-icons-core-android:1.7.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5066e9f8ba391e8881d32a22db849b8b/transformed/material-icons-core-release/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e4b62be7a742f872713a9d9bebc0d604/transformed/ui/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e4b62be7a742f872713a9d9bebc0d604/transformed/ui/AndroidManifest.xml:5:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.13.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/487ed3b24efe968c0864ad1313fd2941/transformed/activity-1.13.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.13.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/487ed3b24efe968c0864ad1313fd2941/transformed/activity-1.13.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity-compose:1.13.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/fd0662bf5026e048a74314f4c717788d/transformed/activity-compose-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.activity:activity-compose:1.13.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/fd0662bf5026e048a74314f4c717788d/transformed/activity-compose-1.13.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ec621018e3c48fe8f819da8955502a35/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.customview:customview-poolingcontainer:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ec621018e3c48fe8f819da8955502a35/transformed/customview-poolingcontainer-1.0.0/AndroidManifest.xml:20:5-21:38
+MERGED from [androidx.core:core-ktx:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4f6ca83ef8aecd0101ed77442cb3b349/transformed/core-ktx-1.18.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/4f6ca83ef8aecd0101ed77442cb3b349/transformed/core-ktx-1.18.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.benchmark:benchmark-traceprocessor-android:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/cf130a7e881ed2a84583405ea2b2c877/transformed/benchmark-traceprocessor/AndroidManifest.xml:5:5-44
+MERGED from [androidx.benchmark:benchmark-traceprocessor-android:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/cf130a7e881ed2a84583405ea2b2c877/transformed/benchmark-traceprocessor/AndroidManifest.xml:5:5-44
+MERGED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-core-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ab27dec6bd6d582f5010aeb6add2815/transformed/datastore-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.datastore:datastore-core-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ab27dec6bd6d582f5010aeb6add2815/transformed/datastore-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.datastore:datastore-preferences-core-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f799d500c646a9cb5bb6bc8645687e7c/transformed/datastore-preferences-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.datastore:datastore-preferences-core-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f799d500c646a9cb5bb6bc8645687e7c/transformed/datastore-preferences-core/AndroidManifest.xml:5:5-44
+MERGED from [androidx.datastore:datastore-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/253cccb5dda2c2cd9c2d72ce1b75cd81/transformed/datastore/AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/253cccb5dda2c2cd9c2d72ce1b75cd81/transformed/datastore/AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-preferences-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/091a18994a065bad5fdbf0716bc3ce15/transformed/datastore-preferences/AndroidManifest.xml:20:5-44
+MERGED from [androidx.datastore:datastore-preferences-android:1.2.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/091a18994a065bad5fdbf0716bc3ce15/transformed/datastore-preferences/AndroidManifest.xml:20:5-44
+MERGED from [com.russhwolf:multiplatform-settings-coroutines-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a536a73c38e27fdfc9dd1614d0d296a9/transformed/multiplatform-settings-coroutines-debug/AndroidManifest.xml:5:5-44
+MERGED from [com.russhwolf:multiplatform-settings-coroutines-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a536a73c38e27fdfc9dd1614d0d296a9/transformed/multiplatform-settings-coroutines-debug/AndroidManifest.xml:5:5-44
+MERGED from [androidx.test:monitor:1.6.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/397a109a50de198a1d70e7769f9f5ea5/transformed/monitor-1.6.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.test:monitor:1.6.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/397a109a50de198a1d70e7769f9f5ea5/transformed/monitor-1.6.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.test:annotation:1.0.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/dd881034efe107365e5dc0b2ddffabda/transformed/annotation-1.0.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.test:annotation:1.0.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/dd881034efe107365e5dc0b2ddffabda/transformed/annotation-1.0.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f90e095924274b8f375fa36015fb4b94/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f90e095924274b8f375fa36015fb4b94/transformed/annotation-experimental-1.4.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/d4aa3ea4e1992d8db39b4e748a4df06d/transformed/core-viewtree-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/d4aa3ea4e1992d8db39b4e748a4df06d/transformed/core-viewtree-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:21:5-44
+MERGED from [com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/99edd315940e3c59a98cdd4872098135/transformed/startup-runtime-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/99edd315940e3c59a98cdd4872098135/transformed/startup-runtime-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/bdbc395684d9ddb0b50b6b0fee538a85/transformed/tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/bdbc395684d9ddb0b50b6b0fee538a85/transformed/tracing-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing-ktx:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/03912be28113c2e0f56422c01d5ffa26/transformed/tracing-ktx-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.tracing:tracing-ktx:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/03912be28113c2e0f56422c01d5ffa26/transformed/tracing-ktx-1.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/1eeea986c7b39aefa9edd06d3e5c4e56/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/1eeea986c7b39aefa9edd06d3e5c4e56/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/7a76408701fa2a08eb0760742839d12a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/7a76408701fa2a08eb0760742839d12a/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/c46d37f56f3a046ed613310b24d49f81/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/c46d37f56f3a046ed613310b24d49f81/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/c04a4693aa9b73fc7e2e75bf231c60a3/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/c04a4693aa9b73fc7e2e75bf231c60a3/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/6462e62d323c891def218202988b3ef7/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/6462e62d323c891def218202988b3ef7/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/9aba669ee001957da8c1dce8c13f0042/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/9aba669ee001957da8c1dce8c13f0042/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [co.touchlab:kermit-android-debug:2.1.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5a0c330e741c33dfae2b82a1ff5a8562/transformed/kermit-debug/AndroidManifest.xml:5:5-44
+MERGED from [co.touchlab:kermit-android-debug:2.1.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5a0c330e741c33dfae2b82a1ff5a8562/transformed/kermit-debug/AndroidManifest.xml:5:5-44
+MERGED from [com.russhwolf:multiplatform-settings-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/fef727af1408009f470e4cb6ede98280/transformed/multiplatform-settings-debug/AndroidManifest.xml:5:5-44
+MERGED from [com.russhwolf:multiplatform-settings-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/fef727af1408009f470e4cb6ede98280/transformed/multiplatform-settings-debug/AndroidManifest.xml:5:5-44
+MERGED from [co.touchlab:kermit-core-android-debug:2.1.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/d7c46724ae4383f0cafcf4c07e7fa22b/transformed/kermit-core-debug/AndroidManifest.xml:5:5-44
+MERGED from [co.touchlab:kermit-core-android-debug:2.1.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/d7c46724ae4383f0cafcf4c07e7fa22b/transformed/kermit-core-debug/AndroidManifest.xml:5:5-44
+	android:targetSdkVersion
+		INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml
+activity#androidx.compose.ui.tooling.PreviewActivity
+ADDED from [androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:23:9-25:39
+	android:exported
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:25:13-36
+	android:name
+		ADDED from [androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:24:13-71
+provider#androidx.startup.InitializationProvider
+ADDED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:9:9-17:20
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:24:9-32:20
+MERGED from [com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/99edd315940e3c59a98cdd4872098135/transformed/startup-runtime-1.2.0/AndroidManifest.xml:24:9-28:34
+MERGED from [androidx.startup:startup-runtime:1.2.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/99edd315940e3c59a98cdd4872098135/transformed/startup-runtime-1.2.0/AndroidManifest.xml:24:9-28:34
+	tools:node
+		ADDED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:13:13-31
+	android:authorities
+		ADDED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:11:13-68
+	android:exported
+		ADDED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:12:13-37
+	android:name
+		ADDED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:10:13-67
+meta-data#io.github.jan.supabase.auth.SupabaseInitializer
+ADDED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:14:13-16:52
+	android:value
+		ADDED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:16:17-49
+	android:name
+		ADDED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:15:17-79
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:23:9-25:40
+	android:required
+		ADDED from [androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:25:13-37
+	android:name
+		ADDED from [androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:24:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:26:9-28:40
+	android:required
+		ADDED from [androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:28:13-37
+	android:name
+		ADDED from [androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:27:13-51
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:23:9-81
+permission#com.example.mindstreak.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:26:22-94
+uses-permission#com.example.mindstreak.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:30:17-78
+activity#androidx.activity.ComponentActivity
+ADDED from [androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:23:9-26:79
+	android:exported
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:25:13-36
+	android:theme
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:26:13-76
+	android:name
+		ADDED from [androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:24:13-63
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:27:5-81
+	android:name
+		ADDED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:27:22-78
+activity#androidx.benchmark.IsolationActivity
+ADDED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:32:9-36:20
+	android:exported
+		ADDED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:34:13-36
+	android:theme
+		ADDED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:35:13-77
+	android:name
+		ADDED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:33:13-64
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+IMPLIED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-38:12 reason: androidx.benchmark requested WRITE_EXTERNAL_STORAGE
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
+meta-data#com.russhwolf.settings.SettingsInitializer
+ADDED from [com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:30:17-74

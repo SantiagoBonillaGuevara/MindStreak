@@ -15,14 +15,21 @@ import kotlinx.coroutines.flow.flowOf
 import android.util.Log
 import kotlinx.coroutines.flow.onStart
 
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.combine
+
 class SupabaseUserRepository : UserRepository {
     private val client by lazy { SupabaseClientProvider.client }
     private val TAG = "SupabaseUserRepo"
+    private val refreshTrigger = MutableSharedFlow<Unit>(replay = 1).apply { tryEmit(Unit) }
 
-    override val userFlow: Flow<User?> = client.auth.sessionStatus
+    override val userFlow: Flow<User?> = combine(
+        client.auth.sessionStatus,
+        refreshTrigger
+    ) { status, _ -> status }
         .onStart { Log.d(TAG, "userFlow collection started") }
         .flatMapLatest { status ->
-            Log.d(TAG, "Auth status changed: $status")
+            Log.d(TAG, "Auth status changed or refresh triggered: $status")
             if (status is SessionStatus.Authenticated) {
                 flow {
                     val userId = status.session.user?.id
@@ -41,6 +48,11 @@ class SupabaseUserRepository : UserRepository {
                 flowOf(null)
             }
         }
+
+    override fun refresh() {
+        Log.d(TAG, "Refreshing user profile manually")
+        refreshTrigger.tryEmit(Unit)
+    }
 
     override suspend fun getProfile(userId: String): User? {
         Log.d(TAG, "Calling getProfile for $userId")

@@ -1,0 +1,227 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.mindstreak"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+7-->INJECTED
+8        android:minSdkVersion="26"
+8-->INJECTED
+9        android:targetSdkVersion="36" />
+9-->INJECTED
+10
+11    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+11-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:4:5-79
+11-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:4:22-76
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:5:5-67
+12-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:5:22-64
+13
+14    <permission
+14-->[androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:22:5-24:47
+15        android:name="com.example.mindstreak.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+15-->[androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:23:9-81
+16        android:protectionLevel="signature" />
+16-->[androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:24:9-44
+17
+18    <uses-permission android:name="com.example.mindstreak.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+18-->[androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:26:5-97
+18-->[androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:26:22-94
+19    <!--
+20    This is needed to write benchmark report data to an external directory during instrumented
+21    tests to allow the accompanying androidx.benchmark gradle plugin to pull the reports onto host
+22     machine after the tests are done running.
+23    -->
+24    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+24-->[androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:27:5-81
+24-->[androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:27:22-78
+25    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+26
+27    <application
+27-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:7:5-36:19
+28        android:allowBackup="true"
+28-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:8:9-35
+29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+29-->[androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:28:18-86
+30        android:dataExtractionRules="@xml/data_extraction_rules"
+30-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:9:9-65
+31        android:debuggable="true"
+32        android:extractNativeLibs="false"
+32-->INJECTED
+33        android:fullBackupContent="@xml/backup_rules"
+33-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:10:9-54
+34        android:icon="@mipmap/ic_launcher"
+34-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:11:9-43
+35        android:label="@string/app_name"
+35-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:12:9-41
+36        android:roundIcon="@mipmap/ic_launcher_round"
+36-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:13:9-54
+37        android:supportsRtl="true"
+37-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:14:9-35
+38        android:testOnly="true"
+39        android:theme="@style/Theme.MindStreak" >
+39-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:15:9-48
+40        <activity
+40-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:16:9-35:20
+41            android:name="com.example.mindstreak.MainActivity"
+41-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:17:13-41
+42            android:exported="true"
+42-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:18:13-36
+43            android:launchMode="singleTop"
+43-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:19:13-43
+44            android:theme="@style/Theme.MindStreak" >
+44-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:20:13-52
+45            <intent-filter>
+45-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:21:13-24:29
+46                <action android:name="android.intent.action.MAIN" />
+46-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:22:17-69
+46-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:22:25-66
+47
+48                <category android:name="android.intent.category.LAUNCHER" />
+48-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:23:17-77
+48-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:23:27-74
+49            </intent-filter>
+50
+51            <!-- Intent Filter para el Deep Link de Supabase Auth -->
+52            <intent-filter android:label="supabase_auth" >
+52-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:27:13-34:29
+52-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:27:28-57
+53                <action android:name="android.intent.action.VIEW" />
+53-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:28:17-69
+53-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:28:25-66
+54
+55                <category android:name="android.intent.category.DEFAULT" />
+55-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:29:17-76
+55-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:29:27-73
+56                <category android:name="android.intent.category.BROWSABLE" />
+56-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:30:17-78
+56-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:30:27-75
+57
+58                <!-- Configura aquí tu esquema y host para la redirección -->
+59                <data
+59-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:33:17-83
+60                    android:host="login-callback"
+60-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:33:51-80
+61                    android:scheme="mindstreak" />
+61-->/Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:33:23-50
+62            </intent-filter>
+63        </activity>
+64        <activity
+64-->[androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:23:9-25:39
+65            android:name="androidx.compose.ui.tooling.PreviewActivity"
+65-->[androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:24:13-71
+66            android:exported="true" />
+66-->[androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:25:13-36
+67
+68        <provider
+68-->[io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:9:9-17:20
+69            android:name="androidx.startup.InitializationProvider"
+69-->[io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:10:13-67
+70            android:authorities="com.example.mindstreak.androidx-startup"
+70-->[io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:11:13-68
+71            android:exported="false" >
+71-->[io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:12:13-37
+72            <meta-data
+72-->[io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:14:13-16:52
+73                android:name="io.github.jan.supabase.auth.SupabaseInitializer"
+73-->[io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:15:17-79
+74                android:value="androidx.startup" />
+74-->[io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:16:17-49
+75            <meta-data
+75-->[androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:29:13-31:52
+76                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+76-->[androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:30:17-75
+77                android:value="androidx.startup" />
+77-->[androidx.emoji2:emoji2:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/5ec5eb39018df95b6be003ab1a8b0f15/transformed/emoji2-1.4.0/AndroidManifest.xml:31:17-49
+78            <meta-data
+78-->[androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:29:13-31:52
+79                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+79-->[androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:30:17-78
+80                android:value="androidx.startup" />
+80-->[androidx.lifecycle:lifecycle-process:2.10.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/a06573019717b9b16cd471e810c1fb7d/transformed/lifecycle-process-2.10.0/AndroidManifest.xml:31:17-49
+81            <meta-data
+81-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+82                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+82-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:30:17-85
+83                android:value="androidx.startup" />
+83-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:31:17-49
+84            <meta-data
+84-->[com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:29:13-31:52
+85                android:name="com.russhwolf.settings.SettingsInitializer"
+85-->[com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:30:17-74
+86                android:value="androidx.startup" />
+86-->[com.russhwolf:multiplatform-settings-no-arg-android-debug:1.3.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/134e749d2f3e68a13b5e92321a7bc7f0/transformed/multiplatform-settings-no-arg-debug/AndroidManifest.xml:31:17-49
+87        </provider>
+88
+89        <uses-library
+89-->[androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:23:9-25:40
+90            android:name="androidx.window.extensions"
+90-->[androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:24:13-54
+91            android:required="false" />
+91-->[androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:25:13-37
+92        <uses-library
+92-->[androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:26:9-28:40
+93            android:name="androidx.window.sidecar"
+93-->[androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:27:13-51
+94            android:required="false" />
+94-->[androidx.window:window:1.5.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/ee686c0edbb161d6da47a111ab95f03d/transformed/window-1.5.0/AndroidManifest.xml:28:13-37
+95
+96        <activity
+96-->[androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:23:9-26:79
+97            android:name="androidx.activity.ComponentActivity"
+97-->[androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:24:13-63
+98            android:exported="true"
+98-->[androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:25:13-36
+99            android:theme="@android:style/Theme.Material.Light.NoActionBar" /> <!-- Activity used to block background content while benchmarks are running -->
+99-->[androidx.compose.ui:ui-test-manifest:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f2649fb76bce4e787554fde28a9caedb/transformed/ui-test-manifest-1.11.1/AndroidManifest.xml:26:13-76
+100        <activity
+100-->[androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:32:9-36:20
+101            android:name="androidx.benchmark.IsolationActivity"
+101-->[androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:33:13-64
+102            android:exported="true"
+102-->[androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:34:13-36
+103            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
+103-->[androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:35:13-77
+104        </activity>
+105
+106        <receiver
+106-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+107            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+107-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:35:13-76
+108            android:directBootAware="false"
+108-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:36:13-44
+109            android:enabled="true"
+109-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:37:13-35
+110            android:exported="true"
+110-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:38:13-36
+111            android:permission="android.permission.DUMP" >
+111-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:39:13-57
+112            <intent-filter>
+112-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:40:13-42:29
+113                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+113-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:17-91
+113-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:41:25-88
+114            </intent-filter>
+115            <intent-filter>
+115-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:43:13-45:29
+116                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+116-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:17-85
+116-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:44:25-82
+117            </intent-filter>
+118            <intent-filter>
+118-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:46:13-48:29
+119                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+119-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:17-88
+119-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:47:25-85
+120            </intent-filter>
+121            <intent-filter>
+121-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:49:13-51:29
+122                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+122-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:17-95
+122-->[androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:50:25-92
+123            </intent-filter>
+124        </receiver>
+125    </application>
+126
+127</manifest>

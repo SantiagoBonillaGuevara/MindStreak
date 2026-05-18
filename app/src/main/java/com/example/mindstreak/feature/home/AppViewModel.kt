@@ -79,6 +79,13 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             _categories.value = repository.getCategories()
         }
     }
+
+    fun refreshData() {
+        Log.d(TAG, "Manual data refresh triggered")
+        userRepository.refresh()
+        repository.refresh()
+    }
+
     fun toggleHabit(id: String) {
         val today = todayString()
         _habits.update { habits ->

@@ -28,6 +28,10 @@ fun HomeScreen(appViewModel: AppViewModel, navController: NavController) {
     val texts = rememberHomeTexts()
     val snackbarHostState = remember { SnackbarHostState() }
 
+    LaunchedEffect(Unit) {
+        appViewModel.refreshData()
+    }
+
     val handleToggle = { id: String ->
         appViewModel.toggleHabit(id)
         if (state.habits.find { it.id == id }?.completedToday == false && state.habits.filter { it.id != id && it.completedToday }.size == state.habits.size - 1) {
@@ -77,17 +81,17 @@ fun HomeScreen(appViewModel: AppViewModel, navController: NavController) {
                     .padding(bottom = 16.dp)
             ) {
                 StreakCard(
-                    state.user!!.totalStreak,
-                    texts.streakLabel,
+                    currentStreak =  state.user!!.totalStreak,
+                     texts.streakLabel,
                     texts.streakDaysSuffix,
-                    texts.nextMilestone,
-                    state.user!!.bestStreak.toString(),
-                    texts.goalProgress,
-                    texts.dayZero,
-                    "${texts.dayText} ${state.user!!.totalStreak}",
-                    texts.dayGoal,
+                    nextMilestoneText =  texts.nextMilestone,
+                    bestStreakText =  state.user!!.bestStreak.toString(),
+                    goalText =  texts.goalProgress,
+                    dayZeroLabel =  texts.dayZero,
+                    dayCurrentLabel =  "${texts.dayText} ${state.user!!.totalStreak}",
+                    dayGoalLabel =  texts.dayGoal,
                     texts.weekDays,
-                    (java.time.LocalDate.now().dayOfWeek.value + 6) % 7
+                    todayIndex =  (java.time.LocalDate.now().dayOfWeek.value + 6) % 7
                 )
             }
             AnimatedVisibility(
