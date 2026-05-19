@@ -10,9 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mindstreak.R
 import com.example.mindstreak.core.theme.HabitOrange
 import com.example.mindstreak.core.theme.HabitYellow
 
@@ -23,13 +25,13 @@ fun RewardsHeader(
 ) {
     Column(Modifier.padding(20.dp)) {
         Text(
-            "🎁 Recompensas",
+            stringResource(R.string.rewards_title),
             fontSize = 22.sp,
             fontWeight = FontWeight.ExtraBold,
             color = MaterialTheme.colorScheme.onBackground,
         )
         Text(
-            "Sube de nivel y canjea premios reales",
+            stringResource(R.string.rewards_subtitle),
             fontSize = 13.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -49,17 +51,17 @@ fun RewardsHeader(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Column {
-                Text("Nivel actual", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                Text("⭐ Nivel $userLevel", fontSize = 20.sp, fontWeight = FontWeight.Black, color = HabitOrange)
+                Text(stringResource(R.string.rewards_current_level), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                Text("⭐ ${stringResource(R.string.rewards_level_required_template, userLevel)}", fontSize = 20.sp, fontWeight = FontWeight.Black, color = HabitOrange)
             }
             if (nextRewardLevel != null) {
                 Column(horizontalAlignment = androidx.compose.ui.Alignment.End) {
-                    Text("Próxima recompensa", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    Text("Nivel $nextRewardLevel 🎁", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = HabitYellow)
+                    Text(stringResource(R.string.rewards_next_reward), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text("${stringResource(R.string.rewards_level_required_template, nextRewardLevel)} 🎁", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = HabitYellow)
                 }
             } else {
                 Column(horizontalAlignment = androidx.compose.ui.Alignment.End) {
-                    Text("¡Todas desbloqueadas!", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = HabitOrange)
+                    Text(stringResource(R.string.rewards_all_unlocked), fontSize = 13.sp, fontWeight = FontWeight.Bold, color = HabitOrange)
                 }
             }
         }

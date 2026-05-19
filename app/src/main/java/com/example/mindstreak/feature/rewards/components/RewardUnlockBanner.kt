@@ -12,9 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mindstreak.R
 import com.example.mindstreak.core.theme.HabitOrange
 import com.example.mindstreak.data.model.Reward
 
@@ -49,13 +51,13 @@ fun RewardUnlockBanner(
             Text(reward.emoji, fontSize = 28.sp)
             Column(Modifier.weight(1f)) {
                 Text(
-                    "¡Nueva recompensa desbloqueada!",
+                    stringResource(R.string.rewards_banner_title),
                     fontSize = 13.sp,
                     fontWeight = FontWeight.Bold,
                     color = HabitOrange,
                 )
                 Text(
-                    reward.title,
+                    if (reward.titleRes != 0) stringResource(reward.titleRes) else reward.title,
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

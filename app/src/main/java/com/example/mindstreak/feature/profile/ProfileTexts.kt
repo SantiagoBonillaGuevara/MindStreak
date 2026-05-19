@@ -7,7 +7,7 @@ import com.example.mindstreak.R
 data class ProfileTexts(
     val title: String, val levelLabel: String, val memberSince: String,
     val verified: String, val edit: String, val achievements: String,
-    val social: String, val reminders: String, val prefSection: String,
+    val rewards: String, val reminders: String, val prefSection: String,
     val darkModeLabel: String, val darkModeSub: String, val notifLabel: String,
     val notifEnabled: String, val notifDisabled: String,
     val accountSection: String, val privacy: String, val pro: String,
@@ -24,7 +24,7 @@ fun rememberProfileTexts() = ProfileTexts(
     verified = stringResource(R.string.profile_verified),
     edit = stringResource(R.string.profile_edit),
     achievements = stringResource(R.string.profile_achievements),
-    social = stringResource(R.string.profile_social),
+    rewards = stringResource(R.string.profile_rewards),
     reminders = stringResource(R.string.profile_reminders),
     prefSection = stringResource(R.string.profile_pref_section),
     darkModeLabel = stringResource(R.string.profile_dark_mode),

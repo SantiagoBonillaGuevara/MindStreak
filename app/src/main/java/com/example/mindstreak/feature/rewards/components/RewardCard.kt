@@ -15,10 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mindstreak.R
 import com.example.mindstreak.core.theme.HabitOrange
 import com.example.mindstreak.core.theme.HabitPurple
 import com.example.mindstreak.core.theme.HabitTeal
@@ -79,7 +81,7 @@ fun RewardCard(
         // Info
         Column(Modifier.weight(1f)) {
             Text(
-                reward.title,
+                if (reward.titleRes != 0) stringResource(reward.titleRes) else reward.title,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface,
@@ -87,7 +89,7 @@ fun RewardCard(
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                reward.description,
+                if (reward.descRes != 0) stringResource(reward.descRes) else reward.description,
                 fontSize = 12.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 2,
@@ -121,7 +123,7 @@ fun RewardCard(
                         .padding(horizontal = 8.dp, vertical = 4.dp),
                 ) {
                     Text(
-                        "Nivel ${reward.requiredLevel}",
+                        stringResource(R.string.rewards_level_required_template, reward.requiredLevel),
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold,
                         color = accentColor,
@@ -152,7 +154,12 @@ fun RewardCard(
                             color = Color.White,
                         )
                     } else {
-                        Text("Canjear", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                        Text(
+                            stringResource(R.string.rewards_claim_btn),
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
                     }
                 }
             }
@@ -162,7 +169,7 @@ fun RewardCard(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text("🔒", fontSize = 20.sp)
                     Text(
-                        "+$remaining lvl",
+                        stringResource(R.string.rewards_locked_levels_template, remaining),
                         fontSize = 10.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontWeight = FontWeight.SemiBold,

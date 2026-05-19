@@ -85,7 +85,7 @@ fun ProfileScreen(
                 texts.achievements,
                 Modifier.weight(1f)
             ) { onNavigate("achievements") }
-            QuickNavButton("👥", texts.social, Modifier.weight(1f)) { onNavigate("social") }
+            QuickNavButton("🎁", texts.rewards, Modifier.weight(1f)) { onNavigate("rewards") }
             QuickNavButton(
                 "🔔",
                 texts.reminders,

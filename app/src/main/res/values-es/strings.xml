@@ -90,20 +90,37 @@
     <string name="streak_cta_sub_template">Registra tus hábitos de hoy para mantener tu racha de %d días.</string>
     <string name="streak_habit_streaks_title">Rachas de Hábitos</string>
 
-    <!-- Social Screen -->
-    <string name="social_title">Social</string>
-    <string name="social_invite">Invitar</string>
-    <string name="social_search_placeholder">Buscar amigos…</string>
-    <string name="social_tab_leaderboard">Clasificación</string>
-    <string name="social_tab_activity">Actividad</string>
-    <string name="social_tab_groups">Grupos</string>
-    <string name="social_challenge_title">Desafío Semanal</string>
-    <string name="social_challenge_sub">¡Quien más hábitos registre gana!</string>
-    <string name="social_challenge_time">Faltan 3 días</string>
-    <string name="social_you_label">TÚ</string>
-    <string name="social_level_template">Nivel %d · %d hábitos/sem</string>
-    <string name="social_group_sub_template">%d miembros · 🔥 %d días de racha grupal</string>
-    <string name="social_create_group">+ Crear un Grupo</string>
+    <!-- Rewards Screen -->
+    <string name="rewards_title">🎁 Recompensas</string>
+    <string name="rewards_subtitle">Sube de nivel y canjea premios reales</string>
+    <string name="rewards_current_level">Nivel actual</string>
+    <string name="rewards_next_reward">Próxima recompensa</string>
+    <string name="rewards_all_unlocked">¡Todas desbloqueadas!</string>
+    <string name="rewards_claim_btn">Canjear</string>
+    <string name="rewards_claimed_label">✅ Canjeado</string>
+    <string name="rewards_locked_levels_template">+%d lvl</string>
+    <string name="rewards_level_required_template">Nivel %d</string>
+
+    <!-- Celebration Dialog -->
+    <string name="rewards_dialog_title">¡Recompensa canjeada!</string>
+    <string name="rewards_dialog_coupon_label">Código de canje</string>
+    <string name="rewards_dialog_coupon_hint">Muéstralo en caja</string>
+    <string name="rewards_dialog_close">¡Genial! 🎉</string>
+
+    <!-- Unlock Banner -->
+    <string name="rewards_banner_title">¡Nueva recompensa desbloqueada!</string>
+
+    <!-- Reward Titles -->
+    <string name="reward_1_title">Cupón Helado 🍦</string>
+    <string name="reward_1_desc">Un helado gratis en la cafetería universitaria. ¡Te lo ganaste!</string>
+    <string name="reward_2_title">Almuerzo Gratis 🍱</string>
+    <string name="reward_2_desc">Un almuerzo completo en el comedor universitario sin costo.</string>
+    <string name="reward_3_title">Café &amp; Snack ☕</string>
+    <string name="reward_3_desc">Un café y un snack en la librería. Perfecto para estudiar.</string>
+    <string name="reward_4_title">Día de Streaming 🎬</string>
+    <string name="reward_4_desc">1 mes gratis de acceso a la plataforma de cursos online de la universidad.</string>
+    <string name="reward_5_title">Kit Universitario 🎒</string>
+    <string name="reward_5_desc">Pack de artículos de papelería premium con el logo de tu universidad.</string>
 
     <!-- Profile Screen -->
     <string name="profile_title">Perfil</string>
@@ -112,7 +129,7 @@
     <string name="profile_verified">✓ Estudiante Verificado</string>
     <string name="profile_edit">Editar</string>
     <string name="profile_achievements">Logros</string>
-    <string name="profile_social">Social</string>
+    <string name="profile_rewards">Premios</string>
     <string name="profile_reminders">Recordatorios</string>
     <string name="profile_pref_section">Preferencias</string>
     <string name="profile_dark_mode">Modo Oscuro</string>
@@ -202,5 +219,6 @@
     <string name="nav_stats">Estads.</string>
     <string name="nav_streak">Racha</string>
     <string name="nav_awards">Logros</string>
+    <string name="nav_rewards">Premios</string>
     <string name="nav_profile">Perfil</string>
 </resources>

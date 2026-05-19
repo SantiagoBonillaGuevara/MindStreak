@@ -13,11 +13,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.example.mindstreak.R
 import com.example.mindstreak.core.theme.HabitOrange
 import com.example.mindstreak.core.theme.HabitTeal
 import com.example.mindstreak.data.model.Reward
@@ -59,7 +61,7 @@ fun RewardCelebrationDialog(
             Spacer(Modifier.height(16.dp))
 
             Text(
-                "¡Recompensa canjeada!",
+                stringResource(R.string.rewards_dialog_title),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.ExtraBold,
                 color = MaterialTheme.colorScheme.onSurface,
@@ -68,7 +70,7 @@ fun RewardCelebrationDialog(
             Spacer(Modifier.height(6.dp))
 
             Text(
-                reward.title,
+                if (reward.titleRes != 0) stringResource(reward.titleRes) else reward.title,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = HabitOrange,
@@ -78,7 +80,7 @@ fun RewardCelebrationDialog(
             Spacer(Modifier.height(8.dp))
 
             Text(
-                reward.description,
+                if (reward.descRes != 0) stringResource(reward.descRes) else reward.description,
                 fontSize = 13.sp,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 textAlign = TextAlign.Center,
@@ -96,7 +98,7 @@ fun RewardCelebrationDialog(
                         .padding(14.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    Text("Código de canje", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    Text(stringResource(R.string.rewards_dialog_coupon_label), fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     Text(
                         code,
                         fontSize = 20.sp,
@@ -105,7 +107,7 @@ fun RewardCelebrationDialog(
                         letterSpacing = 2.sp,
                     )
                     Text(
-                        "Muéstralo en caja",
+                        stringResource(R.string.rewards_dialog_coupon_hint),
                         fontSize = 11.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
@@ -120,7 +122,7 @@ fun RewardCelebrationDialog(
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = HabitOrange),
             ) {
-                Text("¡Genial! 🎉", fontWeight = FontWeight.Bold, color = Color.White)
+                Text(stringResource(R.string.rewards_dialog_close), fontWeight = FontWeight.Bold, color = Color.White)
             }
         }
     }

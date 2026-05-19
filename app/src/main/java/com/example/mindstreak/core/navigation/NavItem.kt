@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.BarChart
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Redeem
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.mindstreak.R
 
@@ -19,6 +20,7 @@ sealed class NavItem(
     object Stats : NavItem("statistics", R.string.nav_stats, Icons.Default.BarChart)
     object Streak : NavItem("streak", R.string.nav_streak, icon = null, emoji = "🔥")
     object Achievements : NavItem("achievements", R.string.nav_awards, Icons.Default.EmojiEvents)
+    object Rewards : NavItem("rewards", R.string.nav_rewards, Icons.Default.Redeem)
     object Profile : NavItem("profile", R.string.nav_profile, Icons.Default.Person)
 }
 
@@ -26,6 +28,6 @@ val NAV_ITEMS = listOf(
     NavItem.Home,
     NavItem.Stats,
     NavItem.Streak,
-    NavItem.Achievements,
+    NavItem.Rewards,
     NavItem.Profile,
 )

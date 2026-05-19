@@ -14,7 +14,7 @@ import com.example.mindstreak.feature.home.HomeScreen
 import com.example.mindstreak.feature.notifications.NotificationsScreen
 import com.example.mindstreak.feature.onboarding.OnboardingScreen
 import com.example.mindstreak.feature.profile.ProfileScreen
-import com.example.mindstreak.feature.social.SocialScreen
+import com.example.mindstreak.feature.rewards.RewardsScreen
 import com.example.mindstreak.feature.statistics.StatisticsScreen
 import com.example.mindstreak.feature.streak.StreakScreen
 
@@ -78,7 +78,7 @@ fun NavGraphBuilder.mainGraph(
 
     composable(Screen.Achievements.route) { AchievementsScreen(appViewModel = appViewModel) }
 
-    composable(Screen.Social.route) { SocialScreen() }
+    composable(Screen.Rewards.route) { RewardsScreen(appViewModel = appViewModel) }
 
     composable(Screen.Profile.route) {
         ProfileScreen(onNavigate = { route ->

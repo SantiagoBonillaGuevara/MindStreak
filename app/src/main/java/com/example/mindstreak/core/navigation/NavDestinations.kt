@@ -13,7 +13,7 @@ sealed class Screen(val route: String) {
     object Statistics : Screen("statistics")
     object Notifications : Screen("notifications")
     object Achievements : Screen("achievements")
-    object Social : Screen("social")
+    object Rewards : Screen("rewards")
     object Profile : Screen("profile")
 }
 
@@ -23,6 +23,6 @@ val BOTTOM_NAV_ROUTES = setOf(
     Screen.Statistics.route,
     Screen.Streak.route,
     Screen.Achievements.route,
-    Screen.Social.route,
+    Screen.Rewards.route,
     Screen.Profile.route,
 )
