@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-38:12
-INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-38:12
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-39:12
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/37019cf002d234228efeabbf8aeb6ede/transformed/navigation-runtime-release/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/9c6d1ffad53a24d5fe50507dac1885a3/transformed/navigation-common-release/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-compose-android:2.9.8] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3d874459fa001eb0fb475184c673b4ea/transformed/navigation-compose-release/AndroidManifest.xml:2:1-7:12
@@ -107,9 +107,13 @@ uses-permission#android.permission.INTERNET
 ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:5:5-67
 	android:name
 		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:6:5-77
+	android:name
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:6:22-74
 application
-ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:7:5-36:19
-INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:7:5-36:19
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:8:5-37:19
+INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:8:5-37:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.11.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/8fe1971f6e145e052103e47ccc6a3ade/transformed/ui-tooling/AndroidManifest.xml:22:5-26:19
 MERGED from [io.github.jan-tennert.supabase:auth-kt-android:3.6.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f162ab15b53ea58956bfdcd2a79f75b2/transformed/auth-kt/AndroidManifest.xml:8:5-18:19
@@ -139,63 +143,63 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/sant
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.18.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:14:9-35
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:15:9-35
 	android:label
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:12:9-41
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:13:9-41
 	android:fullBackupContent
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:10:9-54
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:11:9-54
 	android:roundIcon
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:13:9-54
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:14:9-54
 	android:icon
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:11:9-43
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:12:9-43
 	android:allowBackup
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:8:9-35
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:9:9-35
 	android:theme
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:15:9-48
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:16:9-48
 	android:dataExtractionRules
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:9:9-65
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:10:9-65
 activity#com.example.mindstreak.MainActivity
-ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:16:9-35:20
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:17:9-36:20
 	android:launchMode
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:19:13-43
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:20:13-43
 	android:exported
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:18:13-36
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:19:13-36
 	android:theme
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:20:13-52
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:21:13-52
 	android:name
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:17:13-41
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:18:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:21:13-24:29
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:22:13-25:29
 action#android.intent.action.MAIN
-ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:22:17-69
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:23:17-69
 	android:name
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:22:25-66
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:23:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:23:17-77
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:24:17-77
 	android:name
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:23:27-74
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:24:27-74
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:login-callback+data:scheme:mindstreak
-ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:27:13-34:29
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:28:13-35:29
 	android:label
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:27:28-57
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:28:28-57
 action#android.intent.action.VIEW
-ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:28:17-69
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:29:17-69
 	android:name
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:28:25-66
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:29:25-66
 category#android.intent.category.DEFAULT
-ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:29:17-76
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:30:17-76
 	android:name
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:29:27-73
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:30:27-73
 category#android.intent.category.BROWSABLE
-ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:30:17-78
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:31:17-78
 	android:name
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:30:27-75
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:31:27-75
 data
-ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:33:17-83
+ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:34:17-83
 	android:host
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:33:51-80
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:34:51-80
 	android:scheme
-		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:33:23-50
+		ADDED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:34:23-50
 uses-sdk
 INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml
@@ -475,7 +479,7 @@ ADDED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.g
 	android:name
 		ADDED from [androidx.benchmark:benchmark-common:1.4.1] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/3e66d2c1c84e911cc4f57b0c89386d0d/transformed/benchmark-common-1.4.1/AndroidManifest.xml:33:13-64
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-38:12 reason: androidx.benchmark requested WRITE_EXTERNAL_STORAGE
+IMPLIED from /Users/santiagobonilla/AndroidStudioProjects/MindStreak/app/src/main/AndroidManifest.xml:2:1-39:12 reason: androidx.benchmark requested WRITE_EXTERNAL_STORAGE
 meta-data#androidx.profileinstaller.ProfileInstallerInitializer
 ADDED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/santiagobonilla/.gradle/caches/9.3.1/transforms/137331194c2081b82eb467b778e5ba3f/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
 	android:value

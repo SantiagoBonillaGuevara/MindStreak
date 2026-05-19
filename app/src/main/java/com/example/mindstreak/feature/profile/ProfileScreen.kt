@@ -18,19 +18,39 @@ import android.widget.Toast
 import androidx.compose.ui.platform.LocalContext
 
 import com.example.mindstreak.core.navigation.Screen
+import android.Manifest
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import android.content.pm.PackageManager
+import com.example.mindstreak.feature.home.AppViewModel
 
 @Composable
 fun ProfileScreen(
     onNavigate: (String) -> Unit,
-    viewModel: ProfileViewModel = viewModel()
+    onNavigateToNotifications: () -> Unit,
+    viewModel: ProfileViewModel = viewModel(),
+    appViewModel: AppViewModel
 ) {
     val user by viewModel.user.collectAsState()
+    val appUiState by appViewModel.uiState.collectAsState()
     val texts = rememberProfileTexts()
     val context = LocalContext.current
     val state by viewModel.state.collectAsState()
     
-    var darkMode by remember { mutableStateOf(true) }
-    var notifications by remember { mutableStateOf(true) }
+    val darkMode = appUiState.isDarkMode ?: isSystemInDarkTheme()
+    val notifications = appUiState.notificationsEnabled
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            appViewModel.setNotificationsEnabled(true)
+        } else {
+            Toast.makeText(context, "Permiso de notificaciones denegado", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     LaunchedEffect(state) {
         if (state is ProfileState.LoggedOut) {
@@ -51,7 +71,7 @@ fun ProfileScreen(
         texts.statStreak to "${user!!.totalStreak}🔥",
         texts.statBest to "${user!!.bestStreak}",
         texts.statHabits to "${user!!.totalHabitsCompleted}",
-        texts.levelLabel to "${user!!.levelId}"
+        user!!.levelTitle to "${user!!.levelId}"
     )
 
     Column(
@@ -67,6 +87,7 @@ fun ProfileScreen(
             user!!.username,
             user!!.university,
             user!!.levelId,
+            user!!.levelTitle, // NUEVO
             texts.levelLabel,
             user!!.xpInCurrentLevel,
             user!!.nextLevelXpNeta,
@@ -85,7 +106,7 @@ fun ProfileScreen(
                 "🔔",
                 texts.reminders,
                 Modifier.weight(1f)
-            ) { onNavigate("notifications") }
+            ) { onNavigateToNotifications() }
         }
         SettingsSection(texts.prefSection) {
             SettingsToggleItem(
@@ -94,14 +115,24 @@ fun ProfileScreen(
                 texts.darkModeSub,
                 HabitPurple,
                 darkMode,
-                { darkMode = it })
+                { appViewModel.setDarkMode(it) })
             SettingsToggleItem(
                 Icons.Default.Notifications,
                 texts.notifLabel,
                 if (notifications) texts.notifEnabled else texts.notifDisabled,
                 HabitOrange,
                 notifications,
-                { notifications = it })
+                { enabled ->
+                    if (enabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        val hasPermission = ContextCompat.checkSelfPermission(
+                            context,
+                            Manifest.permission.POST_NOTIFICATIONS
+                        ) == PackageManager.PERMISSION_GRANTED
+                        
+                        if (hasPermission) appViewModel.setNotificationsEnabled(true)
+                        else permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    } else appViewModel.setNotificationsEnabled(enabled)
+                })
         }
         SettingsSection(texts.accountSection) {
             SettingsClickItem(Icons.Default.Shield, texts.privacy, HabitTeal)

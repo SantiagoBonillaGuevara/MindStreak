@@ -7,6 +7,7 @@ data class User(
     val university: String,
     val avatarEmoji: String,
     val levelId: Int, // Cambiado de level a levelId para producción
+    val levelTitle: String = "Habit Architect", // NUEVO: Título del nivel desde la tabla levels
     val xp: Int,
     val totalStreak: Int,
     val bestStreak: Int,

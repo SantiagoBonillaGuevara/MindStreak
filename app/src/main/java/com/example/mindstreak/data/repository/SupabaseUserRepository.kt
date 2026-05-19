@@ -58,7 +58,7 @@ class SupabaseUserRepository : UserRepository {
         Log.d(TAG, "Calling getProfile for $userId")
         return try {
             val result = client.postgrest["profiles"]
-                .select {
+                .select(io.github.jan.supabase.postgrest.query.Columns.raw("*, levels(title)")) {
                     filter {
                         eq("id", userId)
                     }

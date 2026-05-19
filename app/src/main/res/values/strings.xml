@@ -139,9 +139,9 @@
     <string name="profile_notif_disabled">Disabled</string>
     <string name="profile_account_section">Account</string>
     <string name="profile_privacy">Privacy &amp; Data</string>
-    <string name="profile_pro">MindStreak Pro</string>
+    <string name="profile_pro">MindStreak Pro (soon)</string>
     <string name="profile_pro_badge">Upgrade</string>
-    <string name="profile_refer">Refer a Friend</string>
+    <string name="profile_refer">Refer a Friend (soon)</string>
     <string name="profile_refer_badge">+50 XP</string>
     <string name="profile_logout">Log Out</string>
     <string name="profile_stat_streak">Streak</string>

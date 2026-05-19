@@ -139,9 +139,9 @@
     <string name="profile_notif_disabled">Desactivado</string>
     <string name="profile_account_section">Cuenta</string>
     <string name="profile_privacy">Privacidad y Datos</string>
-    <string name="profile_pro">MindStreak Pro</string>
+    <string name="profile_pro">MindStreak Pro (proximamente)</string>
     <string name="profile_pro_badge">Mejorar</string>
-    <string name="profile_refer">Recomendar a un amigo</string>
+    <string name="profile_refer">Recomendar a un amigo (proximamente)</string>
     <string name="profile_refer_badge">+50 XP</string>
     <string name="profile_logout">Cerrar Sesión</string>
     <string name="profile_stat_streak">Racha</string>

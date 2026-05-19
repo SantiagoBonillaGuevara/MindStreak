@@ -12,6 +12,7 @@ data class Habit(
     val frequency: String,
     val completionRate: Float,
     val reminderTime: String,
+    val reminderEnabled: Boolean = true,
     val bestStreak: Int,
     val isActive: Boolean = true,
     val weekHistory: List<Boolean>,          // últimos 7 días

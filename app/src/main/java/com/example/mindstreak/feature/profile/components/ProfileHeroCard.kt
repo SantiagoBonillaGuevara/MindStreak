@@ -25,6 +25,7 @@ fun ProfileHeroCard(
     username: String,
     university: String,
     level: Int,
+    levelTitle: String, // NUEVO: Título dinámico
     levelLabel: String,
     xp: Int,
     nextLevelXp: Int,
@@ -120,7 +121,7 @@ fun ProfileHeroCard(
             Column(Modifier.padding(top = 20.dp)) {
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                     Text(
-                        "$levelLabel $level • Habit Architect",
+                        "$levelLabel $level • $levelTitle",
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontSize = 11.sp
                     )

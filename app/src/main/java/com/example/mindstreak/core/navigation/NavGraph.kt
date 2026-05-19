@@ -81,10 +81,18 @@ fun NavGraphBuilder.mainGraph(
     composable(Screen.Rewards.route) { RewardsScreen(appViewModel = appViewModel) }
 
     composable(Screen.Profile.route) {
-        ProfileScreen(onNavigate = { route ->
-            navController.navigate(route) {
-                popUpTo(0) { inclusive = true }
-            }
-        })
+        ProfileScreen(
+            onNavigate = { route ->
+                navController.navigate(route) {
+                    // Esto es útil para pestañas principales del BottomBar, por ejemplo
+                    popUpTo(0) { inclusive = true }
+                }
+            },
+            onNavigateToNotifications = {
+                // Navegación estándar que añade Notifications al stack encima de Profile
+                navController.navigate(Screen.Notifications.route)
+            },
+            appViewModel = appViewModel
+        )
     }
 }

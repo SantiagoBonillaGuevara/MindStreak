@@ -201,7 +201,15 @@ class SupabaseHabitRepository : HabitRepository {
         try {
             Log.d(TAG, "Upserting log for habit $habitId on $date to $completed")
             val log = HabitLogDto(habitId = habitId, userId = userId, completedDate = date, completed = completed)
-            client.postgrest["habit_logs"].upsert(log)
+            client.postgrest["habit_logs"].update({
+                HabitLogDto::completed setTo completed
+            }) {
+                filter {
+                    eq("habit_id", habitId)
+                    eq("completed_date", date)
+                    eq("user_id", userId)
+                }
+            }
             Log.d(TAG, "Log toggled successfully via upsert")
         } catch (e: Exception) {
             Log.e(TAG, "Error toggling habit log: ${e.message}")
@@ -244,6 +252,22 @@ class SupabaseHabitRepository : HabitRepository {
             }
         } catch (e: Exception) {
             Log.e(TAG, "Error updating habit: ${e.message}")
+        }
+    }
+
+    override suspend fun updateHabitReminder(habitId: String, enabled: Boolean) {
+        val userId = client.auth.currentSessionOrNull()?.user?.id ?: return
+        try {
+            client.postgrest["habits"].update({
+                HabitDto::reminderEnabled setTo enabled
+            }) {
+                filter {
+                    eq("id", habitId)
+                    eq("user_id", userId)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error updating habit reminder: ${e.message}")
         }
     }
 

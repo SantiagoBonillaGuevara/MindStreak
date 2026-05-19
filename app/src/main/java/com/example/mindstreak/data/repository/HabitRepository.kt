@@ -11,6 +11,7 @@ interface HabitRepository {
     suspend fun addHabit(habit: Habit)
     suspend fun deleteHabit(id: String)
     suspend fun updateHabit(habit: Habit)
+    suspend fun updateHabitReminder(habitId: String, enabled: Boolean) // NUEVO
     suspend fun toggleHabitLog(habitId: String, date: String, completed: Boolean)
     suspend fun getCategories(): List<Category>
     suspend fun getTotalHabitLogsCount(): Int

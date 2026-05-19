@@ -12,6 +12,7 @@ data class UserDto(
     @SerialName("university") val university: String? = null,
     @SerialName("avatar_emoji") val avatarEmoji: String,
     @SerialName("level_id") val levelId: Int, // Mapeado directo a la nueva columna de Supabase
+    @SerialName("levels") val level: LevelDto? = null, // NUEVO: Join con tabla levels
     @SerialName("xp") val xp: Int,
     @SerialName("total_streak") val totalStreak: Int,
     @SerialName("best_streak") val bestStreak: Int,
@@ -27,6 +28,7 @@ fun UserDto.toDomain(): User {
         university = university ?: "",
         avatarEmoji = avatarEmoji,
         levelId = levelId,
+        levelTitle = level?.title ?: "Habit Architect",
         xp = xp,
         totalStreak = totalStreak,
         bestStreak = bestStreak,

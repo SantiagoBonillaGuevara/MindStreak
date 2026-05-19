@@ -6,6 +6,8 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mindstreak.core.navigation.AppNavigation
 import com.example.mindstreak.core.theme.HabitsAppTheme
@@ -25,8 +27,10 @@ class MainActivity : ComponentActivity() {
         handleIntent(intent)
 
         setContent {
-            HabitsAppTheme {
-                val appViewModel: AppViewModel = viewModel()
+            val appViewModel: AppViewModel = viewModel()
+            val uiState by appViewModel.uiState.collectAsState()
+            
+            HabitsAppTheme(darkTheme = uiState.isDarkMode ?: androidx.compose.foundation.isSystemInDarkTheme()) {
                 AppNavigation(appViewModel = appViewModel)
             }
         }

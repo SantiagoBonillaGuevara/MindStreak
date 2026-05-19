@@ -27,6 +27,7 @@ data class SerializableHabit(
     val frequency: String,
     val completionRate: Float,
     val reminderTime: String,
+    val reminderEnabled: Boolean = true,
     val bestStreak: Int,
     val isActive: Boolean = true,
     val weekHistory: List<Boolean>,
@@ -37,13 +38,13 @@ data class SerializableHabit(
 fun Habit.toSerializable() = SerializableHabit(
     id, name, emoji, category, color, streak,
     completedToday, lastCompletedDate, frequency,
-    completionRate, reminderTime, bestStreak, isActive, weekHistory, completionLog
+    completionRate, reminderTime, reminderEnabled, bestStreak, isActive, weekHistory, completionLog
 )
 
 fun SerializableHabit.toHabit() = Habit(
     id, name, emoji, category, color, streak,
     completedToday, lastCompletedDate, frequency,
-    completionRate, reminderTime, bestStreak, isActive, weekHistory, completionLog
+    completionRate, reminderTime, reminderEnabled, bestStreak, isActive, weekHistory, completionLog
 )
 
 object HabitsSerializer : Serializer<HabitsStore> {

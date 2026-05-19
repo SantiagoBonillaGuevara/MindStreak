@@ -14,6 +14,7 @@ data class HabitDto(
     @SerialName("color") val color: String?,
     @SerialName("frequency") val frequency: String,
     @SerialName("reminder_time") val reminderTime: String?,
+    @SerialName("reminder_enabled") val reminderEnabled: Boolean, // NUEVO
     @SerialName("is_active") val isActive: Boolean,
     @SerialName("current_streak") val currentStreak: Int,
     @SerialName("best_streak") val bestStreak: Int,
@@ -44,6 +45,7 @@ fun HabitDto.toDomain(completionLog: Map<String, Boolean> = emptyMap()): Habit {
         frequency = frequency.lowercase().replaceFirstChar { it.uppercase() }, // e.g., "DAILY" -> "Daily"
         completionRate = completionRate,
         reminderTime = reminderTime ?: "08:00",
+        reminderEnabled = reminderEnabled,
         bestStreak = bestStreak,
         isActive = isActive,
         weekHistory = weekHistory,
@@ -62,6 +64,7 @@ fun HabitDto.toDomain(completionLog: Map<String, Boolean> = emptyMap()): Habit {
         color = color,
         frequency = frequency.uppercase(), // Maps "Daily" to "DAILY" for Supabase Enum
         reminderTime = reminderTime,
+        reminderEnabled = reminderEnabled,
         isActive = isActive,
         currentStreak = streak,
         bestStreak = bestStreak,

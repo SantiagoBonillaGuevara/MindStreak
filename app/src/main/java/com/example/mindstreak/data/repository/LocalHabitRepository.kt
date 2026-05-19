@@ -40,6 +40,16 @@ class LocalHabitRepository(private val context: Context) : HabitRepository {
         saveHabits(currentHabits.map { if (it.id == habit.id) habit else it })
     }
 
+    override suspend fun updateHabitReminder(habitId: String, enabled: Boolean) {
+        val currentHabits = habitsFlow.first()
+        val updatedHabits = currentHabits.map { habit ->
+            if (habit.id == habitId) {
+                habit.copy(reminderEnabled = enabled)
+            } else habit
+        }
+        saveHabits(updatedHabits)
+    }
+
     override suspend fun toggleHabitLog(
         habitId: String,
         date: String,

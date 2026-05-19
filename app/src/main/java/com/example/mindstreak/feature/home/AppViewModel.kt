@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+import com.example.mindstreak.data.local.SettingsManager
 import com.example.mindstreak.data.model.User
 
 data class AppUiState(
@@ -29,7 +30,9 @@ data class AppUiState(
     val completionPercent: Int = 0,
     val totalLogs: Int = 0,
     val monthlyRate: Int = 0,
-    val activeDaysInMonth: Set<String> = emptySet()
+    val activeDaysInMonth: Set<String> = emptySet(),
+    val isDarkMode: Boolean? = null,
+    val notificationsEnabled: Boolean = false
 )
 
 class AppViewModel(application: Application) : AndroidViewModel(application) {
@@ -37,6 +40,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val TAG = "AppViewModel"
     private val repository = RepositoryProvider.getHabitRepository(application)
     private val userRepository = RepositoryProvider.getUserRepository(application)
+    private val settingsManager = SettingsManager(application)
 
     private val _habits = MutableStateFlow<List<Habit>>(emptyList())
     private val _allHabits = MutableStateFlow<List<Habit>>(emptyList())
@@ -51,7 +55,9 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         _allHabits,
         _totalLogs,
         _categories,
-        _achievements
+        _achievements,
+        settingsManager.darkModeFlow,
+        settingsManager.notificationsEnabledFlow
     ) { array ->
         val user = array[0] as? User
         val habits = array[1] as List<Habit>
@@ -59,7 +65,9 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         val totalLogs = array[3] as Int
         val categories = array[4] as List<Category>
         val achievements = array[5] as List<Achievement>
-        deriveUiState(user, habits, allHabits, totalLogs, categories, achievements)
+        val isDarkMode = array[6] as? Boolean
+        val notificationsEnabled = array[7] as Boolean
+        deriveUiState(user, habits, allHabits, totalLogs, categories, achievements, isDarkMode, notificationsEnabled)
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
@@ -141,6 +149,25 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun toggleHabitReminder(id: String, enabled: Boolean) {
+        viewModelScope.launch {
+            repository.updateHabitReminder(id, enabled)
+            refreshData()
+        }
+    }
+
+    fun setDarkMode(enabled: Boolean) {
+        viewModelScope.launch {
+            settingsManager.setDarkMode(enabled)
+        }
+    }
+
+    fun setNotificationsEnabled(enabled: Boolean) {
+        viewModelScope.launch {
+            settingsManager.setNotificationsEnabled(enabled)
+        }
+    }
+
     private fun todayString(): String = LocalDate.now().format(formatter)
 
     private fun deriveUiState(
@@ -149,7 +176,9 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         allHabits: List<Habit>,
         totalLogs: Int,
         categories: List<Category>, 
-        achievements: List<Achievement>
+        achievements: List<Achievement>,
+        isDarkMode: Boolean?,
+        notificationsEnabled: Boolean
     ): AppUiState {
         val completedToday = habits.count { it.completedToday }
         val total = habits.size
@@ -181,7 +210,9 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             completionPercent = if (total == 0) 0 else (completedToday * 100) / total,
             totalLogs = totalLogs,
             monthlyRate = monthlyRate,
-            activeDaysInMonth = activeDays
+            activeDaysInMonth = activeDays,
+            isDarkMode = isDarkMode,
+            notificationsEnabled = notificationsEnabled
         )
     }
 }
