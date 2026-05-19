@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <permission
         android:name="com.example.mindstreak.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
@@ -62,6 +63,12 @@
                     android:scheme="mindstreak" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name="com.example.mindstreak.notifications.HabitAlarmReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
         <activity
             android:name="androidx.compose.ui.tooling.PreviewActivity"
             android:exported="true" />

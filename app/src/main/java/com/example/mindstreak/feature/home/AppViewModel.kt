@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter
 
 import com.example.mindstreak.data.local.SettingsManager
 import com.example.mindstreak.data.model.User
+import com.example.mindstreak.notifications.HabitNotificationScheduler
 
 data class AppUiState(
     val user: User? = null,
@@ -41,6 +42,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = RepositoryProvider.getHabitRepository(application)
     private val userRepository = RepositoryProvider.getUserRepository(application)
     private val settingsManager = SettingsManager(application)
+    private val scheduler = HabitNotificationScheduler(application)
 
     private val _habits = MutableStateFlow<List<Habit>>(emptyList())
     private val _allHabits = MutableStateFlow<List<Habit>>(emptyList())
@@ -77,6 +79,27 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     init {
         Log.d(TAG, "Initializing AppViewModel")
         loadData()
+        setupNotificationSync()
+    }
+
+    private fun setupNotificationSync() {
+        viewModelScope.launch {
+            combine(
+                _allHabits,
+                settingsManager.notificationsEnabledFlow
+            ) { habits, enabled ->
+                habits to enabled
+            }.collect { (habits, enabled) ->
+                Log.d(TAG, "Syncing notifications. Master Switch: $enabled")
+                if (!enabled) {
+                    scheduler.cancelAll(habits)
+                } else {
+                    habits.forEach { habit ->
+                        scheduler.schedule(habit)
+                    }
+                }
+            }
+        }
     }
 
     private fun loadData() {
