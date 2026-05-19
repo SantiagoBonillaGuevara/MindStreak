@@ -19,7 +19,17 @@ fun StatisticsScreen(appViewModel: AppViewModel) {
     val uiState by appViewModel.uiState.collectAsState()
     val texts = rememberStatisticsTexts()
     var selectedTabIndex by remember { mutableIntStateOf(0) }
-    val barChartData = remember(selectedTabIndex) { getBarChartData(selectedTabIndex) }
+    
+    val processor = remember(uiState.habits) { StatisticsProcessor(uiState.habits) }
+    val barChartData = remember(selectedTabIndex, uiState.habits) { 
+        when (selectedTabIndex) {
+            0 -> processor.getWeeklyBarData()
+            1 -> processor.getMonthlyBarData()
+            2 -> processor.getYearlyBarData()
+            else -> emptyList()
+        }
+    }
+    val trendData = remember(uiState.habits) { processor.getTrendData() }
 
     LazyColumn(
         Modifier
@@ -30,12 +40,12 @@ fun StatisticsScreen(appViewModel: AppViewModel) {
         item { StatisticsHeader(texts.title, texts.dateText) }
         item {
             StatsCardsRow(
-                texts.weekStats,
-                texts.weekLabel,
-                texts.bestStreak,
-                texts.bestStreakLabel,
-                texts.avgDay,
-                texts.avgDayLabel
+                weekStats = processor.getWeekStats(),
+                weekLabel = texts.weekLabel,
+                bestStreak = processor.getBestStreak(uiState.user?.bestStreak ?: 0),
+                bestStreakLabel = texts.bestStreakLabel,
+                avgDay = processor.getAvgPerDay(),
+                avgDayLabel = texts.avgDayLabel
             )
         }
         item {
@@ -56,9 +66,9 @@ fun StatisticsScreen(appViewModel: AppViewModel) {
         item {
             CompletionTrendChart(
                 texts.trendTitle,
-                texts.trendChange,
+                processor.getTrendChange(),
                 texts.rateLabel,
-                TREND_DATA
+                trendData
             )
         }
         item {

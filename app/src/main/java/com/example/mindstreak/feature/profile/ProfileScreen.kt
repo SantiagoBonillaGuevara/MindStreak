@@ -51,7 +51,7 @@ fun ProfileScreen(
         texts.statStreak to "${user!!.totalStreak}🔥",
         texts.statBest to "${user!!.bestStreak}",
         texts.statHabits to "${user!!.totalHabitsCompleted}",
-        texts.levelLabel to "${user!!.level}"
+        texts.levelLabel to "${user!!.levelId}"
     )
 
     Column(
@@ -66,10 +66,10 @@ fun ProfileScreen(
             user!!.name,
             user!!.username,
             user!!.university,
-            user!!.level,
+            user!!.levelId,
             texts.levelLabel,
-            user!!.xp,
-            user!!.next_level_xp,
+            user!!.xpInCurrentLevel,
+            user!!.nextLevelXpNeta,
             user!!.joinDate,
             texts.memberSince,
             texts.verified,

@@ -35,26 +35,48 @@ class SupabaseHabitRepository : HabitRepository {
                 flow {
                     try {
                         val userId = status.session.user?.id ?: return@flow
-                        Log.d(TAG, "Fetching habits for $userId")
-                        val habitsDto = client.postgrest["habits"]
-                            .select()
-                            .decodeList<HabitDto>()
+                        val today = java.time.LocalDate.now()
+                        val sevenDaysAgo = today.minusDays(7)
                         
-                        Log.d(TAG, "Habits fetched: ${habitsDto.size}")
+                        Log.d(TAG, "Fetching logs for $userId from $sevenDaysAgo to $today")
                         
+                        // 1. Obtener logs de los últimos 7 días
                         val logsDto = try {
-                            Log.d(TAG, "Fetching logs for $userId")
                             client.postgrest["habit_logs"]
                                 .select {
                                     filter {
                                         eq("user_id", userId)
+                                        gte("completed_date", sevenDaysAgo.toString())
+                                        lte("completed_date", today.toString())
                                     }
                                 }
                                 .decodeList<HabitLogDto>()
                         } catch (e: Exception) {
-                            Log.w(TAG, "Error fetching logs (maybe table empty): ${e.message}")
+                            Log.w(TAG, "Error fetching logs: ${e.message}")
                             emptyList<HabitLogDto>()
                         }
+
+                        // 2. Identificar qué hábitos tienen registro hoy
+                        val todayStr = today.toString()
+                        val habitIdsForToday = logsDto
+                            .filter { it.completedDate == todayStr }
+                            .map { it.habitId }
+                            .distinct()
+
+                        if (habitIdsForToday.isEmpty()) {
+                            Log.d(TAG, "No habits scheduled for today")
+                            emit(emptyList())
+                            return@flow
+                        }
+
+                        // 3. Obtener solo esos hábitos
+                        val habitsDto = client.postgrest["habits"]
+                            .select {
+                                filter {
+                                    isIn("id", habitIdsForToday)
+                                }
+                            }
+                            .decodeList<HabitDto>()
                         
                         val logsByHabit = logsDto.groupBy { it.habitId }
                         
@@ -63,7 +85,8 @@ class SupabaseHabitRepository : HabitRepository {
                             val completionLog = hLogs.associate { it.completedDate to it.completed }
                             hDto.toDomain(completionLog)
                         }
-                        Log.d(TAG, "Emitting ${habits.size} habits to flow")
+                        
+                        Log.d(TAG, "Emitting ${habits.size} habits scheduled for today")
                         emit(habits)
                     } catch (e: Exception) {
                         Log.e(TAG, "Error fetching habits/logs: ${e.message}", e)
@@ -98,6 +121,24 @@ class SupabaseHabitRepository : HabitRepository {
             }
         } catch (e: Exception) {
             Log.e(TAG, "Error saving habits/logs: ${e.message}")
+        }
+    }
+
+    override suspend fun toggleHabitLog(habitId: String, date: String, completed: Boolean) {
+        val userId = client.auth.currentSessionOrNull()?.user?.id ?: return
+        try {
+            Log.d(TAG, "Toggling log for habit $habitId on $date to $completed")
+            client.postgrest["habit_logs"].update({
+                HabitLogDto::completed setTo completed
+            }) {
+                filter {
+                    eq("habit_id", habitId)
+                    eq("completed_date", date)
+                    eq("user_id", userId)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error toggling habit log: ${e.message}")
         }
     }
 

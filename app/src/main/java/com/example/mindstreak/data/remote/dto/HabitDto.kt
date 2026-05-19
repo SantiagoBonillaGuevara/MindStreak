@@ -39,7 +39,7 @@ fun HabitDto.toDomain(completionLog: Map<String, Boolean> = emptyMap()): Habit {
         category = categoryId ?: "Uncategorized",
         color = color ?: "#7C6EFF",
         streak = currentStreak,
-        completedToday = lastCompletedDate == todayStr,
+        completedToday = completionLog[todayStr] ?: false,
         lastCompletedDate = lastCompletedDate,
         frequency = frequency.lowercase().replaceFirstChar { it.uppercase() }, // e.g., "DAILY" -> "Daily"
         completionRate = completionRate,

@@ -70,7 +70,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             Log.d(TAG, "Starting habits collection")
             repository.habitsFlow.collect { stored ->
                 Log.d(TAG, "Habits flow emitted: ${stored.size} items")
-                _habits.value = reconcileHabitsOnLaunch(stored)
+                _habits.value = stored
             }
         }
 
@@ -81,41 +81,31 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun refreshData() {
-        Log.d(TAG, "Manual data refresh triggered")
+        Log.d(TAG, "data refresh triggered")
         userRepository.refresh()
         repository.refresh()
     }
 
     fun toggleHabit(id: String) {
         val today = todayString()
-        _habits.update { habits ->
-            habits.map { h ->
-                if (h.id == id && !h.completedToday) toggleOn(h, today)
-                else h
+        val habit = _habits.value.find { it.id == id } ?: return
+        
+        // No permitir toggle si ya está completado (según el requerimiento: de false a true)
+        // O si el usuario quiere poder apagarlo, podríamos quitar el check de !habit.completedToday
+        if (!habit.completedToday) {
+            viewModelScope.launch {
+                repository.toggleHabitLog(id, today, true)
+                // Después de actualizar, refrescamos para que los triggers de BD actualicen rachas y progreso
+                refreshData()
             }
         }
-        // Persistir cambios inmediatamente
-        viewModelScope.launch {
-            repository.saveHabits(_habits.value)
-        }
-    }
-
-    private fun toggleOn(h: Habit, today: String): Habit {
-        val alreadyCountedToday = h.lastCompletedDate == today
-        val newLog = h.completionLog + (today to true)
-        return h.copy(
-            completedToday = true,
-            lastCompletedDate = today,
-            streak = if (alreadyCountedToday) h.streak else h.streak + 1,
-            completionLog = newLog,
-            weekHistory = deriveWeekHistory(newLog),
-        )
     }
 
     fun addHabit(habit: Habit) {
         _habits.update { it + habit }
         viewModelScope.launch {
             repository.addHabit(habit)
+            refreshData()
         }
     }
 
@@ -123,11 +113,11 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         _habits.update { habits -> habits.filter { it.id != id } }
         viewModelScope.launch {
             repository.deleteHabit(id)
+            refreshData()
         }
     }
 
     private fun todayString(): String = LocalDate.now().format(formatter)
-    private fun yesterdayString(): String = LocalDate.now().minusDays(1).format(formatter)
 
     private fun deriveWeekHistory(log: Map<String, Boolean>): List<Boolean> {
         val today = LocalDate.now()
@@ -135,20 +125,6 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         return (0..6).map { i ->
             val date = today.minusDays(mondayOffset.toLong()).plusDays(i.toLong())
             log[date.format(formatter)] == true
-        }
-    }
-
-    private fun reconcileHabitsOnLaunch(habits: List<Habit>): List<Habit> {
-        val today = todayString()
-        val yesterday = yesterdayString()
-        return habits.map { h ->
-            val lcd = h.lastCompletedDate
-            when {
-                lcd == today -> h
-                lcd == yesterday -> h.copy(completedToday = false)
-                lcd != null -> h.copy(completedToday = false, streak = 0)
-                else -> h.copy(completedToday = false)
-            }
         }
     }
 

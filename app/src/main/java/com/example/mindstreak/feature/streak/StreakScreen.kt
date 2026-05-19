@@ -29,7 +29,7 @@ fun StreakScreen(appViewModel: AppViewModel, navController: NavController) {
             .background(MaterialTheme.colorScheme.background),
         contentPadding = PaddingValues(bottom = 24.dp)
     ) {
-        item { StreakHeader(texts.title, texts.shieldLabel, orangeMain) }
+        item { StreakHeader(texts.title) }
         item {
             StreakHeroCard(
                 uiState.currentStreak,

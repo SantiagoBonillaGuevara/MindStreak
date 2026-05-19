@@ -28,7 +28,7 @@ fun RewardsScreen(
 ) {
     val appState  by appViewModel.uiState.collectAsState()
     val uiState   by rewardsViewModel.uiState.collectAsState()
-    val userLevel = appState.user?.level ?: 1
+    val userLevel = appState.user?.levelId ?: 1
 
     // Cargar recompensas cuando cambia el nivel
     LaunchedEffect(userLevel) {

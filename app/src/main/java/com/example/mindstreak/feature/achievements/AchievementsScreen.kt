@@ -31,20 +31,22 @@ fun AchievementsScreen(appViewModel: AppViewModel) {
         LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(bottom = 120.dp)) {
             item { Header(texts.title, texts.subtitle) }
             item {
-                LevelCard(
-                    12,
-                    2840,
-                    3000,
-                    5,
-                    5,
-                    "2.8k",
-                    texts.earnedText,
-                    texts.lockedText,
-                    texts.xpText,
-                    texts.levelText,
-                    "👑",
-                    texts.lvlName
-                )
+                uiState.user?.let { user ->
+                    LevelCard(
+                        userLevel = user.levelId,
+                        currentXp = user.xpInCurrentLevel,
+                        nextLevelXp = user.nextLevelXpNeta,
+                        earned = earned.size,
+                        locked = locked.size,
+                        totalXpK = if (user.xp >= 1000) "%.1fk".format(user.xp / 1000f) else user.xp.toString(),
+                        earnedText = texts.earnedText,
+                        lockedText = texts.lockedText,
+                        xpText = texts.xpText,
+                        levelText = texts.levelText,
+                        emoji = "👑",
+                        lvlName = texts.lvlName
+                    )
+                }
             }
             if (earned.isNotEmpty()) item {
                 RecentlyEarned(

@@ -22,10 +22,6 @@ fun NotificationsScreen(onBack: () -> Unit, appViewModel: AppViewModel) {
     val uiState by appViewModel.uiState.collectAsState()
     val texts = rememberNotificationsTexts()
     var isMasterOn by remember { mutableStateOf(true) }
-    var streakAlert by remember { mutableStateOf(true) }
-    var dailySummary by remember { mutableStateOf(true) }
-    var achievements by remember { mutableStateOf(true) }
-    var social by remember { mutableStateOf(false) }
     val habitReminders = remember { mutableStateMapOf<String, Boolean>() }
     LaunchedEffect(uiState.habits) {
         if (habitReminders.isEmpty()) uiState.habits.forEach {
@@ -33,36 +29,6 @@ fun NotificationsScreen(onBack: () -> Unit, appViewModel: AppViewModel) {
         }
     }
 
-    val alertTypes = listOf(
-        NotificationTypeData(
-            Icons.Default.Whatshot,
-            texts.typeStreak,
-            texts.typeStreakDesc,
-            HabitOrange,
-            streakAlert,
-            { streakAlert = it }),
-        NotificationTypeData(
-            Icons.Default.Notifications,
-            texts.typeSummary,
-            texts.typeSummaryDesc,
-            HabitPurple,
-            dailySummary,
-            { dailySummary = it }),
-        NotificationTypeData(
-            Icons.Default.EmojiEvents,
-            texts.typeAchievements,
-            texts.typeAchievementsDesc,
-            HabitYellow,
-            achievements,
-            { achievements = it }),
-        NotificationTypeData(
-            Icons.Default.People,
-            texts.typeSocial,
-            texts.typeSocialDesc,
-            HabitTeal,
-            social,
-            { social = it })
-    )
 
     LazyColumn(
         Modifier
@@ -80,7 +46,6 @@ fun NotificationsScreen(onBack: () -> Unit, appViewModel: AppViewModel) {
                 texts.masterMuted
             )
         }
-        item { AlertTypesSection(isMasterOn, texts.alertTypesSection, alertTypes) }
         item {
             Text(
                 texts.habitRemindersTitle,

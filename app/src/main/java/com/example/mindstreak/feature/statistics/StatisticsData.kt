@@ -1,10 +1,131 @@
 package com.example.mindstreak.feature.statistics
 
-fun getBarChartData(tabIndex: Int): List<Pair<String, Float>> = when (tabIndex) {
-    0 -> listOf("Mon" to 0.6f, "Tue" to 1.0f, "Wed" to 0.7f, "Thu" to 1.0f, "Fri" to 0.8f, "Sat" to 0.5f, "Sun" to 0.6f)
-    1 -> listOf("Wk 1" to 0.5f, "Wk 2" to 0.7f, "Wk 3" to 0.6f, "Wk 4" to 0.8f)
-    2 -> listOf("Jan" to 0.6f, "Feb" to 0.8f, "Mar" to 0.9f, "Apr" to 0.7f, "May" to 0f, "Jun" to 0f, "Jul" to 0f, "Aug" to 0f, "Sep" to 0f, "Oct" to 0f, "Nov" to 0f, "Dec" to 0f)
-    else -> emptyList()
-}
+import com.example.mindstreak.data.model.Habit
+import java.time.LocalDate
+import java.time.format.TextStyle
+import java.util.Locale
 
-val TREND_DATA = listOf(60f, 65f, 58f, 72f, 75f, 80f, 78f, 85f, 87f)
+class StatisticsProcessor(private val habits: List<Habit>) {
+
+    // 1. Estadísticas de la semana (ej: "33/42")
+    fun getWeekStats(): String {
+        val totalExpected = habits.size * 7
+        val totalDone = habits.sumOf { h ->
+            h.weekHistory.count { it }
+        }
+        return "$totalDone/$totalExpected"
+    }
+
+    // 2. Mejor racha (Fuente de verdad: user o el max de los hábitos)
+    fun getBestStreak(bestUserStreak: Int): String {
+        val maxHabitStreak = habits.maxOfOrNull { it.streak } ?: 0
+        return maxOf(bestUserStreak, maxHabitStreak).toString()
+    }
+
+    // 3. Promedio por día (basado en la última semana)
+    fun getAvgPerDay(): String {
+        if (habits.isEmpty()) return "0.0"
+        val totalDone = habits.sumOf { h ->
+            h.weekHistory.count { it }
+        }
+        val avg = totalDone.toFloat() / 7f
+        return "%.1f".format(avg)
+    }
+
+    // 4. Cambio de tendencia (entre ayer y hoy)
+    fun getTrendChange(): String {
+        val today = LocalDate.now().toString()
+        val yesterday = LocalDate.now().minusDays(1).toString()
+
+        val doneToday = habits.count { h -> h.completionLog[today] == true }
+        val doneYesterday = habits.count { h -> h.completionLog[yesterday] == true }
+
+        if (doneYesterday == 0) {
+            return if (doneToday > 0) "+100%" else "0%"
+        }
+
+        val change = ((doneToday - doneYesterday).toFloat() / doneYesterday.toFloat()) * 100
+        val sign = if (change >= 0) "+" else ""
+        return "$sign${change.toInt()}%"
+    }
+
+    // 5. Datos para el gráfico de barras (Semana)
+    fun getWeeklyBarData(): List<Pair<String, Float>> {
+        val today = LocalDate.now()
+        val mondayOffset = today.dayOfWeek.value - 1
+        val monday = today.minusDays(mondayOffset.toLong())
+
+        return (0..6).map { i ->
+            val date = monday.plusDays(i.toLong())
+            val dateStr = date.toString()
+            val done = habits.count { it.completionLog[dateStr] == true }
+            val total = habits.size
+            val label = date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.getDefault())
+            val percent = if (total > 0) done.toFloat() / total.toFloat() else 0f
+            label to percent
+        }
+    }
+
+    // 5b. Datos para el gráfico de barras (Mes - Agrupado por semanas)
+    fun getMonthlyBarData(): List<Pair<String, Float>> {
+        val today = LocalDate.now()
+        val firstDayOfMonth = today.withDayOfMonth(1)
+        
+        // Vamos a mostrar 4 semanas del mes actual
+        return (0..3).map { i ->
+            val startOfWeek = firstDayOfMonth.plusWeeks(i.toLong())
+            val endOfWeek = startOfWeek.plusDays(6)
+            
+            var totalDone = 0
+            var totalExpected = 0
+            
+            var current = startOfWeek
+            while (!current.isAfter(endOfWeek)) {
+                val dateStr = current.toString()
+                totalDone += habits.count { it.completionLog[dateStr] == true }
+                totalExpected += habits.size
+                current = current.plusDays(1)
+            }
+            
+            val label = "Wk ${i + 1}"
+            val percent = if (totalExpected > 0) totalDone.toFloat() / totalExpected.toFloat() else 0f
+            label to percent
+        }
+    }
+
+    // 5c. Datos para el gráfico de barras (Año - Agrupado por meses)
+    fun getYearlyBarData(): List<Pair<String, Float>> {
+        val currentYear = LocalDate.now().year
+        
+        return (1..12).map { month ->
+            val firstDayOfMonth = LocalDate.of(currentYear, month, 1)
+            val lastDayOfMonth = firstDayOfMonth.plusMonths(1).minusDays(1)
+            
+            var totalDone = 0
+            var totalExpected = 0
+            
+            var current = firstDayOfMonth
+            while (!current.isAfter(lastDayOfMonth)) {
+                val dateStr = current.toString()
+                totalDone += habits.count { it.completionLog[dateStr] == true }
+                totalExpected += habits.size
+                current = current.plusDays(1)
+            }
+            
+            val label = firstDayOfMonth.month.getDisplayName(TextStyle.SHORT, Locale.getDefault())
+            val percent = if (totalExpected > 0) totalDone.toFloat() / totalExpected.toFloat() else 0f
+            label to percent
+        }
+    }
+
+    // 6. Datos para la tendencia (últimos 7 días)
+    fun getTrendData(): List<Float> {
+        val today = LocalDate.now()
+        return (6 downTo 0).map { i ->
+            val date = today.minusDays(i.toLong()).toString()
+            val done = habits.count { it.completionLog[date] == true }
+            val total = habits.size
+            if (total > 0) (done.toFloat() / total.toFloat()) * 100f else 0f
+        }
+    }
+}

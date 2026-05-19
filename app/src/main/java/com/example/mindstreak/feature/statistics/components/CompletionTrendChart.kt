@@ -5,6 +5,7 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.TrendingDown
 import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -18,6 +19,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mindstreak.core.theme.Destructive
 import com.example.mindstreak.core.theme.HabitTeal
 import kotlin.math.roundToInt
 
@@ -31,6 +33,10 @@ fun CompletionTrendChart(
 ) {
     var selectedIndex by remember { mutableIntStateOf(-1) }
     val onSurfaceColor = MaterialTheme.colorScheme.onSurface
+    
+    val isNegative = trendText.startsWith("-")
+    val trendColor = if (isNegative) Destructive else HabitTeal
+    val trendIcon = if (isNegative) Icons.AutoMirrored.Filled.TrendingDown else Icons.AutoMirrored.Filled.TrendingUp
 
     Card(
         modifier = modifier
@@ -56,14 +62,14 @@ fun CompletionTrendChart(
                     horizontalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     Icon(
-                        Icons.AutoMirrored.Filled.TrendingUp,
+                        trendIcon,
                         null,
-                        tint = HabitTeal,
+                        tint = trendColor,
                         modifier = Modifier.size(14.dp)
                     )
                     Text(
                         trendText,
-                        color = HabitTeal,
+                        color = trendColor,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold
                     )

@@ -18,8 +18,6 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun StreakHeader(
     title: String,
-    shieldLabel: String,
-    color: Color,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -34,21 +32,5 @@ fun StreakHeader(
             fontWeight = FontWeight.ExtraBold,
             modifier = Modifier.weight(1f)
         )
-        Row(
-            modifier = Modifier
-                .background(color.copy(alpha = 0.1f), CircleShape)
-                .border(1.dp, color.copy(alpha = 0.3f), CircleShape)
-                .padding(horizontal = 12.dp, vertical = 6.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(6.dp)
-        ) {
-            Icon(
-                Icons.Default.Shield,
-                contentDescription = null,
-                modifier = Modifier.size(12.dp),
-                tint = color
-            )
-            Text(shieldLabel, color = color, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-        }
     }
 }
