@@ -18,6 +18,9 @@ import com.example.mindstreak.data.model.Category
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.combine
 
+import io.github.jan.supabase.postgrest.query.Count
+import io.github.jan.supabase.postgrest.query.Columns
+
 class SupabaseHabitRepository : HabitRepository {
 
     private val client by lazy { SupabaseClientProvider.client }
@@ -74,6 +77,7 @@ class SupabaseHabitRepository : HabitRepository {
                             .select {
                                 filter {
                                     isIn("id", habitIdsForToday)
+                                    eq("is_active", true)
                                 }
                             }
                             .decodeList<HabitDto>()
@@ -98,6 +102,74 @@ class SupabaseHabitRepository : HabitRepository {
                 flowOf(emptyList())
             }
         }
+
+    override val habitsAllFlow: Flow<List<Habit>> = combine(
+        client.auth.sessionStatus,
+        refreshTrigger
+    ) { status, _ -> status }
+        .flatMapLatest { status ->
+            if (status is SessionStatus.Authenticated) {
+                flow {
+                    try {
+                        val userId = status.session.user?.id ?: return@flow
+                        val today = java.time.LocalDate.now()
+                        val firstOfMonth = today.withDayOfMonth(1)
+                        
+                        // Obtener todos los hábitos activos
+                        val habitsDto = client.postgrest["habits"]
+                            .select {
+                                filter {
+                                    eq("user_id", userId)
+                                    eq("is_active", true)
+                                }
+                            }
+                            .decodeList<HabitDto>()
+
+                        // Obtener logs del mes
+                        val logsDto = client.postgrest["habit_logs"]
+                            .select {
+                                filter {
+                                    eq("user_id", userId)
+                                    gte("completed_date", firstOfMonth.toString())
+                                    lte("completed_date", today.toString())
+                                }
+                            }
+                            .decodeList<HabitLogDto>()
+
+                        val logsByHabit = logsDto.groupBy { it.habitId }
+                        val habits = habitsDto.map { hDto ->
+                            val hLogs = logsByHabit[hDto.id] ?: emptyList()
+                            val completionLog = hLogs.associate { it.completedDate to it.completed }
+                            hDto.toDomain(completionLog)
+                        }
+                        emit(habits)
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Error in habitsAllFlow: ${e.message}")
+                        emit(emptyList())
+                    }
+                }
+            } else {
+                flowOf(emptyList())
+            }
+        }
+
+    override suspend fun getTotalHabitLogsCount(): Int {
+        val userId = client.auth.currentSessionOrNull()?.user?.id ?: return 0
+        return try {
+            val response = client.postgrest["habit_logs"]
+                .select(columns = Columns.list("id")) {
+                    count(Count.EXACT)
+                    filter {
+                        eq("user_id", userId)
+                        eq("completed", true)
+                    }
+                }
+            response.countOrNull()?.toInt() ?: 0
+        } catch (e: Exception) {
+            Log.e(TAG, "Error getting total logs count: ${e.message}")
+            0
+        }
+    }
 
     override fun refresh() {
         Log.d(TAG, "Refreshing habits manually")
@@ -127,16 +199,10 @@ class SupabaseHabitRepository : HabitRepository {
     override suspend fun toggleHabitLog(habitId: String, date: String, completed: Boolean) {
         val userId = client.auth.currentSessionOrNull()?.user?.id ?: return
         try {
-            Log.d(TAG, "Toggling log for habit $habitId on $date to $completed")
-            client.postgrest["habit_logs"].update({
-                HabitLogDto::completed setTo completed
-            }) {
-                filter {
-                    eq("habit_id", habitId)
-                    eq("completed_date", date)
-                    eq("user_id", userId)
-                }
-            }
+            Log.d(TAG, "Upserting log for habit $habitId on $date to $completed")
+            val log = HabitLogDto(habitId = habitId, userId = userId, completedDate = date, completed = completed)
+            client.postgrest["habit_logs"].upsert(log)
+            Log.d(TAG, "Log toggled successfully via upsert")
         } catch (e: Exception) {
             Log.e(TAG, "Error toggling habit log: ${e.message}")
         }
@@ -152,14 +218,19 @@ class SupabaseHabitRepository : HabitRepository {
     }
 
     override suspend fun deleteHabit(id: String) {
+        val userId = client.auth.currentSessionOrNull()?.user?.id ?: return
         try {
-            client.postgrest["habits"].delete {
+            // Cambio de enfoque: Soft delete cambiando is_active a FALSE
+            client.postgrest["habits"].update({
+                HabitDto::isActive setTo false
+            }) {
                 filter {
                     eq("id", id)
+                    eq("user_id", userId)
                 }
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error deleting habit: ${e.message}")
+            Log.e(TAG, "Error soft-deleting habit: ${e.message}")
         }
     }
 

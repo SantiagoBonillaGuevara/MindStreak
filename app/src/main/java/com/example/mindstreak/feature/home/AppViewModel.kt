@@ -19,12 +19,17 @@ import com.example.mindstreak.data.model.User
 data class AppUiState(
     val user: User? = null,
     val habits: List<Habit> = emptyList(),
+    val allHabits: List<Habit> = emptyList(),
     val categories: List<Category> = emptyList(),
     val achievements: List<Achievement> = emptyList(),
     val currentStreak: Int = 0,
+    val bestStreak: Int = 0,
     val completedToday: Int = 0,
     val totalHabits: Int = 0,
     val completionPercent: Int = 0,
+    val totalLogs: Int = 0,
+    val monthlyRate: Int = 0,
+    val activeDaysInMonth: Set<String> = emptySet()
 )
 
 class AppViewModel(application: Application) : AndroidViewModel(application) {
@@ -34,6 +39,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val userRepository = RepositoryProvider.getUserRepository(application)
 
     private val _habits = MutableStateFlow<List<Habit>>(emptyList())
+    private val _allHabits = MutableStateFlow<List<Habit>>(emptyList())
+    private val _totalLogs = MutableStateFlow(0)
     private val _categories = MutableStateFlow<List<Category>>(emptyList())
     private val _achievements = MutableStateFlow(MockData.ACHIEVEMENTS)
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -41,14 +48,21 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     val uiState: StateFlow<AppUiState> = combine(
         userRepository.userFlow,
         _habits,
+        _allHabits,
+        _totalLogs,
         _categories,
         _achievements
-    ) { user, habits, categories, achievements ->
-        Log.d(TAG, "Combining UI State - User: ${user?.name}, Habits: ${habits.size}, Categories: ${categories.size}")
-        deriveUiState(user, habits, categories, achievements)
+    ) { array ->
+        val user = array[0] as? User
+        val habits = array[1] as List<Habit>
+        val allHabits = array[2] as List<Habit>
+        val totalLogs = array[3] as Int
+        val categories = array[4] as List<Category>
+        val achievements = array[5] as List<Achievement>
+        deriveUiState(user, habits, allHabits, totalLogs, categories, achievements)
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.Eagerly, // Cambiado a Eagerly para asegurar emisión inmediata
+        started = SharingStarted.Eagerly,
         initialValue = AppUiState(),
     )
 
@@ -65,13 +79,23 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
-        // Observar hábitos
+        // Observar hábitos de hoy
         viewModelScope.launch {
-            Log.d(TAG, "Starting habits collection")
             repository.habitsFlow.collect { stored ->
-                Log.d(TAG, "Habits flow emitted: ${stored.size} items")
                 _habits.value = stored
             }
+        }
+
+        // Observar todos los hábitos del mes
+        viewModelScope.launch {
+            repository.habitsAllFlow.collect { stored ->
+                _allHabits.value = stored
+            }
+        }
+
+        // Cargar total de logs
+        viewModelScope.launch {
+            _totalLogs.value = repository.getTotalHabitLogsCount()
         }
 
         // Cargar categorías
@@ -84,18 +108,18 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         Log.d(TAG, "data refresh triggered")
         userRepository.refresh()
         repository.refresh()
+        viewModelScope.launch {
+            _totalLogs.value = repository.getTotalHabitLogsCount()
+        }
     }
 
     fun toggleHabit(id: String) {
         val today = todayString()
         val habit = _habits.value.find { it.id == id } ?: return
         
-        // No permitir toggle si ya está completado (según el requerimiento: de false a true)
-        // O si el usuario quiere poder apagarlo, podríamos quitar el check de !habit.completedToday
         if (!habit.completedToday) {
             viewModelScope.launch {
                 repository.toggleHabitLog(id, today, true)
-                // Después de actualizar, refrescamos para que los triggers de BD actualicen rachas y progreso
                 refreshData()
             }
         }
@@ -119,28 +143,46 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun todayString(): String = LocalDate.now().format(formatter)
 
-    private fun deriveWeekHistory(log: Map<String, Boolean>): List<Boolean> {
-        val today = LocalDate.now()
-        val mondayOffset = today.dayOfWeek.value - 1
-        return (0..6).map { i ->
-            val date = today.minusDays(mondayOffset.toLong()).plusDays(i.toLong())
-            log[date.format(formatter)] == true
-        }
-    }
-
-    private fun deriveUiState(user: User?, habits: List<Habit>, categories: List<Category>, achievements: List<Achievement>): AppUiState {
+    private fun deriveUiState(
+        user: User?, 
+        habits: List<Habit>, 
+        allHabits: List<Habit>,
+        totalLogs: Int,
+        categories: List<Category>, 
+        achievements: List<Achievement>
+    ): AppUiState {
         val completedToday = habits.count { it.completedToday }
         val total = habits.size
+        
+        // Calcular tasa mensual
+        val today = LocalDate.now()
+        val daysInMonth = today.dayOfMonth
+        val totalExpected = allHabits.size * daysInMonth
+        val totalCompletedThisMonth = allHabits.sumOf { h -> 
+            h.completionLog.values.count { it } 
+        }
+        val monthlyRate = if (totalExpected == 0) 0 else (totalCompletedThisMonth * 100) / totalExpected
+        
+        // Calcular días activos (algún hábito completado)
+        val activeDays = allHabits.flatMap { h -> 
+            h.completionLog.filter { it.value }.keys 
+        }.toSet()
+
         return AppUiState(
             user = user,
             habits = habits,
+            allHabits = allHabits,
             categories = categories,
             achievements = achievements,
-            currentStreak = habits.maxOfOrNull { it.streak } ?: 0,
+            currentStreak = user?.totalStreak ?: 0,
+            bestStreak = user?.bestStreak ?: 0,
             completedToday = completedToday,
             totalHabits = total,
             completionPercent = if (total == 0) 0 else (completedToday * 100) / total,
+            totalLogs = totalLogs,
+            monthlyRate = monthlyRate,
+            activeDaysInMonth = activeDays
         )
     }
-    }
+}
 

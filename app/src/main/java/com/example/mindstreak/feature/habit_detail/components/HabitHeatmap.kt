@@ -44,26 +44,6 @@ fun HabitHeatmap(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(monthTitle, fontSize = 15.sp, fontWeight = FontWeight.Bold)
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    Text(
-                        lessLabel,
-                        fontSize = 9.sp,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
-                    )
-                    levelColors.forEach { color ->
-                        Box(Modifier
-                            .size(10.dp)
-                            .background(color, RoundedCornerShape(2.dp)))
-                    }
-                    Text(
-                        moreLabel,
-                        fontSize = 9.sp,
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
-                    )
-                }
             }
 
             Spacer(Modifier.height(12.dp))

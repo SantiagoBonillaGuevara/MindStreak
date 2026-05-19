@@ -37,49 +37,19 @@ fun StreakScreen(appViewModel: AppViewModel, navController: NavController) {
                 texts.streakLabel,
                 texts.sinceText,
                 texts.bestEverLabel,
-                "34",
+                uiState.bestStreak.toString(),
                 texts.totalLogsLabel,
-                "342",
+                uiState.totalLogs.toString(),
                 texts.thisMonthLabel,
-                "87%"
+                "${uiState.monthlyRate}%"
             )
         }
-        item {
-            NextMilestoneCard(
-                uiState.currentStreak,
-                orangeMain,
-                texts.nextMilestoneTitle,
-                texts.awayTemplate,
-                texts.dayLabelTemplate,
-                30
-            )
-        }
-        item {
-            Text(
-                texts.milestonesTitle,
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }
-        itemsIndexed(MILESTONES) { _, m ->
-            MilestoneItem(
-                m.emoji,
-                m.label,
-                m.days,
-                m.achieved,
-                m.current,
-                uiState.currentStreak,
-                orangeMain,
-                texts.daysLabel,
-                texts.remainingTemplate
-            )
-        }
+
         item {
             CalendarCard(
-                texts.calendarMonth,
                 texts.streakDayLabel,
                 texts.dayLabels,
+                uiState.activeDaysInMonth,
                 orangeMain
             )
         }
@@ -98,7 +68,7 @@ fun StreakScreen(appViewModel: AppViewModel, navController: NavController) {
                 fontWeight = FontWeight.Bold
             )
         }
-        itemsIndexed(uiState.habits) { _, habit ->
+        itemsIndexed(uiState.allHabits) { _, habit ->
             HabitStreakRow(
                 habit.emoji,
                 habit.name,

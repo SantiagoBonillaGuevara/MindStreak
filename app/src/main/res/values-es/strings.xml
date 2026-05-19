@@ -183,7 +183,7 @@
     <string name="habit_detail_completion_rate_title">Tasa de Cumplimiento</string>
     <string name="habit_detail_completion_rate_subtitle">Últimos 30 días</string>
     <string name="habit_detail_comparison_text">+8% vs el mes pasado</string>
-    <string name="habit_detail_edit">Editar</string>
+    <string name="habit_detail_edit">Editar (proximamente)</string>
     <string name="habit_detail_delete_desc">Eliminar hábito</string>
 
     <!-- Notifications Screen -->

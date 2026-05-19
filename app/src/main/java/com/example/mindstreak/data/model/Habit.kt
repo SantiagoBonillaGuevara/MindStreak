@@ -12,6 +12,8 @@ data class Habit(
     val frequency: String,
     val completionRate: Float,
     val reminderTime: String,
+    val bestStreak: Int,
+    val isActive: Boolean = true,
     val weekHistory: List<Boolean>,          // últimos 7 días
     val completionLog: Map<String, Boolean> = emptyMap(), // "YYYY-MM-DD" → completed
 )

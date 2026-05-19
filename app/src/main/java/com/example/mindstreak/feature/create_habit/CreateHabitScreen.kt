@@ -57,8 +57,9 @@ fun CreateHabitScreen(appViewModel: AppViewModel, onBack: () -> Unit, onCreated:
                     frequency = selectedFreq,
                     completionRate = 0f,
                     reminderTime = selectedTime,
-                    weekHistory = List(7) { false })
-            )
+                    bestStreak = 0,
+                    isActive = true,
+                    weekHistory = List(7) { false })            )
             scope.launch { snackbarHostState.showSnackbar(texts.addedMsg.format(name.trim())) }; onCreated()
         }
     }

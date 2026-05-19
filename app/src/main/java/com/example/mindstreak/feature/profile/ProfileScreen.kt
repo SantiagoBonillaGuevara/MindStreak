@@ -80,11 +80,6 @@ fun ProfileScreen(
             Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            QuickNavButton(
-                "🏆",
-                texts.achievements,
-                Modifier.weight(1f)
-            ) { onNavigate("achievements") }
             QuickNavButton("🎁", texts.rewards, Modifier.weight(1f)) { onNavigate("rewards") }
             QuickNavButton(
                 "🔔",

@@ -54,7 +54,7 @@
     <string name="habit_detail_completion_rate_subtitle">Last 30 days</string>
     <string name="habit_detail_completion_rate_title">Completion Rate</string>
     <string name="habit_detail_delete_desc">Delete habit</string>
-    <string name="habit_detail_edit">Edit</string>
+    <string name="habit_detail_edit">Edit (Soon)</string>
     <string name="habit_detail_heatmap_month">April 2026</string>
     <string name="habit_detail_less">Less</string>
     <string name="habit_detail_more">More</string>

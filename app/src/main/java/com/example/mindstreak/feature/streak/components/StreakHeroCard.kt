@@ -88,11 +88,6 @@ fun StreakHeroCard(
                     fontWeight = FontWeight.ExtraBold,
                     color = color.copy(alpha = 0.8f)
                 )
-                Text(
-                    sinceText,
-                    fontSize = 13.sp,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
-                )
                 Row(
                     modifier = Modifier.padding(top = 24.dp),
                     horizontalArrangement = Arrangement.spacedBy(24.dp)

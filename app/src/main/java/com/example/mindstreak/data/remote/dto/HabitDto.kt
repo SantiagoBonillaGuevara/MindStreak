@@ -44,6 +44,8 @@ fun HabitDto.toDomain(completionLog: Map<String, Boolean> = emptyMap()): Habit {
         frequency = frequency.lowercase().replaceFirstChar { it.uppercase() }, // e.g., "DAILY" -> "Daily"
         completionRate = completionRate,
         reminderTime = reminderTime ?: "08:00",
+        bestStreak = bestStreak,
+        isActive = isActive,
         weekHistory = weekHistory,
         completionLog = completionLog
     )
@@ -60,9 +62,9 @@ fun HabitDto.toDomain(completionLog: Map<String, Boolean> = emptyMap()): Habit {
         color = color,
         frequency = frequency.uppercase(), // Maps "Daily" to "DAILY" for Supabase Enum
         reminderTime = reminderTime,
-        isActive = true,
+        isActive = isActive,
         currentStreak = streak,
-        bestStreak = streak, // Simplification
+        bestStreak = bestStreak,
         completionRate = completionRate,
         lastCompletedDate = lastCompletedDate
     )

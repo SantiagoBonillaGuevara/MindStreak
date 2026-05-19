@@ -15,14 +15,31 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+import java.time.LocalDate
+import java.time.YearMonth
+import java.time.format.TextStyle
+import java.util.Locale
+
 @Composable
 fun CalendarCard(
-    monthTitle: String,
     streakDayLabel: String,
     dayLabels: List<String>,
+    activeDays: Set<String>, // "YYYY-MM-DD"
     color: Color,
     modifier: Modifier = Modifier
 ) {
+    val today = LocalDate.now()
+    val currentMonth = YearMonth.from(today)
+    val firstOfMonth = currentMonth.atDay(1)
+    val lastOfMonth = currentMonth.atEndOfMonth()
+    val monthTitle = firstOfMonth.month.getDisplayName(TextStyle.FULL, Locale.getDefault())
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } + 
+        " ${today.year}"
+
+    val firstDayOfWeek = firstOfMonth.dayOfWeek.value % 7 // 0=Sun, 1=Mon, ..., 6=Sat (adjusting from 1=Mon, ..., 7=Sun)
+    // If you prefer Monday as first day:
+    val startOffset = firstOfMonth.dayOfWeek.value - 1 // 0=Mon, ..., 6=Sun
+
     Card(
         modifier = modifier.padding(20.dp),
         shape = RoundedCornerShape(24.dp),
@@ -66,33 +83,53 @@ fun CalendarCard(
                         )
                     }
                 }
-                (1..5).forEach { week ->
+                
+                val daysInMonth = currentMonth.lengthOfMonth()
+                val totalSlots = 42 // 6 weeks * 7 days
+                
+                (0 until 6).forEach { week ->
                     Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        (1..7).forEach { day ->
-                            val dayNum = (week - 1) * 7 + day - 4
+                        (0 until 7).forEach { dayOfWeek ->
+                            val slotIndex = week * 7 + dayOfWeek
+                            val dayNum = slotIndex - startOffset + 1
+                            
+                            val isWithinMonth = dayNum in 1..daysInMonth
+                            val dateStr = if (isWithinMonth) {
+                                currentMonth.atDay(dayNum).toString()
+                            } else null
+                            
+                            val isActive = dateStr != null && activeDays.contains(dateStr)
+                            val isToday = dateStr != null && LocalDate.now().toString() == dateStr
+
                             Box(
                                 modifier = Modifier
                                     .weight(1f)
                                     .height(28.dp)
                                     .clip(RoundedCornerShape(8.dp))
                                     .background(
-                                        if (dayNum in 1..8) color.copy(alpha = 0.3f) else MaterialTheme.colorScheme.secondary.copy(
-                                            alpha = 0.2f
-                                        )
+                                        when {
+                                            isActive -> color.copy(alpha = 0.3f)
+                                            isWithinMonth -> MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f)
+                                            else -> Color.Transparent
+                                        }
                                     )
                                     .border(
-                                        if (dayNum == 8) 2.dp else 0.dp,
-                                        color,
+                                        if (isToday) 1.dp else 0.dp,
+                                        if (isToday) color else Color.Transparent,
                                         RoundedCornerShape(8.dp)
                                     ),
                                 contentAlignment = Alignment.Center
                             ) {
-                                if (dayNum in 1..30) {
+                                if (isWithinMonth) {
                                     Text(
                                         "$dayNum",
                                         fontSize = 10.sp,
-                                        fontWeight = FontWeight.Bold,
-                                        color = if (dayNum == 8) color else MaterialTheme.colorScheme.onSurface
+                                        fontWeight = if (isActive || isToday) FontWeight.Bold else FontWeight.Normal,
+                                        color = when {
+                                            isActive -> color
+                                            isToday -> color
+                                            else -> MaterialTheme.colorScheme.onSurface
+                                        }
                                     )
                                 }
                             }

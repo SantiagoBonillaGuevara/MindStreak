@@ -183,7 +183,7 @@
     <string name="habit_detail_completion_rate_title">Completion Rate</string>
     <string name="habit_detail_completion_rate_subtitle">Last 30 days</string>
     <string name="habit_detail_comparison_text">+8% vs last month</string>
-    <string name="habit_detail_edit">Edit</string>
+    <string name="habit_detail_edit">Edit (Soon)</string>
     <string name="habit_detail_delete_desc">Delete habit</string>
 
     <!-- Notifications Screen -->

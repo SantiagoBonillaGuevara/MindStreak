@@ -15,6 +15,10 @@ import com.example.mindstreak.feature.habit_detail.components.*
 import androidx.core.graphics.toColorInt
 import kotlin.math.roundToInt
 
+import java.time.LocalDate
+import java.time.format.TextStyle
+import java.util.Locale
+
 @Composable
 fun HabitDetailScreen(habitId: String, appViewModel: AppViewModel, onBack: () -> Unit) {
     val uiState by appViewModel.uiState.collectAsState()
@@ -30,6 +34,15 @@ fun HabitDetailScreen(habitId: String, appViewModel: AppViewModel, onBack: () ->
             }
         }
         return
+    }
+
+    val categoryName = remember(uiState.categories, habit.category) {
+        uiState.categories.find { it.id == habit.category }?.name ?: habit.category
+    }
+    val processor = remember(habit) { HabitDetailProcessor(habit) }
+    val currentMonthName = remember { 
+        LocalDate.now().month.getDisplayName(TextStyle.FULL, Locale.getDefault())
+            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
     }
 
     val hColor = remember(habit.color) {
@@ -56,11 +69,11 @@ fun HabitDetailScreen(habitId: String, appViewModel: AppViewModel, onBack: () ->
         HabitHeroCard(
             habit.name,
             habit.emoji,
-            habit.category,
+            categoryName,
             habit.frequency,
             habit.reminderTime,
             habit.streak.toString(),
-            "34",
+            habit.bestStreak.toString(),
             "${(habit.completionRate * 100).roundToInt()}%",
             hColor,
             texts.statsLabels,
@@ -68,9 +81,9 @@ fun HabitDetailScreen(habitId: String, appViewModel: AppViewModel, onBack: () ->
         )
         HabitWeekProgress(habit.weekHistory, hColor, texts.thisWeekTitle, texts.daysInitialLabels)
         HabitHeatmap(
-            texts.heatmapMonth,
+            currentMonthName,
             levelColors,
-            MONTH_GRID,
+            processor.getMonthGrid(),
             texts.lessLabel,
             texts.moreLabel,
             texts.daysInitialLabels
@@ -80,7 +93,7 @@ fun HabitDetailScreen(habitId: String, appViewModel: AppViewModel, onBack: () ->
             hColor,
             texts.completionRateTitle,
             texts.completionRateSubtitle,
-            texts.comparisonText
+            processor.getMonthlyComparison()
         )
         HabitDetailActions(
             { },

@@ -2,7 +2,6 @@ package com.example.mindstreak.data.local
 
 import androidx.datastore.core.Serializer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.InputStream
 import java.io.OutputStream
@@ -28,6 +27,8 @@ data class SerializableHabit(
     val frequency: String,
     val completionRate: Float,
     val reminderTime: String,
+    val bestStreak: Int,
+    val isActive: Boolean = true,
     val weekHistory: List<Boolean>,
     val completionLog: Map<String, Boolean> = emptyMap(),
 )
@@ -36,13 +37,13 @@ data class SerializableHabit(
 fun Habit.toSerializable() = SerializableHabit(
     id, name, emoji, category, color, streak,
     completedToday, lastCompletedDate, frequency,
-    completionRate, reminderTime, weekHistory, completionLog
+    completionRate, reminderTime, bestStreak, isActive, weekHistory, completionLog
 )
 
 fun SerializableHabit.toHabit() = Habit(
     id, name, emoji, category, color, streak,
     completedToday, lastCompletedDate, frequency,
-    completionRate, reminderTime, weekHistory, completionLog
+    completionRate, reminderTime, bestStreak, isActive, weekHistory, completionLog
 )
 
 object HabitsSerializer : Serializer<HabitsStore> {

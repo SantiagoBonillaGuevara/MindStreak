@@ -82,10 +82,8 @@ fun NavGraphBuilder.mainGraph(
 
     composable(Screen.Profile.route) {
         ProfileScreen(onNavigate = { route ->
-            if (route == Screen.Auth.route) {
-                navController.navigate(route) {
-                    popUpTo(0) { inclusive = true }
-                }
+            navController.navigate(route) {
+                popUpTo(0) { inclusive = true }
             }
         })
     }

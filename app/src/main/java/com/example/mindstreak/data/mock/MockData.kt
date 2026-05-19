@@ -25,6 +25,7 @@ object MockData {
             streak = 21, completedToday = true,
             frequency = "daily", completionRate = 0.87f,
             reminderTime = "07:00",
+            bestStreak = 30, isActive = true,
             weekHistory = listOf(true, true, true, false, true, true, true),
         ),
         Habit(
@@ -33,6 +34,7 @@ object MockData {
             streak = 14, completedToday = true,
             frequency = "daily", completionRate = 0.73f,
             reminderTime = "07:30",
+            bestStreak = 20, isActive = true,
             weekHistory = listOf(true, false, true, true, true, true, true),
         ),
         Habit(
@@ -41,6 +43,7 @@ object MockData {
             streak = 28, completedToday = true,
             frequency = "daily", completionRate = 0.92f,
             reminderTime = "08:00",
+            bestStreak = 45, isActive = true,
             weekHistory = listOf(true, true, true, true, true, true, true),
         ),
         Habit(
@@ -49,6 +52,7 @@ object MockData {
             streak = 7, completedToday = true,
             frequency = "daily", completionRate = 0.65f,
             reminderTime = "21:00",
+            bestStreak = 14, isActive = true,
             weekHistory = listOf(true, false, false, true, true, true, true),
         ),
         Habit(
@@ -57,6 +61,7 @@ object MockData {
             streak = 5, completedToday = false,
             frequency = "daily", completionRate = 0.58f,
             reminderTime = "22:30",
+            bestStreak = 10, isActive = true,
             weekHistory = listOf(false, true, true, false, true, true, false),
         ),
         Habit(
@@ -65,6 +70,7 @@ object MockData {
             streak = 12, completedToday = false,
             frequency = "daily", completionRate = 0.71f,
             reminderTime = "14:00",
+            bestStreak = 15, isActive = true,
             weekHistory = listOf(true, true, false, true, true, false, true),
         ),
     )

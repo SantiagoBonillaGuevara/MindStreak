@@ -17,6 +17,8 @@ class LocalHabitRepository(private val context: Context) : HabitRepository {
     override val habitsFlow: Flow<List<Habit>> = context.habitsDataStore.data
         .map { store -> store.habits.map { it.toHabit() } }
 
+    override val habitsAllFlow: Flow<List<Habit>> = habitsFlow
+
     override suspend fun saveHabits(habits: List<Habit>) {
         context.habitsDataStore.updateData {
             HabitsStore(habits.map { it.toSerializable() })
@@ -43,11 +45,24 @@ class LocalHabitRepository(private val context: Context) : HabitRepository {
         date: String,
         completed: Boolean
     ) {
-        TODO("Not yet implemented")
+        val currentHabits = habitsFlow.first()
+        val updatedHabits = currentHabits.map { habit ->
+            if (habit.id == habitId) {
+                val newLog = habit.completionLog.toMutableMap()
+                newLog[date] = completed
+                habit.copy(completionLog = newLog)
+            } else habit
+        }
+        saveHabits(updatedHabits)
     }
 
     override suspend fun getCategories(): List<Category> {
         return MockData.CATEGORIES
+    }
+
+    override suspend fun getTotalHabitLogsCount(): Int {
+        val currentHabits = habitsFlow.first()
+        return currentHabits.sumOf { it.completionLog.values.count { completed -> completed } }
     }
 
     override fun refresh() {
