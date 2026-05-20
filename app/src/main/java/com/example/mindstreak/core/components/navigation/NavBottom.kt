@@ -8,9 +8,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.mindstreak.core.navigation.NAV_ITEMS
+import com.example.mindstreak.core.navigation.Screen
+import com.example.mindstreak.data.model.User
 
 @Composable
-fun NavBottom(currentRoute: String?, onNavigate: (String) -> Unit) {
+fun NavBottom(
+    currentRoute: String?,
+    user: User? = null,
+    onNavigate: (String) -> Unit
+) {
 
     val navBackground = MaterialTheme.colorScheme.surface
     val navBorder = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
@@ -27,9 +33,16 @@ fun NavBottom(currentRoute: String?, onNavigate: (String) -> Unit) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             NAV_ITEMS.forEach { item ->
+                val isEnabled = if (item.route == Screen.Rewards.route) {
+                    user?.isInstitutional == true
+                } else {
+                    true
+                }
+
                 NavItemButton(
                     item = item,
                     active = currentRoute == item.route,
+                    enabled = isEnabled,
                     onClick = { onNavigate(item.route) },
                 )
             }

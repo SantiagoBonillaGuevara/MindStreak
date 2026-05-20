@@ -1,5 +1,6 @@
 package com.example.mindstreak.feature.profile
 
+import android.annotation.SuppressLint
 import android.os.Build
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -21,6 +22,7 @@ import com.example.mindstreak.feature.home.AppViewModel
 import com.example.mindstreak.feature.notifications.NotificationPermissionHelper
 import kotlinx.coroutines.launch
 
+@SuppressLint("LocalContextGetResourceValueCall")
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun ProfileScreen(
@@ -96,17 +98,10 @@ fun ProfileScreen(
             QuickNavButton(
                 "🎁",
                 texts.rewards,
-                Modifier.weight(1f)
+                Modifier.weight(1f),
+                enabled = user?.isInstitutional == true
             ) {
-                if (user?.isInstitutional == true) {
-                    onNavigate("rewards")
-                } else {
-                    scope.launch {
-                        snackbarHostState.showSnackbar(
-                            context.getString(com.example.mindstreak.R.string.institutional_restricted_msg)
-                        )
-                    }
-                }
+                onNavigate("rewards")
             }
 
             QuickNavButton(

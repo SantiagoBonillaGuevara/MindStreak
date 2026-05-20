@@ -24,20 +24,23 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.res.stringResource
 import com.example.mindstreak.core.navigation.NavItem
 import com.example.mindstreak.core.theme.HabitPurple
+import androidx.compose.ui.graphics.graphicsLayer
 
 @Composable
 fun NavItemButton(
     item: NavItem,
     active: Boolean,
+    enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
     val activeColor = HabitPurple
     val inactiveColor = MaterialTheme.colorScheme.onSurfaceVariant
     val activeBg = activeColor.copy(alpha = 0.12f)
     val label = stringResource(item.labelRes)
+    val contentAlpha = if (enabled) 1f else 0.4f
 
     val contentColor by animateColorAsState(
-        targetValue = if (active) activeColor else inactiveColor,
+        targetValue = (if (active) activeColor else inactiveColor).copy(alpha = contentAlpha),
         animationSpec = tween(200),
         label = "navColor_${item.route}",
     )
@@ -46,7 +49,7 @@ fun NavItemButton(
         modifier = Modifier
             .clip(RoundedCornerShape(12.dp))
             .background(if (active) activeBg else Color.Transparent)
-            .clickable(onClick = onClick)
+            .clickable(enabled = enabled, onClick = onClick)
             .padding(horizontal = 12.dp, vertical = 4.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(2.dp),
@@ -56,6 +59,7 @@ fun NavItemButton(
                 text = item.emoji,
                 fontSize = 20.sp,
                 lineHeight = 20.sp,
+                modifier = Modifier.graphicsLayer(alpha = contentAlpha)
             )
         } else if (item.icon != null) {
             Icon(

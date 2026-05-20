@@ -1,5 +1,8 @@
 package com.example.mindstreak.core.navigation
 
+import android.annotation.SuppressLint
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
@@ -17,6 +20,8 @@ import com.example.mindstreak.core.components.navigation.NavBottom
 import com.example.mindstreak.feature.home.AppViewModel
 import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.S)
+@SuppressLint("LocalContextGetResourceValueCall")
 @Composable
 fun AppNavigation(appViewModel: AppViewModel) {
     val navController = rememberNavController()
@@ -41,6 +46,7 @@ fun AppNavigation(appViewModel: AppViewModel) {
                 ) {
                     NavBottom(
                         currentRoute = currentRoute,
+                        user = uiState.user,
                         onNavigate = { route ->
                             if (currentRoute != route) {
                                 if (route == Screen.Rewards.route && uiState.user?.isInstitutional != true) {
