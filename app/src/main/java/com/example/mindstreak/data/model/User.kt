@@ -33,12 +33,4 @@ data class User(
     // Devuelve el total neta requerida SOLO para este nivel (Sustituto de la antigua variable next_level_xp en UI)
     val nextLevelXpNeta: Int
         get() = getNextLevelRequiredXp() - getLevelStartXp()
-
-    // Progreso porcentual ideal para el ProgressRing o sliders de UI (rango 0.0f a 1.0f)
-    val levelProgressPercentage: Float
-        get() {
-            val totalNeeded = nextLevelXpNeta
-            if (totalNeeded <= 0) return 1.0f
-            return (xpInCurrentLevel.toFloat() / totalNeeded.toFloat()).coerceIn(0.0f, 1.0f)
-        }
 }

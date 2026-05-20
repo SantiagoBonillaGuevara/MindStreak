@@ -22,7 +22,7 @@ object RepositoryProvider {
         }
     }
 
-    fun getUserRepository(context: Context): UserRepository {
+    fun getUserRepository(): UserRepository {
         return userRepository ?: synchronized(this) {
             val instance = if (USE_SUPABASE) {
                 SupabaseUserRepository()

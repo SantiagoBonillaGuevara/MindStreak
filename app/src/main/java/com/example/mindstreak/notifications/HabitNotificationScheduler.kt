@@ -12,7 +12,7 @@ import java.util.*
 class HabitNotificationScheduler(private val context: Context) {
 
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    private val TAG = "HabitNotificationSched"
+    private val tag = "HabitNotificationSched"
 
     @SuppressLint("ScheduleExactAlarm")
     fun schedule(habit: Habit) {
@@ -52,9 +52,9 @@ class HabitNotificationScheduler(private val context: Context) {
                 calendar.timeInMillis,
                 pendingIntent
             )
-            Log.d(TAG, "Alarma programada: ${habit.name} a las ${habit.reminderTime} (ID: ${habit.id.hashCode()})")
+            Log.d(tag, "Alarma programada: ${habit.name} a las ${habit.reminderTime} (ID: ${habit.id.hashCode()})")
         } catch (e: Exception) {
-            Log.e(TAG, "Error al programar alarma para ${habit.name}: ${e.message}")
+            Log.e(tag, "Error al programar alarma para ${habit.name}: ${e.message}")
         }
     }
 
@@ -69,12 +69,12 @@ class HabitNotificationScheduler(private val context: Context) {
         if (pendingIntent != null) {
             alarmManager.cancel(pendingIntent)
             pendingIntent.cancel()
-            Log.d(TAG, "Alarma cancelada para el hábito con ID: $habitId")
+            Log.d(tag, "Alarma cancelada para el hábito con ID: $habitId")
         }
     }
 
     fun cancelAll(habits: List<Habit>) {
         habits.forEach { cancel(it.id) }
-        Log.d(TAG, "Todas las alarmas han sido canceladas")
+        Log.d(tag, "Todas las alarmas han sido canceladas")
     }
 }

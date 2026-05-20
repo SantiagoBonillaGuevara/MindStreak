@@ -20,20 +20,22 @@ import kotlinx.coroutines.flow.combine
 
 import io.github.jan.supabase.postgrest.query.Count
 import io.github.jan.supabase.postgrest.query.Columns
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class SupabaseHabitRepository : HabitRepository {
 
     private val client by lazy { SupabaseClientProvider.client }
-    private val TAG = "SupabaseHabitRepo"
+    private val tag = "SupabaseHabitRepo"
     private val refreshTrigger = MutableSharedFlow<Unit>(replay = 1).apply { tryEmit(Unit) }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override val habitsFlow: Flow<List<Habit>> = combine(
         client.auth.sessionStatus,
         refreshTrigger
     ) { status, _ -> status }
-        .onStart { Log.d(TAG, "habitsFlow collection started") }
+        .onStart { Log.d(tag, "habitsFlow collection started") }
         .flatMapLatest { status ->
-            Log.d(TAG, "Auth status changed or refresh triggered: $status")
+            Log.d(tag, "Auth status changed or refresh triggered: $status")
             if (status is SessionStatus.Authenticated) {
                 flow {
                     try {
@@ -41,7 +43,7 @@ class SupabaseHabitRepository : HabitRepository {
                         val today = java.time.LocalDate.now()
                         val sevenDaysAgo = today.minusDays(7)
                         
-                        Log.d(TAG, "Fetching logs for $userId from $sevenDaysAgo to $today")
+                        Log.d(tag, "Fetching logs for $userId from $sevenDaysAgo to $today")
                         
                         // 1. Obtener logs de los últimos 7 días
                         val logsDto = try {
@@ -55,8 +57,8 @@ class SupabaseHabitRepository : HabitRepository {
                                 }
                                 .decodeList<HabitLogDto>()
                         } catch (e: Exception) {
-                            Log.w(TAG, "Error fetching logs: ${e.message}")
-                            emptyList<HabitLogDto>()
+                            Log.w(tag, "Error fetching logs: ${e.message}")
+                            emptyList()
                         }
 
                         // 2. Identificar qué hábitos tienen registro hoy
@@ -67,7 +69,7 @@ class SupabaseHabitRepository : HabitRepository {
                             .distinct()
 
                         if (habitIdsForToday.isEmpty()) {
-                            Log.d(TAG, "No habits scheduled for today")
+                            Log.d(tag, "No habits scheduled for today")
                             emit(emptyList())
                             return@flow
                         }
@@ -90,19 +92,20 @@ class SupabaseHabitRepository : HabitRepository {
                             hDto.toDomain(completionLog)
                         }
                         
-                        Log.d(TAG, "Emitting ${habits.size} habits scheduled for today")
+                        Log.d(tag, "Emitting ${habits.size} habits scheduled for today")
                         emit(habits)
                     } catch (e: Exception) {
-                        Log.e(TAG, "Error fetching habits/logs: ${e.message}", e)
+                        Log.e(tag, "Error fetching habits/logs: ${e.message}", e)
                         emit(emptyList())
                     }
                 }
             } else {
-                Log.d(TAG, "Not authenticated, emitting empty habits")
+                Log.d(tag, "Not authenticated, emitting empty habits")
                 flowOf(emptyList())
             }
         }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override val habitsAllFlow: Flow<List<Habit>> = combine(
         client.auth.sessionStatus,
         refreshTrigger
@@ -144,7 +147,7 @@ class SupabaseHabitRepository : HabitRepository {
                         }
                         emit(habits)
                     } catch (e: Exception) {
-                        Log.e(TAG, "Error in habitsAllFlow: ${e.message}")
+                        Log.e(tag, "Error in habitsAllFlow: ${e.message}")
                         emit(emptyList())
                     }
                 }
@@ -166,13 +169,13 @@ class SupabaseHabitRepository : HabitRepository {
                 }
             response.countOrNull()?.toInt() ?: 0
         } catch (e: Exception) {
-            Log.e(TAG, "Error getting total logs count: ${e.message}")
+            Log.e(tag, "Error getting total logs count: ${e.message}")
             0
         }
     }
 
     override fun refresh() {
-        Log.d(TAG, "Refreshing habits manually")
+        Log.d(tag, "Refreshing habits manually")
         refreshTrigger.tryEmit(Unit)
     }
 
@@ -192,15 +195,14 @@ class SupabaseHabitRepository : HabitRepository {
                 client.postgrest["habit_logs"].upsert(allLogs)
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error saving habits/logs: ${e.message}")
+            Log.e(tag, "Error saving habits/logs: ${e.message}")
         }
     }
 
     override suspend fun toggleHabitLog(habitId: String, date: String, completed: Boolean) {
         val userId = client.auth.currentSessionOrNull()?.user?.id ?: return
         try {
-            Log.d(TAG, "Upserting log for habit $habitId on $date to $completed")
-            val log = HabitLogDto(habitId = habitId, userId = userId, completedDate = date, completed = completed)
+            Log.d(tag, "Upserting log for habit $habitId on $date to $completed")
             client.postgrest["habit_logs"].update({
                 HabitLogDto::completed setTo completed
             }) {
@@ -210,9 +212,9 @@ class SupabaseHabitRepository : HabitRepository {
                     eq("user_id", userId)
                 }
             }
-            Log.d(TAG, "Log toggled successfully via upsert")
+            Log.d(tag, "Log toggled successfully via upsert")
         } catch (e: Exception) {
-            Log.e(TAG, "Error toggling habit log: ${e.message}")
+            Log.e(tag, "Error toggling habit log: ${e.message}")
         }
     }
 
@@ -221,7 +223,7 @@ class SupabaseHabitRepository : HabitRepository {
         try {
             client.postgrest["habits"].insert(habit.toDto(userId))
         } catch (e: Exception) {
-            Log.e(TAG, "Error adding habit: ${e.message}")
+            Log.e(tag, "Error adding habit: ${e.message}")
         }
     }
 
@@ -238,7 +240,7 @@ class SupabaseHabitRepository : HabitRepository {
                 }
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error soft-deleting habit: ${e.message}")
+            Log.e(tag, "Error soft-deleting habit: ${e.message}")
         }
     }
 
@@ -251,7 +253,7 @@ class SupabaseHabitRepository : HabitRepository {
                 }
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error updating habit: ${e.message}")
+            Log.e(tag, "Error updating habit: ${e.message}")
         }
     }
 
@@ -267,7 +269,7 @@ class SupabaseHabitRepository : HabitRepository {
                 }
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error updating habit reminder: ${e.message}")
+            Log.e(tag, "Error updating habit reminder: ${e.message}")
         }
     }
 
@@ -278,7 +280,7 @@ class SupabaseHabitRepository : HabitRepository {
                 .decodeList<CategoryDto>()
             categoriesDto.map { it.toDomain() }
         } catch (e: Exception) {
-            Log.e(TAG, "Error fetching categories: ${e.message}")
+            Log.e(tag, "Error fetching categories: ${e.message}")
             emptyList()
         }
     }

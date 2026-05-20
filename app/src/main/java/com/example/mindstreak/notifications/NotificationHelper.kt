@@ -1,5 +1,6 @@
 package com.example.mindstreak.notifications
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -8,7 +9,6 @@ import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.example.mindstreak.MainActivity
-import com.example.mindstreak.R
 
 class NotificationHelper(private val context: Context) {
 
@@ -24,6 +24,7 @@ class NotificationHelper(private val context: Context) {
         createNotificationChannel()
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(

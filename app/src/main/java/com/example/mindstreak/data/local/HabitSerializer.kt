@@ -6,6 +6,8 @@ import kotlinx.serialization.json.Json
 import java.io.InputStream
 import java.io.OutputStream
 import com.example.mindstreak.data.model.Habit
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 // Wrapper serializable para guardar la lista
 @Serializable
@@ -54,11 +56,13 @@ object HabitsSerializer : Serializer<HabitsStore> {
     override suspend fun readFrom(input: InputStream): HabitsStore =
         try {
             json.decodeFromString(input.readBytes().decodeToString())
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             defaultValue  // Equivalente al catch del localStorage
         }
 
     override suspend fun writeTo(t: HabitsStore, output: OutputStream) {
-        output.write(json.encodeToString(t).encodeToByteArray())
+        withContext(Dispatchers.IO) {
+            output.write(json.encodeToString(t).encodeToByteArray())
+        }
     }
 }

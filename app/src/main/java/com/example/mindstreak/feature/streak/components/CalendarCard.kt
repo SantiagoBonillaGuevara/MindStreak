@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.TextStyle
-import java.util.Locale
+import androidx.compose.ui.platform.LocalLocale
 
 @Composable
 fun CalendarCard(
@@ -31,12 +31,10 @@ fun CalendarCard(
     val today = LocalDate.now()
     val currentMonth = YearMonth.from(today)
     val firstOfMonth = currentMonth.atDay(1)
-    val lastOfMonth = currentMonth.atEndOfMonth()
-    val monthTitle = firstOfMonth.month.getDisplayName(TextStyle.FULL, Locale.getDefault())
-        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } + 
+    val monthTitle = firstOfMonth.month.getDisplayName(TextStyle.FULL, LocalLocale.current.platformLocale)
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(LocalLocale.current.platformLocale) else it.toString() } +
         " ${today.year}"
 
-    val firstDayOfWeek = firstOfMonth.dayOfWeek.value % 7 // 0=Sun, 1=Mon, ..., 6=Sat (adjusting from 1=Mon, ..., 7=Sun)
     // If you prefer Monday as first day:
     val startOffset = firstOfMonth.dayOfWeek.value - 1 // 0=Mon, ..., 6=Sun
 
@@ -85,7 +83,6 @@ fun CalendarCard(
                 }
                 
                 val daysInMonth = currentMonth.lengthOfMonth()
-                val totalSlots = 42 // 6 weeks * 7 days
                 
                 (0 until 6).forEach { week ->
                     Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {

@@ -32,9 +32,7 @@ fun StatisticsScreen(appViewModel: AppViewModel) {
     val trendData = remember(uiState.habits) { processor.getTrendData() }
 
     LazyColumn(
-        Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
+        Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background),
         contentPadding = PaddingValues(bottom = 24.dp)
     ) {
         item { StatisticsHeader(texts.title, texts.dateText) }

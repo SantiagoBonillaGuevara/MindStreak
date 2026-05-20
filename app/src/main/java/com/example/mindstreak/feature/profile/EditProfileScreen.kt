@@ -84,9 +84,7 @@ fun EditProfileScreen(
                         RoundedCornerShape(28.dp)
                     ),
                 contentAlignment = Alignment.Center
-            ) {
-                Text(avatarEmoji, fontSize = 48.sp)
-            }
+            ) { Text(avatarEmoji, fontSize = 48.sp) }
 
             Spacer(Modifier.height(32.dp))
 
@@ -122,9 +120,7 @@ fun EditProfileScreen(
 
             Button(
                 onClick = { viewModel.updateProfile(name, avatarEmoji) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
+                modifier = Modifier.fillMaxWidth().height(56.dp),
                 shape = RoundedCornerShape(16.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = HabitPurple),
                 enabled = state !is EditProfileState.Loading && name.isNotBlank() && avatarEmoji.isNotBlank()
@@ -135,9 +131,7 @@ fun EditProfileScreen(
                         modifier = Modifier.size(24.dp),
                         strokeWidth = 2.dp
                     )
-                } else {
-                    Text(texts.saveBtn, fontWeight = FontWeight.Bold, fontSize = 16.sp)
-                }
+                } else Text(texts.saveBtn, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             }
 
             if (state is EditProfileState.Error) {

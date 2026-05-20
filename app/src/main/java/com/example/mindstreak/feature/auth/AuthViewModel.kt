@@ -25,7 +25,7 @@ sealed class AuthState {
 }
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
-    private val TAG = "AuthViewModel"
+    private val tag = "AuthViewModel"
     private val client = SupabaseClientProvider.client
     private val _authState = MutableStateFlow<AuthState>(AuthState.Idle)
     val authState = _authState.asStateFlow()
@@ -51,7 +51,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 client.auth.signInWith(Google, "mindstreak://login-callback")
             } catch (e: Exception) {
-                Log.e(TAG, "Error Google: ${e.message}")
+                Log.e(tag, "Error Google: ${e.message}")
                 _authState.value = AuthState.Error(getString(R.string.auth_error_google))
             }
         }
@@ -81,7 +81,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                     isSignUp = true
                 )
             } catch (e: Exception) {
-                Log.e(TAG, "Error en signUp: ${e.message}")
+                Log.e(tag, "Error en signUp: ${e.message}")
                 _authState.value = AuthState.Error(e.localizedMessage ?: getString(R.string.auth_error_generic))
             }
         }
@@ -103,7 +103,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                 }
                 _authState.value = AuthState.Success(getString(R.string.auth_success_signin))
             } catch (e: Exception) {
-                Log.e(TAG, "Error en signIn: ${e.message}")
+                Log.e(tag, "Error en signIn: ${e.message}")
                 _authState.value = AuthState.Error(getString(R.string.auth_error_invalid_credentials))
             }
         }
@@ -121,7 +121,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                 client.auth.resetPasswordForEmail(email)
                 _authState.value = AuthState.Success(getString(R.string.auth_reset_password_sent))
             } catch (e: Exception) {
-                Log.e(TAG, "Error en resetPassword: ${e.message}")
+                Log.e(tag, "Error en resetPassword: ${e.message}")
                 _authState.value = AuthState.Error(e.localizedMessage ?: getString(R.string.auth_error_generic))
             }
         }

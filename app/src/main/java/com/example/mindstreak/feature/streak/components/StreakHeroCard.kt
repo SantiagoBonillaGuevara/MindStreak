@@ -21,7 +21,6 @@ fun StreakHeroCard(
     streak: Int,
     color: Color,
     streakLabel: String,
-    sinceText: String,
     bestEverLabel: String,
     bestEverValue: String,
     totalLogsLabel: String,
@@ -51,9 +50,11 @@ fun StreakHeroCard(
             )
         )
     ) {
-        Box(modifier = Modifier
-            .padding(vertical = 24.dp)
-            .fillMaxWidth()) {
+        Box(
+            modifier = Modifier
+                .padding(vertical = 24.dp)
+                .fillMaxWidth()
+        ) {
             Box(
                 modifier = Modifier
                     .size(200.dp)

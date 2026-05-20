@@ -1,5 +1,6 @@
 package com.example.mindstreak.core.components
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
@@ -20,6 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.mindstreak.core.theme.HabitPurple
 
+@SuppressLint("UseOfNonLambdaOffsetOverload")
 @Composable
 fun CustomToggle(
     checked: Boolean,

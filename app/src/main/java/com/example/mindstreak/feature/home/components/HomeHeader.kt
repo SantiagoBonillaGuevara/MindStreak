@@ -31,9 +31,7 @@ fun HomeHeader(
     onLanguageSwitch: () -> Unit = {},
 ) {
     Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 12.dp),
+        modifier = modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 12.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Top,
     ) {
@@ -97,16 +95,10 @@ fun HomeHeader(
                 modifier = Modifier
                     .size(36.dp)
                     .clip(CircleShape)
-                    .background(
-                        Brush.linearGradient(
-                            listOf(MaterialTheme.colorScheme.primary, HabitTeal)
-                        )
-                    )
+                    .background(Brush.linearGradient(listOf(MaterialTheme.colorScheme.primary, HabitTeal)))
                     .clickable(onClick = onProfileClick),
                 contentAlignment = Alignment.Center,
-            ) {
-                Text(profileEmoji, fontSize = 16.sp)
-            }
+            ) { Text(profileEmoji, fontSize = 16.sp) }
         }
     }
 }

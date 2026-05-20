@@ -20,7 +20,6 @@ import com.example.mindstreak.core.navigation.Screen
 import androidx.annotation.RequiresApi
 import com.example.mindstreak.feature.home.AppViewModel
 import com.example.mindstreak.feature.notifications.NotificationPermissionHelper
-import kotlinx.coroutines.launch
 
 @SuppressLint("LocalContextGetResourceValueCall")
 @RequiresApi(Build.VERSION_CODES.S)
@@ -36,7 +35,6 @@ fun ProfileScreen(
     val texts = rememberProfileTexts()
     val context = LocalContext.current
     val state by viewModel.state.collectAsState()
-    val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
 
     val darkMode = appUiState.isDarkMode ?: isSystemInDarkTheme()
@@ -101,9 +99,7 @@ fun ProfileScreen(
                 texts.rewards,
                 Modifier.weight(1f),
                 enabled = user?.isInstitutional == true
-            ) {
-                onNavigate("rewards")
-            }
+            ) { onNavigate("rewards") }
 
             QuickNavButton(
                 "🔔",

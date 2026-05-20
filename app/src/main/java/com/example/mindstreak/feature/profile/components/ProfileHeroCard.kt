@@ -1,5 +1,6 @@
 package com.example.mindstreak.feature.profile.components
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -36,7 +37,7 @@ fun ProfileHeroCard(
     editText: String,
     isInstitutional: Boolean,
     onEditClick: () -> Unit = {},
-    modifier: Modifier = Modifier
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
 ) {
     val xpPercent = xp.toFloat() / nextLevelXp.toFloat()
 

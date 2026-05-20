@@ -23,7 +23,7 @@ sealed class ProfileState {
 
 class ProfileViewModel(application: Application) : AndroidViewModel(application) {
     private val client = SupabaseClientProvider.client
-    private val userRepository = RepositoryProvider.getUserRepository(application)
+    private val userRepository = RepositoryProvider.getUserRepository()
     
     private val _state = MutableStateFlow<ProfileState>(ProfileState.Idle)
     val state = _state.asStateFlow()

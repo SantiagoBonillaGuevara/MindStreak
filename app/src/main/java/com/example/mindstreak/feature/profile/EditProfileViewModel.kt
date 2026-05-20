@@ -18,7 +18,7 @@ sealed class EditProfileState {
 }
 
 class EditProfileViewModel(application: Application) : AndroidViewModel(application) {
-    private val userRepository = RepositoryProvider.getUserRepository(application)
+    private val userRepository = RepositoryProvider.getUserRepository()
     
     private val _state = MutableStateFlow<EditProfileState>(EditProfileState.Idle)
     val state: StateFlow<EditProfileState> = _state.asStateFlow()

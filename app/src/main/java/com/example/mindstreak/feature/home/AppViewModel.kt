@@ -40,7 +40,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     private val TAG = "AppViewModel"
     private val repository = RepositoryProvider.getHabitRepository(application)
-    private val userRepository = RepositoryProvider.getUserRepository(application)
+    private val userRepository = RepositoryProvider.getUserRepository()
     private val quoteRepository = RepositoryProvider.getQuoteRepository()
     private val settingsManager = SettingsManager(application)
     private val scheduler = HabitNotificationScheduler(application)

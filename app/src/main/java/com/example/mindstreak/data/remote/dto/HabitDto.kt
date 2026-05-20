@@ -42,7 +42,8 @@ fun HabitDto.toDomain(completionLog: Map<String, Boolean> = emptyMap()): Habit {
         streak = currentStreak,
         completedToday = completionLog[todayStr] ?: false,
         lastCompletedDate = lastCompletedDate,
-        frequency = frequency.lowercase().replaceFirstChar { it.uppercase() }, // e.g., "DAILY" -> "Daily"
+        frequency = frequency.lowercase()
+            .replaceFirstChar { it.uppercase() }, // e.g., "DAILY" -> "Daily"
         completionRate = completionRate,
         reminderTime = reminderTime ?: "08:00",
         reminderEnabled = reminderEnabled,
@@ -51,10 +52,10 @@ fun HabitDto.toDomain(completionLog: Map<String, Boolean> = emptyMap()): Habit {
         weekHistory = weekHistory,
         completionLog = completionLog
     )
-    }
+}
 
-    // Map from Domain to DTO for saving
-    fun Habit.toDto(userId: String): HabitDto {
+// Map from Domain to DTO for saving
+fun Habit.toDto(userId: String): HabitDto {
     return HabitDto(
         id = id,
         userId = userId,
@@ -71,6 +72,6 @@ fun HabitDto.toDomain(completionLog: Map<String, Boolean> = emptyMap()): Habit {
         completionRate = completionRate,
         lastCompletedDate = lastCompletedDate
     )
-    }
+}
 
 

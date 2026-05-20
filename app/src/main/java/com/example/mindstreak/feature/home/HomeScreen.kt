@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.mindstreak.core.components.*
 import com.example.mindstreak.core.navigation.Screen
-import com.example.mindstreak.data.mock.MockData
 import com.example.mindstreak.feature.home.components.*
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -28,9 +27,7 @@ fun HomeScreen(appViewModel: AppViewModel, navController: NavController) {
     val texts = rememberHomeTexts()
     val snackbarHostState = remember { SnackbarHostState() }
 
-    LaunchedEffect(Unit) {
-        appViewModel.refreshData()
-    }
+    LaunchedEffect(Unit) { appViewModel.refreshData() }
 
     val handleToggle = { id: String ->
         appViewModel.toggleHabit(id)
@@ -66,8 +63,7 @@ fun HomeScreen(appViewModel: AppViewModel, navController: NavController) {
                 notificationsContentDescription = texts.notificationsDesc
             ) {
                 val config = context.resources.configuration
-                @Suppress("DEPRECATION") val locale =
-                    Locale(if (config.locales[0].language == "es") "en" else "es")
+                @Suppress("DEPRECATION") val locale = Locale(if (config.locales[0].language == "es") "en" else "es")
                 Locale.setDefault(locale); config.setLocale(locale)
                 @Suppress("DEPRECATION")
                 context.resources.updateConfiguration(config, context.resources.displayMetrics)
@@ -76,9 +72,7 @@ fun HomeScreen(appViewModel: AppViewModel, navController: NavController) {
             AnimatedVisibility(
                 visible = true,
                 enter = fadeIn(tween(400, 100)) + slideInVertically(tween(400, 100)) { it / 3 },
-                modifier = Modifier
-                    .padding(horizontal = 20.dp)
-                    .padding(bottom = 16.dp)
+                modifier = Modifier.padding(horizontal = 20.dp).padding(bottom = 16.dp)
             ) {
                 StreakCard(
                     currentStreak =  state.user!!.totalStreak,
@@ -97,9 +91,7 @@ fun HomeScreen(appViewModel: AppViewModel, navController: NavController) {
             AnimatedVisibility(
                 visible = true,
                 enter = fadeIn(tween(400, 180)) + slideInVertically(tween(400, 180)) { it / 3 },
-                modifier = Modifier
-                    .padding(horizontal = 20.dp)
-                    .padding(bottom = 16.dp)
+                modifier = Modifier.padding(horizontal = 20.dp).padding(bottom = 16.dp)
             ) {
                 TodayProgressCard(
                     state.completedToday,

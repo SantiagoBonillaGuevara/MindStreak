@@ -24,10 +24,6 @@ class SettingsManager(private val context: Context) {
         preferences[NOTIFICATIONS_ENABLED_KEY] ?: false
     }
 
-    val isDarkModeManualFlow: Flow<Boolean> = context.settingsDataStore.data.map { preferences ->
-        preferences[IS_DARK_MODE_MANUAL_KEY] ?: false
-    }
-
     suspend fun setDarkMode(enabled: Boolean) {
         context.settingsDataStore.edit { preferences ->
             preferences[DARK_MODE_KEY] = enabled

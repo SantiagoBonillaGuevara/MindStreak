@@ -14,7 +14,6 @@ import com.example.mindstreak.feature.home.AppViewModel
 import com.example.mindstreak.feature.habit_detail.components.*
 import androidx.core.graphics.toColorInt
 import kotlin.math.roundToInt
-
 import java.time.LocalDate
 import java.time.format.TextStyle
 import java.util.Locale
@@ -84,8 +83,6 @@ fun HabitDetailScreen(habitId: String, appViewModel: AppViewModel, onBack: () ->
             currentMonthName,
             levelColors,
             processor.getMonthGrid(),
-            texts.lessLabel,
-            texts.moreLabel,
             texts.daysInitialLabels
         )
         HabitCompletionRateCard(

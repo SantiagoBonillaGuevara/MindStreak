@@ -35,7 +35,6 @@ fun StreakScreen(appViewModel: AppViewModel, navController: NavController) {
                 uiState.currentStreak,
                 orangeMain,
                 texts.streakLabel,
-                texts.sinceText,
                 texts.bestEverLabel,
                 uiState.bestStreak.toString(),
                 texts.totalLogsLabel,

@@ -11,7 +11,6 @@ class HabitDetailProcessor(private val habit: Habit) {
     fun getMonthGrid(): List<DayCell?> {
         val today = LocalDate.now()
         val firstDayOfMonth = today.withDayOfMonth(1)
-        val lastDayOfMonth = today.withDayOfMonth(today.lengthOfMonth())
         
         val startDayOfWeek = firstDayOfMonth.dayOfWeek.value // 1 (Mon) to 7 (Sun)
         val offset = startDayOfWeek - 1 // Días vacíos al inicio (suponiendo que la cuadrícula empieza el Lunes)

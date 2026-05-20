@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class HabitAlarmReceiver : BroadcastReceiver() {
-    private val TAG = "HabitAlarmReceiver"
+    private val tag = "HabitAlarmReceiver"
 
     override fun onReceive(context: Context, intent: Intent) {
         val habitName = intent.getStringExtra("HABIT_NAME") ?: "Hábito"
@@ -22,7 +22,7 @@ class HabitAlarmReceiver : BroadcastReceiver() {
             try {
                 // REGLA DE NEGOCIO: Validar Master Switch antes de mostrar
                 val notificationsEnabled = settingsManager.notificationsEnabledFlow.first()
-                Log.d(TAG, "Alarma recibida para $habitName. Master Switch: $notificationsEnabled")
+                Log.d(tag, "Alarma recibida para $habitName. Master Switch: $notificationsEnabled")
 
                 if (notificationsEnabled) {
                     val notificationHelper = NotificationHelper(context)
@@ -31,10 +31,10 @@ class HabitAlarmReceiver : BroadcastReceiver() {
                         message = context.getString(com.example.mindstreak.R.string.notif_habit_message, habitName)
                     )
                 } else {
-                    Log.d(TAG, "Notificación omitida porque el Master Switch está desactivado")
+                    Log.d(tag, "Notificación omitida porque el Master Switch está desactivado")
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Error procesando alarma: ${e.message}")
+                Log.e(tag, "Error procesando alarma: ${e.message}")
             }
         }
     }

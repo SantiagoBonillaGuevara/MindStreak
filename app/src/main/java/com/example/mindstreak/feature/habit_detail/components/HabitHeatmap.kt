@@ -23,8 +23,6 @@ fun HabitHeatmap(
     monthTitle: String,
     levelColors: List<Color>,
     gridData: List<Any?>, // Usamos Any? para simplificar el desacoplamiento de la data mock
-    lessLabel: String,
-    moreLabel: String,
     dayLabels: List<String>,
     modifier: Modifier = Modifier,
 ) {

@@ -13,7 +13,6 @@ import com.example.mindstreak.data.model.Habit
 import com.example.mindstreak.feature.home.AppViewModel
 import com.example.mindstreak.feature.create_habit.components.*
 import kotlinx.coroutines.launch
-
 import java.util.UUID
 
 @Composable
@@ -29,9 +28,7 @@ fun CreateHabitScreen(appViewModel: AppViewModel, onBack: () -> Unit, onCreated:
     
     // Update selectedCategory when categories are loaded
     LaunchedEffect(categories) {
-        if (selectedCategory.isEmpty() && categories.isNotEmpty()) {
-            selectedCategory = categories.first().id
-        }
+        if (selectedCategory.isEmpty() && categories.isNotEmpty()) selectedCategory = categories.first().id
     }
     
     var selectedFreq by remember { mutableStateOf("Daily") }

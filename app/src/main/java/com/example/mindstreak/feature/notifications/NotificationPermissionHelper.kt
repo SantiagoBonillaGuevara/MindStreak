@@ -1,6 +1,7 @@
 package com.example.mindstreak.feature.notifications
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.content.Context
 import android.content.Intent
@@ -31,6 +32,7 @@ object NotificationPermissionHelper {
             }
         }
     }
+    @SuppressLint("InlinedApi", "ObsoleteSdkInt")
     @RequiresApi(Build.VERSION_CODES.S)
     fun checkAndRequestPermissions(
         context: Context,

@@ -9,7 +9,7 @@ import io.github.jan.supabase.postgrest.postgrest
 
 class SupabaseMotivationalQuoteRepository : MotivationalQuoteRepository {
     private val client by lazy { SupabaseClientProvider.client }
-    private val TAG = "SupabaseQuoteRepo"
+    private val tag = "SupabaseQuoteRepo"
 
     override suspend fun getRandomQuote(): MotivationalQuote? {
         return try {
@@ -27,7 +27,7 @@ class SupabaseMotivationalQuoteRepository : MotivationalQuoteRepository {
                 null
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Error fetching random quote: ${e.message}")
+            Log.e(tag, "Error fetching random quote: ${e.message}")
             null
         }
     }
