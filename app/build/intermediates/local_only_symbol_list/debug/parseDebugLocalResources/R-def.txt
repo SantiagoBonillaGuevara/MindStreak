@@ -105,7 +105,9 @@ string nav_stats
 string nav_streak
 string notif_alert_types_section
 string notif_back_desc
+string notif_habit_message
 string notif_habit_reminders_title
+string notif_habit_title
 string notif_master_active
 string notif_master_muted
 string notif_master_title
@@ -127,6 +129,16 @@ string onboarding_slide2_subtitle
 string onboarding_slide2_title
 string onboarding_slide3_subtitle
 string onboarding_slide3_title
+string privacy_back_desc
+string privacy_footer
+string privacy_last_updated
+string privacy_section_1_desc
+string privacy_section_1_title
+string privacy_section_2_desc
+string privacy_section_2_title
+string privacy_section_3_desc
+string privacy_section_3_title
+string privacy_title
 string profile_account_section
 string profile_achievements
 string profile_dark_mode

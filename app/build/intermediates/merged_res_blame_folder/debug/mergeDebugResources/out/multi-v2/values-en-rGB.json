@@ -4,7 +4,7 @@
             "outputFile": "com.example.mindstreak.app-mergeDebugResources-43:/values-en-rGB/values-en-rGB.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\santi\\.gradle\\caches\\9.3.1\\transforms\\b6982c09f6d5f369fedd7ae384a43007\\workspace\\transformed\\material3\\res\\values-en-rGB\\values-en-rGB.xml",
+                    "source": "/Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b6982c09f6d5f369fedd7ae384a43007/transformed/material3/res/values-en-rGB/values-en-rGB.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\santi\\.gradle\\caches\\9.3.1\\transforms\\b8a2a020151432bfda84c7986bc0a6a2\\workspace\\transformed\\core-1.18.0\\res\\values-en-rGB\\values-en-rGB.xml",
+                    "source": "/Users/santiagobonilla/.gradle/caches/9.3.1/transforms/f7dcbe890435e42ae5c7d892df29e94a/transformed/foundation/res/values-en-rGB/values-en-rGB.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,159,245",
+                        "endColumns": "103,85,84",
+                        "endOffsets": "154,240,325"
+                    },
+                    "to": {
+                        "startLines": "2,101,102",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "105,10205,10291",
+                        "endColumns": "103,85,84",
+                        "endOffsets": "204,10286,10371"
+                    }
+                },
+                {
+                    "source": "/Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b8a2a020151432bfda84c7986bc0a6a2/transformed/core-1.18.0/res/values-en-rGB/values-en-rGB.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -38,7 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\santi\\.gradle\\caches\\9.3.1\\transforms\\b24c34dbac6bcabb063a8c5d3ce1b523\\workspace\\transformed\\browser-1.10.0\\res\\values-en-rGB\\values-en-rGB.xml",
+                    "source": "/Users/santiagobonilla/.gradle/caches/9.3.1/transforms/b24c34dbac6bcabb063a8c5d3ce1b523/transformed/browser-1.10.0/res/values-en-rGB/values-en-rGB.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -55,7 +72,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\santi\\.gradle\\caches\\9.3.1\\transforms\\e4b62be7a742f872713a9d9bebc0d604\\workspace\\transformed\\ui\\res\\values-en-rGB\\values-en-rGB.xml",
+                    "source": "/Users/santiagobonilla/.gradle/caches/9.3.1/transforms/e4b62be7a742f872713a9d9bebc0d604/transformed/ui/res/values-en-rGB/values-en-rGB.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -69,23 +86,6 @@
                         "startOffsets": "209,1024,1116,1296,1390,1489,1881,1963,9132,9221,9305,9383,9465,9538,9622,9698,9770,9941,10018,10084",
                         "endColumns": "95,91,81,93,98,86,81,88,88,83,77,81,72,83,75,71,69,76,65,120",
                         "endOffsets": "300,1111,1193,1385,1484,1571,1958,2047,9216,9300,9378,9460,9533,9617,9693,9765,9835,10013,10079,10200"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\santi\\.gradle\\caches\\9.3.1\\transforms\\f7dcbe890435e42ae5c7d892df29e94a\\workspace\\transformed\\foundation\\res\\values-en-rGB\\values-en-rGB.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,159,245",
-                        "endColumns": "103,85,84",
-                        "endOffsets": "154,240,325"
-                    },
-                    "to": {
-                        "startLines": "2,101,102",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "105,10205,10291",
-                        "endColumns": "103,85,84",
-                        "endOffsets": "204,10286,10371"
                     }
                 }
             ]

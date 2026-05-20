@@ -1,5 +1,6 @@
 package com.example.mindstreak.feature.profile
 
+import android.os.Build
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -9,23 +10,17 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.mindstreak.core.components.*
-import com.example.mindstreak.data.mock.MockData
 import com.example.mindstreak.core.theme.*
 import com.example.mindstreak.feature.profile.components.*
-
 import androidx.lifecycle.viewmodel.compose.viewModel
 import android.widget.Toast
 import androidx.compose.ui.platform.LocalContext
-
 import com.example.mindstreak.core.navigation.Screen
-import android.Manifest
-import android.os.Build
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
-import android.content.pm.PackageManager
+import androidx.annotation.RequiresApi
 import com.example.mindstreak.feature.home.AppViewModel
+import com.example.mindstreak.feature.notifications.NotificationPermissionHelper
 
+@RequiresApi(Build.VERSION_CODES.S)
 @Composable
 fun ProfileScreen(
     onNavigate: (String) -> Unit,
@@ -38,32 +33,25 @@ fun ProfileScreen(
     val texts = rememberProfileTexts()
     val context = LocalContext.current
     val state by viewModel.state.collectAsState()
-    
+
     val darkMode = appUiState.isDarkMode ?: isSystemInDarkTheme()
     val notifications = appUiState.notificationsEnabled
 
-    val permissionLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        if (isGranted) {
-            appViewModel.setNotificationsEnabled(true)
-        } else {
-            Toast.makeText(context, "Permiso de notificaciones denegado", Toast.LENGTH_SHORT).show()
-        }
+    val permissionLauncher = NotificationPermissionHelper.rememberLauncher {
+        appViewModel.setNotificationsEnabled(true)
     }
 
     LaunchedEffect(state) {
-        if (state is ProfileState.LoggedOut) {
-            onNavigate(Screen.Auth.route)
-        } else if (state is ProfileState.Error) {
-            Toast.makeText(context, (state as ProfileState.Error).message, Toast.LENGTH_SHORT).show()
-        }
+        if (state is ProfileState.LoggedOut) onNavigate(Screen.Auth.route)
+        else if (state is ProfileState.Error) Toast.makeText(
+            context,
+            (state as ProfileState.Error).message,
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     if (user == null) {
-        Box(Modifier.fillMaxSize(), contentAlignment = androidx.compose.ui.Alignment.Center) {
-            CircularProgressIndicator()
-        }
+        Box(Modifier.fillMaxSize(), contentAlignment = androidx.compose.ui.Alignment.Center) { CircularProgressIndicator() }
         return
     }
 
@@ -101,7 +89,12 @@ fun ProfileScreen(
             Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            QuickNavButton("🎁", texts.rewards, Modifier.weight(1f)) { onNavigate("rewards") }
+            QuickNavButton(
+                "🎁",
+                texts.rewards,
+                Modifier.weight(1f)
+            ) { onNavigate("rewards") }
+
             QuickNavButton(
                 "🔔",
                 texts.reminders,
@@ -115,37 +108,32 @@ fun ProfileScreen(
                 texts.darkModeSub,
                 HabitPurple,
                 darkMode,
-                { appViewModel.setDarkMode(it) })
+                onValueChange = { appViewModel.setDarkMode(it) })
             SettingsToggleItem(
                 Icons.Default.Notifications,
                 texts.notifLabel,
                 if (notifications) texts.notifEnabled else texts.notifDisabled,
                 HabitOrange,
                 notifications,
-                { enabled ->
-                    if (enabled && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        val hasPermission = ContextCompat.checkSelfPermission(
-                            context,
-                            Manifest.permission.POST_NOTIFICATIONS
-                        ) == PackageManager.PERMISSION_GRANTED
-                        
-                        if (hasPermission) appViewModel.setNotificationsEnabled(true)
-                        else permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-                    } else appViewModel.setNotificationsEnabled(enabled)
+                onValueChange = { enabled ->
+                    if (enabled) NotificationPermissionHelper.checkAndRequestPermissions(context, permissionLauncher) { appViewModel.setNotificationsEnabled(true) }
+                    else appViewModel.setNotificationsEnabled(false)
                 })
         }
         SettingsSection(texts.accountSection) {
-            SettingsClickItem(Icons.Default.Shield, texts.privacy, HabitTeal)
+            SettingsClickItem(Icons.Default.Shield, texts.privacy, HabitTeal) {
+                onNavigate(Screen.Privacy.route)
+            }
             SettingsClickItem(Icons.Default.Star, texts.pro, HabitYellow, badge = texts.proBadge)
             SettingsClickItem(Icons.Default.Group, texts.refer, HabitPink, badge = texts.referBadge)
         }
-        
+
         if (state is ProfileState.Loading) {
             Box(Modifier.fillMaxWidth(), contentAlignment = androidx.compose.ui.Alignment.Center) {
                 CircularProgressIndicator(Modifier.padding(20.dp))
             }
         }
-        
+
         LogoutButton(texts.logout, { viewModel.logout() })
     }
 }

@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-
 import com.example.mindstreak.data.local.SettingsManager
 import com.example.mindstreak.data.model.User
 import com.example.mindstreak.notifications.HabitNotificationScheduler

@@ -103,7 +103,9 @@ int string nav_stats 0x0
 int string nav_streak 0x0
 int string notif_alert_types_section 0x0
 int string notif_back_desc 0x0
+int string notif_habit_message 0x0
 int string notif_habit_reminders_title 0x0
+int string notif_habit_title 0x0
 int string notif_master_active 0x0
 int string notif_master_muted 0x0
 int string notif_master_title 0x0
@@ -125,6 +127,16 @@ int string onboarding_slide2_subtitle 0x0
 int string onboarding_slide2_title 0x0
 int string onboarding_slide3_subtitle 0x0
 int string onboarding_slide3_title 0x0
+int string privacy_back_desc 0x0
+int string privacy_footer 0x0
+int string privacy_last_updated 0x0
+int string privacy_section_1_desc 0x0
+int string privacy_section_1_title 0x0
+int string privacy_section_2_desc 0x0
+int string privacy_section_2_title 0x0
+int string privacy_section_3_desc 0x0
+int string privacy_section_3_title 0x0
+int string privacy_title 0x0
 int string profile_account_section 0x0
 int string profile_achievements 0x0
 int string profile_dark_mode 0x0

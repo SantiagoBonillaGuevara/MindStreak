@@ -1,5 +1,7 @@
 package com.example.mindstreak.core.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -13,11 +15,13 @@ import com.example.mindstreak.feature.home.AppViewModel
 import com.example.mindstreak.feature.home.HomeScreen
 import com.example.mindstreak.feature.notifications.NotificationsScreen
 import com.example.mindstreak.feature.onboarding.OnboardingScreen
+import com.example.mindstreak.feature.profile.PrivacyScreen
 import com.example.mindstreak.feature.profile.ProfileScreen
 import com.example.mindstreak.feature.rewards.RewardsScreen
 import com.example.mindstreak.feature.statistics.StatisticsScreen
 import com.example.mindstreak.feature.streak.StreakScreen
 
+@RequiresApi(Build.VERSION_CODES.S)
 fun NavGraphBuilder.mainGraph(
     navController: NavHostController,
     appViewModel: AppViewModel
@@ -80,12 +84,22 @@ fun NavGraphBuilder.mainGraph(
 
     composable(Screen.Rewards.route) { RewardsScreen(appViewModel = appViewModel) }
 
+    composable(Screen.Privacy.route) {
+        PrivacyScreen(onBack = { navController.popBackStack() })
+    }
+
     composable(Screen.Profile.route) {
         ProfileScreen(
             onNavigate = { route ->
                 navController.navigate(route) {
-                    // Esto es útil para pestañas principales del BottomBar, por ejemplo
-                    popUpTo(0) { inclusive = true }
+                    // Solo limpiamos si vamos a otra pestaña principal
+                    if (route in BOTTOM_NAV_ROUTES) {
+                        popUpTo(navController.graph.startDestinationId) {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
                 }
             },
             onNavigateToNotifications = {

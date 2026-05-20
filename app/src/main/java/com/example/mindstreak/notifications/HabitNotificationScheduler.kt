@@ -1,5 +1,6 @@
 package com.example.mindstreak.notifications
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
@@ -13,6 +14,7 @@ class HabitNotificationScheduler(private val context: Context) {
     private val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     private val TAG = "HabitNotificationSched"
 
+    @SuppressLint("ScheduleExactAlarm")
     fun schedule(habit: Habit) {
         // Si el hábito no tiene recordatorio o tiempo, cancelamos cualquier alarma previa
         if (!habit.reminderEnabled || habit.reminderTime.isEmpty()) {
@@ -41,9 +43,7 @@ class HabitNotificationScheduler(private val context: Context) {
                 set(Calendar.MILLISECOND, 0)
 
                 // Si la hora ya pasó hoy, programar para mañana
-                if (before(Calendar.getInstance())) {
-                    add(Calendar.DATE, 1)
-                }
+                if (before(Calendar.getInstance())) add(Calendar.DATE, 1)
             }
 
             // Usamos setExactAndAllowWhileIdle para máxima precisión en Doze mode

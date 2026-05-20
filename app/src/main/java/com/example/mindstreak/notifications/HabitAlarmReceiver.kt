@@ -27,8 +27,8 @@ class HabitAlarmReceiver : BroadcastReceiver() {
                 if (notificationsEnabled) {
                     val notificationHelper = NotificationHelper(context)
                     notificationHelper.showNotification(
-                        title = "¡Momento de tu hábito!",
-                        message = "Es hora de completar: $habitName"
+                        title = context.getString(com.example.mindstreak.R.string.notif_habit_title),
+                        message = context.getString(com.example.mindstreak.R.string.notif_habit_message, habitName)
                     )
                 } else {
                     Log.d(TAG, "Notificación omitida porque el Master Switch está desactivado")

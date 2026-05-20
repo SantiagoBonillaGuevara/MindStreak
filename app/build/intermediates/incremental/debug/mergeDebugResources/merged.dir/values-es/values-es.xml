@@ -176,7 +176,9 @@
     <string msgid="6610465462668679431" name="not_selected">"No seleccionado"</string>
     <string name="notif_alert_types_section">TIPOS DE ALERTA</string>
     <string name="notif_back_desc">Atrás</string>
+    <string name="notif_habit_message">Es hora de completar: %s</string>
     <string name="notif_habit_reminders_title">Recordatorios de Hábitos</string>
+    <string name="notif_habit_title">¡Momento de tu hábito! ⏰</string>
     <string name="notif_master_active">Recordatorios activados</string>
     <string name="notif_master_muted">Todo silenciado</string>
     <string name="notif_master_title">Todas las Notificaciones</string>
@@ -198,6 +200,16 @@
     <string name="onboarding_slide2_title">Las Rachas Te\nMantienen Motivado</string>
     <string name="onboarding_slide3_subtitle">Compite en clasificaciones, comparte hitos y motivaos mutuamente cada día.</string>
     <string name="onboarding_slide3_title">Mejor Juntos\nCon Amigos</string>
+    <string name="privacy_back_desc">Atrás</string>
+    <string name="privacy_footer">Al usar MindStreak, aceptas nuestros Términos de Servicio.</string>
+    <string name="privacy_last_updated">Última actualización: Abril 2024</string>
+    <string name="privacy_section_1_desc">Recopilamos datos sobre tus hábitos, rachas y logros para proporcionarte estadísticas personalizadas y recompensas. Tu correo electrónico se utiliza solo para la autenticación de la cuenta.</string>
+    <string name="privacy_section_1_title">1. Recopilación de Datos</string>
+    <string name="privacy_section_2_desc">Tu progreso se comparte con amigos solo si eliges participar en funciones sociales. Nunca vendemos tus datos personales a terceros.</string>
+    <string name="privacy_section_2_title">2. Uso de Datos</string>
+    <string name="privacy_section_3_desc">Puedes eliminar tu cuenta y todos los datos asociados en cualquier momento desde los ajustes de la cuenta. Respetamos tu derecho al olvido.</string>
+    <string name="privacy_section_3_title">3. Tus Derechos</string>
+    <string name="privacy_title">Política de Privacidad</string>
     <string name="profile_account_section">Cuenta</string>
     <string name="profile_achievements">Logros</string>
     <string name="profile_dark_mode">Modo Oscuro</string>
