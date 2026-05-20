@@ -15,7 +15,9 @@ sealed class Screen(val route: String) {
     object Achievements : Screen("achievements")
     object Rewards : Screen("rewards")
     object Profile : Screen("profile")
+    object EditProfile : Screen("edit_profile")
     object Privacy : Screen("privacy")
+    object ForgotPassword : Screen("forgot_password")
 }
 
 // Rutas que muestran BottomNav — equivalente a BOTTOM_NAV_PATHS

@@ -1,8 +1,10 @@
 package com.example.mindstreak.feature.auth
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mindstreak.R
 import com.example.mindstreak.data.remote.SupabaseClientProvider
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.Google
@@ -18,23 +20,25 @@ import java.util.TimeZone
 sealed class AuthState {
     object Idle : AuthState()
     object Loading : AuthState()
-    data class Success(val message: String, val isSignUp: Boolean = false) : AuthState() // Añadimos isSignUp para diferenciar si navegamos o solo cambiamos de pestaña
+    data class Success(val message: String, val isSignUp: Boolean = false) : AuthState()
     data class Error(val error: String) : AuthState()
 }
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel(application: Application) : AndroidViewModel(application) {
     private val TAG = "AuthViewModel"
     private val client = SupabaseClientProvider.client
     private val _authState = MutableStateFlow<AuthState>(AuthState.Idle)
     val authState = _authState.asStateFlow()
     private var isManualAction = false
 
+    private fun getString(resId: Int): String =
+        getApplication<Application>().getString(resId)
+
     init {
         viewModelScope.launch {
             client.auth.sessionStatus.collect { status ->
                 if (status is SessionStatus.Authenticated && !isManualAction) {
-                    // Login vía Google (o sesión persistida) -> Al Home
-                    _authState.value = AuthState.Success("¡Bienvenido!")
+                    _authState.value = AuthState.Success(getString(R.string.auth_success_welcome))
                 }
             }
         }
@@ -48,14 +52,14 @@ class AuthViewModel : ViewModel() {
                 client.auth.signInWith(Google, "mindstreak://login-callback")
             } catch (e: Exception) {
                 Log.e(TAG, "Error Google: ${e.message}")
-                _authState.value = AuthState.Error("No se pudo conectar con Google")
+                _authState.value = AuthState.Error(getString(R.string.auth_error_google))
             }
         }
     }
 
     fun signUp(email: String, password: String, name: String) {
         if (email.isBlank() || password.isBlank() || name.isBlank()) {
-            _authState.value = AuthState.Error("Todos los campos son obligatorios")
+            _authState.value = AuthState.Error(getString(R.string.auth_error_fields_empty))
             return
         }
         val timeZone = TimeZone.getDefault().id
@@ -72,21 +76,20 @@ class AuthViewModel : ViewModel() {
                         put("timeZone", timeZone)
                     }
                 }
-                // Registro exitoso -> Cambiamos a Success con flag isSignUp = true
                 _authState.value = AuthState.Success(
-                    message = "Registro exitoso. Por favor, confirma tu email para poder entrar.",
+                    message = getString(R.string.auth_success_signup),
                     isSignUp = true
                 )
             } catch (e: Exception) {
                 Log.e(TAG, "Error en signUp: ${e.message}")
-                _authState.value = AuthState.Error(e.localizedMessage ?: "Error en registro")
+                _authState.value = AuthState.Error(e.localizedMessage ?: getString(R.string.auth_error_generic))
             }
         }
     }
 
     fun signIn(email: String, password: String) {
         if (email.isBlank() || password.isBlank()) {
-            _authState.value = AuthState.Error("Campos obligatorios")
+            _authState.value = AuthState.Error(getString(R.string.auth_error_fields_empty))
             return
         }
 
@@ -98,11 +101,28 @@ class AuthViewModel : ViewModel() {
                     this.email = email
                     this.password = password
                 }
-                // Login exitoso -> Al Home
-                _authState.value = AuthState.Success("Sesión iniciada")
+                _authState.value = AuthState.Success(getString(R.string.auth_success_signin))
             } catch (e: Exception) {
                 Log.e(TAG, "Error en signIn: ${e.message}")
-                _authState.value = AuthState.Error("Credenciales inválidas o email no verificado")
+                _authState.value = AuthState.Error(getString(R.string.auth_error_invalid_credentials))
+            }
+        }
+    }
+
+    fun sendPasswordResetEmail(email: String) {
+        if (email.isBlank()) {
+            _authState.value = AuthState.Error(getString(R.string.auth_error_fields_empty))
+            return
+        }
+
+        viewModelScope.launch {
+            _authState.value = AuthState.Loading
+            try {
+                client.auth.resetPasswordForEmail(email)
+                _authState.value = AuthState.Success(getString(R.string.auth_reset_password_sent))
+            } catch (e: Exception) {
+                Log.e(TAG, "Error en resetPassword: ${e.message}")
+                _authState.value = AuthState.Error(e.localizedMessage ?: getString(R.string.auth_error_generic))
             }
         }
     }

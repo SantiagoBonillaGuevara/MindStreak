@@ -36,6 +36,7 @@ fun AuthForm(
     emailPlaceholder: String,
     passwordPlaceholder: String,
     forgotPasswordText: String,
+    onForgotPassword: () -> Unit = {},
 ) {
     var showPass by remember { mutableStateOf(false) }
 
@@ -75,7 +76,7 @@ fun AuthForm(
             )
             // Forgot password — solo en login
             if (currentTab == AuthTab.LOGIN) AuthForgotPassword(
-                onClick = {},
+                onClick = onForgotPassword,
                 text = forgotPasswordText
             )
         }

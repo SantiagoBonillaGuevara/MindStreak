@@ -15,14 +15,22 @@
     <string name="auth_app_name">MindStreak</string>
     <string name="auth_divider_or">O CONTINUAR CON</string>
     <string name="auth_email_placeholder">Correo electrónico</string>
+    <string name="auth_error_fields_empty">Todos los campos son obligatorios</string>
+    <string name="auth_error_generic">Error de autenticación</string>
+    <string name="auth_error_google">No se pudo conectar con Google</string>
+    <string name="auth_error_invalid_credentials">Credenciales inválidas o correo no verificado</string>
     <string name="auth_forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="auth_greeting_login">Bienvenido de nuevo 👋</string>
     <string name="auth_greeting_register">Vamos a empezar 🚀</string>
     <string name="auth_name_placeholder">Nombre completo</string>
     <string name="auth_password_placeholder">Contraseña</string>
+    <string name="auth_reset_password_sent">¡Enlace enviado! Revisa tu correo electrónico.</string>
     <string name="auth_submit_login">Iniciar Sesión</string>
     <string name="auth_submit_register">Crear cuenta</string>
     <string name="auth_subtitle">Para estudiantes universitarios</string>
+    <string name="auth_success_signin">Sesión iniciada</string>
+    <string name="auth_success_signup">Registro exitoso. Por favor revisa tu correo para confirmar tu cuenta.</string>
+    <string name="auth_success_welcome">¡Bienvenido!</string>
     <string name="auth_tab_login">Iniciar Sesión</string>
     <string name="auth_tab_register">Registrarse</string>
     <string name="auth_university_placeholder">Universidad y Año</string>
@@ -56,9 +64,20 @@
     <string msgid="8038256446254964252" name="default_error_message">"Entrada no válida"</string>
     <string msgid="6312721426453364202" name="default_popup_window_title">"Ventana emergente"</string>
     <string msgid="1890207353314751437" name="dropdown_menu">"Menú desplegable"</string>
+    <string name="edit_profile_avatar_label">Emoji de Avatar</string>
+    <string name="edit_profile_error">Error al actualizar el perfil.</string>
+    <string name="edit_profile_name_label">Nombre Completo</string>
+    <string name="edit_profile_name_placeholder">Ingresa tu nombre</string>
+    <string name="edit_profile_save_btn">Guardar Cambios</string>
+    <string name="edit_profile_success">¡Perfil actualizado con éxito!</string>
+    <string name="edit_profile_title">Editar Perfil</string>
     <string msgid="4566929209979330987" name="fallback_menu_item_copy_link">"Copiar enlace"</string>
     <string msgid="3413186855122069269" name="fallback_menu_item_open_in_browser">"Abrir en el navegador"</string>
     <string msgid="7145444925855055364" name="fallback_menu_item_share_link">"Compartir enlace"</string>
+    <string name="forgot_password_back">Volver al inicio</string>
+    <string name="forgot_password_desc">Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.</string>
+    <string name="forgot_password_submit">Enviar enlace</string>
+    <string name="forgot_password_title">¿Olvidaste tu contraseña?</string>
     <string name="habit_card_rate_template">%d%% de tasa</string>
     <string name="habit_detail_back_desc">Atrás</string>
     <string name="habit_detail_comparison_text">+8% vs el mes pasado</string>

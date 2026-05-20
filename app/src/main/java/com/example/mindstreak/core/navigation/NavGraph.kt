@@ -9,6 +9,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.mindstreak.feature.achievements.AchievementsScreen
 import com.example.mindstreak.feature.auth.AuthScreen
+import com.example.mindstreak.feature.auth.AuthViewModel
+import com.example.mindstreak.feature.auth.ForgotPasswordScreen
 import com.example.mindstreak.feature.create_habit.CreateHabitScreen
 import com.example.mindstreak.feature.habit_detail.HabitDetailScreen
 import com.example.mindstreak.feature.home.AppViewModel
@@ -17,6 +19,7 @@ import com.example.mindstreak.feature.notifications.NotificationsScreen
 import com.example.mindstreak.feature.onboarding.OnboardingScreen
 import com.example.mindstreak.feature.profile.PrivacyScreen
 import com.example.mindstreak.feature.profile.ProfileScreen
+import com.example.mindstreak.feature.profile.EditProfileScreen
 import com.example.mindstreak.feature.rewards.RewardsScreen
 import com.example.mindstreak.feature.statistics.StatisticsScreen
 import com.example.mindstreak.feature.streak.StreakScreen
@@ -35,12 +38,25 @@ fun NavGraphBuilder.mainGraph(
     }
 
     composable(Screen.Auth.route) {
+        val authViewModel: AuthViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
         AuthScreen(
+            viewModel = authViewModel,
             onLogin = {
                 navController.navigate(Screen.Home.route) {
                     popUpTo(Screen.Auth.route) { inclusive = true }
                 }
+            },
+            onForgotPassword = {
+                navController.navigate(Screen.ForgotPassword.route)
             }
+        )
+    }
+
+    composable(Screen.ForgotPassword.route) {
+        val authViewModel: AuthViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+        ForgotPasswordScreen(
+            onBack = { navController.popBackStack() },
+            viewModel = authViewModel
         )
     }
 
@@ -86,6 +102,10 @@ fun NavGraphBuilder.mainGraph(
 
     composable(Screen.Privacy.route) {
         PrivacyScreen(onBack = { navController.popBackStack() })
+    }
+
+    composable(Screen.EditProfile.route) {
+        EditProfileScreen(onBack = { navController.popBackStack() })
     }
 
     composable(Screen.Profile.route) {

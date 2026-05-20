@@ -70,6 +70,15 @@
     <string name="auth_submit_login">Log In</string>
     <string name="auth_submit_register">Create Account</string>
 
+    <!-- Auth Status Messages -->
+    <string name="auth_success_welcome">Welcome!</string>
+    <string name="auth_success_signin">Session started</string>
+    <string name="auth_success_signup">Registration successful. Please check your email to confirm your account.</string>
+    <string name="auth_error_google">Could not connect with Google</string>
+    <string name="auth_error_fields_empty">All fields are required</string>
+    <string name="auth_error_invalid_credentials">Invalid credentials or email not verified</string>
+    <string name="auth_error_generic">Authentication error</string>
+
     <!-- Streak Screen -->
     <string name="streak_title">Streak</string>
     <string name="streak_shield_label">Streak Shield</string>
@@ -236,4 +245,16 @@
     <string name="nav_rewards">Rewards</string>
     <string name="nav_profile">Profile</string>
     <string name="institutional_restricted_msg">This feature is only available for students with an institutional email.</string>
+    <string name="edit_profile_title">Edit Profile</string>
+    <string name="edit_profile_name_label">Full Name</string>
+    <string name="edit_profile_avatar_label">Avatar Emoji</string>
+    <string name="edit_profile_save_btn">Save Changes</string>
+    <string name="edit_profile_success">Profile updated successfully!</string>
+    <string name="edit_profile_error">Failed to update profile.</string>
+    <string name="edit_profile_name_placeholder">Enter your name</string>
+    <string name="auth_reset_password_sent">Reset link sent! Please check your email.</string>
+    <string name="forgot_password_title">Forgot Password?</string>
+    <string name="forgot_password_desc">Enter your email and we\'ll send you a link to reset your password.</string>
+    <string name="forgot_password_submit">Send Reset Link</string>
+    <string name="forgot_password_back">Back to Login</string>
 </resources>

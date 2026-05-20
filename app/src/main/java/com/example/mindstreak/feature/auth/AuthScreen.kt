@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 @Composable
 fun AuthScreen(
     onLogin: () -> Unit,
+    onForgotPassword: () -> Unit,
     viewModel: AuthViewModel = viewModel()
 ) {
     var tab by remember { mutableStateOf(AuthTab.LOGIN) }
@@ -83,6 +84,7 @@ fun AuthScreen(
             emailPlaceholder = texts.emailPlaceholder,
             passwordPlaceholder = texts.passwordPlaceholder,
             forgotPasswordText = texts.forgotPasswordText,
+            onForgotPassword = onForgotPassword,
         )
 
         AuthDivider(text = texts.dividerOr)

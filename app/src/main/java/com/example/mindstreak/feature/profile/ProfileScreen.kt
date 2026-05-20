@@ -88,7 +88,8 @@ fun ProfileScreen(
             texts.memberSince,
             texts.verified,
             texts.edit,
-            user!!.isInstitutional
+            user!!.isInstitutional,
+            onEditClick = { onNavigate(Screen.EditProfile.route) }
         )
         ProfileStatsGrid(stats)
         Row(

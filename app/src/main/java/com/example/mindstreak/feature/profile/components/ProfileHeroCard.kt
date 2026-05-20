@@ -3,6 +3,7 @@ package com.example.mindstreak.feature.profile.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -34,6 +35,7 @@ fun ProfileHeroCard(
     verifiedLabel: String,
     editText: String,
     isInstitutional: Boolean,
+    onEditClick: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val xpPercent = xp.toFloat() / nextLevelXp.toFloat()
@@ -107,7 +109,8 @@ fun ProfileHeroCard(
                 Surface(
                     color = HabitPurple.copy(alpha = 0.15f),
                     shape = RoundedCornerShape(12.dp),
-                    border = BorderStroke(1.dp, HabitPurple.copy(alpha = 0.3f))
+                    border = BorderStroke(1.dp, HabitPurple.copy(alpha = 0.3f)),
+                    modifier = Modifier.clip(RoundedCornerShape(12.dp)).clickable { onEditClick() }
                 ) {
                     Text(
                         editText,
