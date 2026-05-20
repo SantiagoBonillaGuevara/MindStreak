@@ -19,7 +19,6 @@ sealed class NavItem(
     object Home : NavItem("home", R.string.nav_home, Icons.Default.Home)
     object Stats : NavItem("statistics", R.string.nav_stats, Icons.Default.BarChart)
     object Streak : NavItem("streak", R.string.nav_streak, icon = null, emoji = "🔥")
-    object Achievements : NavItem("achievements", R.string.nav_awards, Icons.Default.EmojiEvents)
     object Rewards : NavItem("rewards", R.string.nav_rewards, Icons.Default.Redeem)
     object Profile : NavItem("profile", R.string.nav_profile, Icons.Default.Person)
 }

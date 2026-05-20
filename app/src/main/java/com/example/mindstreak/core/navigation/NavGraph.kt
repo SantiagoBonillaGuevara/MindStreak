@@ -7,7 +7,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.mindstreak.feature.achievements.AchievementsScreen
 import com.example.mindstreak.feature.auth.AuthScreen
 import com.example.mindstreak.feature.auth.AuthViewModel
 import com.example.mindstreak.feature.auth.ForgotPasswordScreen
@@ -95,8 +94,6 @@ fun NavGraphBuilder.mainGraph(
     composable(Screen.Notifications.route) {
         NotificationsScreen(onBack = { navController.popBackStack() }, appViewModel = appViewModel)
     }
-
-    composable(Screen.Achievements.route) { AchievementsScreen(appViewModel = appViewModel) }
 
     composable(Screen.Rewards.route) { RewardsScreen(appViewModel = appViewModel) }
 
