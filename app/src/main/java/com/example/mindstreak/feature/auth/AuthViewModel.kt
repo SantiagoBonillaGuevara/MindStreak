@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
+import java.util.TimeZone
 
 sealed class AuthState {
     object Idle : AuthState()
@@ -52,11 +53,12 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun signUp(email: String, password: String, name: String, university: String) {
-        if (email.isBlank() || password.isBlank() || name.isBlank() || university.isBlank()) {
+    fun signUp(email: String, password: String, name: String) {
+        if (email.isBlank() || password.isBlank() || name.isBlank()) {
             _authState.value = AuthState.Error("Todos los campos son obligatorios")
             return
         }
+        val timeZone = TimeZone.getDefault().id
 
         isManualAction = true
         viewModelScope.launch {
@@ -67,7 +69,7 @@ class AuthViewModel : ViewModel() {
                     this.password = password
                     data = buildJsonObject {
                         put("name", name)
-                        put("university", university)
+                        put("timeZone", timeZone)
                     }
                 }
                 // Registro exitoso -> Cambiamos a Success con flag isSignUp = true

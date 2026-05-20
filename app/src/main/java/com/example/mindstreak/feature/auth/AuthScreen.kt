@@ -27,7 +27,6 @@ fun AuthScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
-    var university by remember { mutableStateOf("") }
 
     val context = LocalContext.current
     val authState by viewModel.authState.collectAsState()
@@ -39,13 +38,8 @@ fun AuthScreen(
                 val success = authState as AuthState.Success
                 Toast.makeText(context, success.message, Toast.LENGTH_LONG).show()
                 
-                if (success.isSignUp) {
-                    // Si fue registro, solo cambiamos a la pestaña de login
-                    tab = AuthTab.LOGIN
-                } else {
-                    // Si fue login o Google, navegamos al Home
-                    onLogin()
-                }
+                if (success.isSignUp) tab = AuthTab.LOGIN // Si fue registro, solo cambiamos a la pestaña de login
+                else onLogin() // Si fue login o Google, navegamos al Home
                 viewModel.resetState()
             }
             is AuthState.Error -> {
@@ -85,10 +79,7 @@ fun AuthScreen(
             onPasswordChange = { password = it },
             name = name,
             onNameChange = { name = it },
-            university = university,
-            onUniversityChange = { university = it },
             namePlaceholder = texts.namePlaceholder,
-            universityPlaceholder = texts.universityPlaceholder,
             emailPlaceholder = texts.emailPlaceholder,
             passwordPlaceholder = texts.passwordPlaceholder,
             forgotPasswordText = texts.forgotPasswordText,
@@ -108,11 +99,8 @@ fun AuthScreen(
 
         AuthSubmit(
             onClick = {
-                if (tab == AuthTab.LOGIN) {
-                    viewModel.signIn(email, password)
-                } else {
-                    viewModel.signUp(email, password, name, university)
-                }
+                if (tab == AuthTab.LOGIN) viewModel.signIn(email, password)
+                else viewModel.signUp(email, password, name)
             },
             tab = tab,
             loginText = texts.loginText,

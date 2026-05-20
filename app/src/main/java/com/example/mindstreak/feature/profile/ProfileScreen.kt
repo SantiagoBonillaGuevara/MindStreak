@@ -19,6 +19,7 @@ import com.example.mindstreak.core.navigation.Screen
 import androidx.annotation.RequiresApi
 import com.example.mindstreak.feature.home.AppViewModel
 import com.example.mindstreak.feature.notifications.NotificationPermissionHelper
+import kotlinx.coroutines.launch
 
 @RequiresApi(Build.VERSION_CODES.S)
 @Composable
@@ -33,6 +34,8 @@ fun ProfileScreen(
     val texts = rememberProfileTexts()
     val context = LocalContext.current
     val state by viewModel.state.collectAsState()
+    val scope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
 
     val darkMode = appUiState.isDarkMode ?: isSystemInDarkTheme()
     val notifications = appUiState.notificationsEnabled
@@ -82,7 +85,8 @@ fun ProfileScreen(
             user!!.joinDate,
             texts.memberSince,
             texts.verified,
-            texts.edit
+            texts.edit,
+            user!!.isInstitutional
         )
         ProfileStatsGrid(stats)
         Row(
@@ -93,7 +97,17 @@ fun ProfileScreen(
                 "🎁",
                 texts.rewards,
                 Modifier.weight(1f)
-            ) { onNavigate("rewards") }
+            ) {
+                if (user?.isInstitutional == true) {
+                    onNavigate("rewards")
+                } else {
+                    scope.launch {
+                        snackbarHostState.showSnackbar(
+                            context.getString(com.example.mindstreak.R.string.institutional_restricted_msg)
+                        )
+                    }
+                }
+            }
 
             QuickNavButton(
                 "🔔",
@@ -135,5 +149,6 @@ fun ProfileScreen(
         }
 
         LogoutButton(texts.logout, { viewModel.logout() })
+        SnackbarHost(hostState = snackbarHostState)
     }
 }

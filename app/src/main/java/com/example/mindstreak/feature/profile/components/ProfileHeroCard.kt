@@ -33,6 +33,7 @@ fun ProfileHeroCard(
     memberSinceLabel: String,
     verifiedLabel: String,
     editText: String,
+    isInstitutional: Boolean,
     modifier: Modifier = Modifier
 ) {
     val xpPercent = xp.toFloat() / nextLevelXp.toFloat()
@@ -150,19 +151,21 @@ fun ProfileHeroCard(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontSize = 11.sp
                 )
-                Spacer(Modifier.width(8.dp))
-                Surface(
-                    color = HabitTeal.copy(alpha = 0.15f),
-                    shape = CircleShape,
-                    border = BorderStroke(1.dp, HabitTeal.copy(alpha = 0.3f))
-                ) {
-                    Text(
-                        verifiedLabel,
-                        color = HabitTeal,
-                        fontSize = 9.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
-                    )
+                if (isInstitutional) {
+                    Spacer(Modifier.width(8.dp))
+                    Surface(
+                        color = HabitTeal.copy(alpha = 0.15f),
+                        shape = CircleShape,
+                        border = BorderStroke(1.dp, HabitTeal.copy(alpha = 0.3f))
+                    ) {
+                        Text(
+                            verifiedLabel,
+                            color = HabitTeal,
+                            fontSize = 9.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
+                        )
+                    }
                 }
             }
         }

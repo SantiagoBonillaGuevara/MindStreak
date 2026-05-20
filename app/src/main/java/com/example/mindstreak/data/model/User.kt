@@ -13,6 +13,7 @@ data class User(
     val bestStreak: Int,
     val totalHabitsCompleted: Int,
     val joinDate: String,
+    val isInstitutional: Boolean = false,
 ) {
     // NUEVO: Métodos de conveniencia calculados dinámicamente en el modelo de dominio para no romper las UIs
     fun getLevelStartXp(): Int {

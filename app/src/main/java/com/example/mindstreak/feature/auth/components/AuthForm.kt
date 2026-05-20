@@ -32,13 +32,10 @@ fun AuthForm(
     onPasswordChange: (String) -> Unit,
     name: String = "",
     onNameChange: (String) -> Unit = {},
-    university: String = "",
-    onUniversityChange: (String) -> Unit = {},
-    namePlaceholder:String,
-    universityPlaceholder:String,
-    emailPlaceholder:String,
-    passwordPlaceholder:String,
-    forgotPasswordText:String,
+    namePlaceholder: String,
+    emailPlaceholder: String,
+    passwordPlaceholder: String,
+    forgotPasswordText: String,
 ) {
     var showPass by remember { mutableStateOf(false) }
 
@@ -54,20 +51,12 @@ fun AuthForm(
     ) { currentTab ->
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
 
-            if (currentTab == AuthTab.REGISTER) {
-                AuthTextField(
-                    value = name,
-                    onValueChange = onNameChange,
-                    placeholder = namePlaceholder,
-                    leadingIcon = Icons.Default.Person,
-                )
-                AuthTextField(
-                    value = university,
-                    onValueChange = onUniversityChange,
-                    placeholder = universityPlaceholder,
-                    leadingIcon = Icons.Default.School,
-                )
-            }
+            if (currentTab == AuthTab.REGISTER) AuthTextField(
+                value = name,
+                onValueChange = onNameChange,
+                placeholder = namePlaceholder,
+                leadingIcon = Icons.Default.Person,
+            )
 
             AuthTextField(
                 value = email,
@@ -85,7 +74,10 @@ fun AuthForm(
                 text = passwordPlaceholder,
             )
             // Forgot password — solo en login
-            if (currentTab == AuthTab.LOGIN) AuthForgotPassword(onClick = {}, text = forgotPasswordText)
+            if (currentTab == AuthTab.LOGIN) AuthForgotPassword(
+                onClick = {},
+                text = forgotPasswordText
+            )
         }
     }
 }

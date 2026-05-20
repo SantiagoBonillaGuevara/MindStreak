@@ -87,6 +87,7 @@
     <string name="home_streak_days_suffix">days 🔥</string>
     <string name="home_streak_label">CURRENT STREAK</string>
     <string name="home_week_days">M,T,W,T,F,S,S</string>
+    <string name="institutional_restricted_msg">This feature is only available for students with an institutional email.</string>
     <string name="nav_awards">Awards</string>
     <string name="nav_home">Home</string>
     <string name="nav_profile">Profile</string>

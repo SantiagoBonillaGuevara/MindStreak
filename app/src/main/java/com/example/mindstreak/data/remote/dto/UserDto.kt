@@ -17,7 +17,8 @@ data class UserDto(
     @SerialName("total_streak") val totalStreak: Int,
     @SerialName("best_streak") val bestStreak: Int,
     @SerialName("total_habits_completed") val totalHabitsCompleted: Int,
-    @SerialName("join_date") val joinDate: String
+    @SerialName("join_date") val joinDate: String,
+    @SerialName("is_institutional") val isInstitutional: Boolean = false
 )
 
 fun UserDto.toDomain(): User {
@@ -33,7 +34,8 @@ fun UserDto.toDomain(): User {
         totalStreak = totalStreak,
         bestStreak = bestStreak,
         totalHabitsCompleted = totalHabitsCompleted,
-        joinDate = joinDate
+        joinDate = joinDate,
+        isInstitutional = isInstitutional
     )
 }
 
@@ -49,6 +51,7 @@ fun User.toDto(): UserDto {
         totalStreak = totalStreak,
         bestStreak = bestStreak,
         totalHabitsCompleted = totalHabitsCompleted,
-        joinDate = joinDate
+        joinDate = joinDate,
+        isInstitutional = isInstitutional
     )
 }

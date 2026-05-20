@@ -80,6 +80,7 @@
     <string name="home_streak_days_suffix">días 🔥</string>
     <string name="home_streak_label">RACHA ACTUAL</string>
     <string name="home_week_days">L,M,X,J,V,S,D</string>
+    <string name="institutional_restricted_msg">Esta función solo está disponible para estudiantes con correo institucional.</string>
     <string name="nav_awards">Logros</string>
     <string name="nav_home">Inicio</string>
     <string name="nav_profile">Perfil</string>

@@ -95,6 +95,7 @@ int string home_progress_title 0x0
 int string home_streak_days_suffix 0x0
 int string home_streak_label 0x0
 int string home_week_days 0x0
+int string institutional_restricted_msg 0x0
 int string nav_awards 0x0
 int string nav_home 0x0
 int string nav_profile 0x0

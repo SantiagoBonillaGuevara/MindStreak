@@ -96,6 +96,7 @@ string home_progress_title
 string home_streak_days_suffix
 string home_streak_label
 string home_week_days
+string institutional_restricted_msg
 string nav_awards
 string nav_home
 string nav_profile
