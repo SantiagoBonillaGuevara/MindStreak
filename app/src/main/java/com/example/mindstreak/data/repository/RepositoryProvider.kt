@@ -9,6 +9,7 @@ object RepositoryProvider {
 
     private var habitRepository: HabitRepository? = null
     private var userRepository: UserRepository? = null
+    private var quoteRepository: MotivationalQuoteRepository? = null
 
     fun getHabitRepository(context: Context): HabitRepository {
         return habitRepository ?: synchronized(this) {
@@ -29,6 +30,14 @@ object RepositoryProvider {
                 MockUserRepository()
             }
             userRepository = instance
+            instance
+        }
+    }
+
+    fun getQuoteRepository(): MotivationalQuoteRepository {
+        return quoteRepository ?: synchronized(this) {
+            val instance = SupabaseMotivationalQuoteRepository()
+            quoteRepository = instance
             instance
         }
     }

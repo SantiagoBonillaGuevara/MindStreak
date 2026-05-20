@@ -23,6 +23,7 @@ data class AppUiState(
     val allHabits: List<Habit> = emptyList(),
     val categories: List<Category> = emptyList(),
     val achievements: List<Achievement> = emptyList(),
+    val motivationalQuote: String = MockData.MOTIVATIONAL_QUOTES[1],
     val currentStreak: Int = 0,
     val bestStreak: Int = 0,
     val completedToday: Int = 0,
@@ -40,6 +41,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val TAG = "AppViewModel"
     private val repository = RepositoryProvider.getHabitRepository(application)
     private val userRepository = RepositoryProvider.getUserRepository(application)
+    private val quoteRepository = RepositoryProvider.getQuoteRepository()
     private val settingsManager = SettingsManager(application)
     private val scheduler = HabitNotificationScheduler(application)
 
@@ -48,6 +50,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     private val _totalLogs = MutableStateFlow(0)
     private val _categories = MutableStateFlow<List<Category>>(emptyList())
     private val _achievements = MutableStateFlow(MockData.ACHIEVEMENTS)
+    private val _motivationalQuote = MutableStateFlow(MockData.MOTIVATIONAL_QUOTES[1])
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
     val uiState: StateFlow<AppUiState> = combine(
@@ -57,6 +60,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         _totalLogs,
         _categories,
         _achievements,
+        _motivationalQuote,
         settingsManager.darkModeFlow,
         settingsManager.notificationsEnabledFlow
     ) { array ->
@@ -66,9 +70,10 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         val totalLogs = array[3] as Int
         val categories = array[4] as List<Category>
         val achievements = array[5] as List<Achievement>
-        val isDarkMode = array[6] as? Boolean
-        val notificationsEnabled = array[7] as Boolean
-        deriveUiState(user, habits, allHabits, totalLogs, categories, achievements, isDarkMode, notificationsEnabled)
+        val motivationalQuote = array[6] as String
+        val isDarkMode = array[7] as? Boolean
+        val notificationsEnabled = array[8] as Boolean
+        deriveUiState(user, habits, allHabits, totalLogs, categories, achievements, motivationalQuote, isDarkMode, notificationsEnabled)
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
@@ -132,6 +137,13 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             _categories.value = repository.getCategories()
         }
+
+        // Cargar quote inicial
+        viewModelScope.launch {
+            quoteRepository.getRandomQuote()?.let {
+                _motivationalQuote.value = it.text
+            }
+        }
     }
 
     fun refreshData() {
@@ -140,6 +152,11 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         repository.refresh()
         viewModelScope.launch {
             _totalLogs.value = repository.getTotalHabitLogsCount()
+        }
+        viewModelScope.launch {
+            quoteRepository.getRandomQuote()?.let {
+                _motivationalQuote.value = it.text
+            }
         }
     }
 
@@ -199,6 +216,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         totalLogs: Int,
         categories: List<Category>, 
         achievements: List<Achievement>,
+        motivationalQuote: String,
         isDarkMode: Boolean?,
         notificationsEnabled: Boolean
     ): AppUiState {
@@ -225,6 +243,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             allHabits = allHabits,
             categories = categories,
             achievements = achievements,
+            motivationalQuote = motivationalQuote,
             currentStreak = user?.totalStreak ?: 0,
             bestStreak = user?.bestStreak ?: 0,
             completedToday = completedToday,

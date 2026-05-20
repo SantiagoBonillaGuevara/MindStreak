@@ -109,7 +109,7 @@ fun HomeScreen(appViewModel: AppViewModel, navController: NavController) {
                     texts.progressTemplate
                 )
             }
-            QuoteCard(quote = MockData.MOTIVATIONAL_QUOTES[1])
+            QuoteCard(quote = state.motivationalQuote)
             HabitsHeader(
                 texts.habitsTitle,
                 texts.addBtnText
