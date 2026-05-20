@@ -96,9 +96,7 @@ fun HabitDetailScreen(habitId: String, appViewModel: AppViewModel, onBack: () ->
             processor.getMonthlyComparison()
         )
         HabitDetailActions(
-            { },
             { appViewModel.deleteHabit(habit.id); onBack() },
-            texts.editText,
             texts.deleteDesc
         )
     }

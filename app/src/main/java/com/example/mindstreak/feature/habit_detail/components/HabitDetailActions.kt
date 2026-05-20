@@ -13,9 +13,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun HabitDetailActions(
-    onEdit: () -> Unit,
     onDelete: () -> Unit,
-    editText: String,
     deleteContentDescription: String,
     modifier: Modifier = Modifier,
 ) {
@@ -24,24 +22,10 @@ fun HabitDetailActions(
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         OutlinedButton(
-            onClick = onEdit,
-            modifier = Modifier
-                .weight(1f)
-                .height(52.dp),
-            shape = RoundedCornerShape(16.dp),
-            colors = ButtonDefaults.outlinedButtonColors(
-                containerColor = MaterialTheme.colorScheme.secondary.copy(
-                    alpha = 0.1f
-                )
-            )
-        ) {
-            Icon(Icons.Default.Edit, contentDescription = null, modifier = Modifier.size(16.dp))
-            Spacer(Modifier.width(8.dp))
-            Text(editText, fontWeight = FontWeight.Bold)
-        }
-        OutlinedButton(
             onClick = onDelete,
-            modifier = Modifier.size(52.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(52.dp),
             shape = RoundedCornerShape(16.dp),
             colors = ButtonDefaults.outlinedButtonColors(
                 containerColor = MaterialTheme.colorScheme.error.copy(alpha = 0.1f),
